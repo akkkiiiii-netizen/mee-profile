@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011838">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011907">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -151,18 +151,11 @@ header{position:sticky;top:0;z-index:50;
 
 /* ---------- 写真 ---------- */
 .hero-visual{position:relative}
-.hv-img{width:100%;aspect-ratio:4/3;object-fit:cover;
-  clip-path:polygon(0 2.2%,100% 0,100% 97.8%,0 100%)}
 .hero-visual .card{margin-top:-52px;margin-left:clamp(16px,4vw,30px);
   position:relative;z-index:2;box-shadow:0 26px 54px -32px rgba(46,50,48,.6)}
 
 .band-img{overflow:hidden;clip-path:polygon(0 5%,100% 0,100% 95%,0 100%)}
 .band-img img{display:block;width:100%;height:clamp(170px,32vw,330px);object-fit:cover}
-
-.bg-grid{display:grid;gap:30px}
-.fig{margin:0}
-.fig img{width:100%;aspect-ratio:1/1;object-fit:cover;
-  clip-path:polygon(0 3%,100% 0,100% 97%,0 100%)}
 
 /* ---------- 悩みリスト ---------- */
 .checks{list-style:none;margin:0 0 30px;padding:0;
@@ -205,11 +198,11 @@ header{position:sticky;top:0;z-index:50;
   padding:20px 2px;font-weight:500;line-height:1.8}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary .q{font-family:var(--en);color:var(--rose);font-size:13px;margin-top:.25em;flex:none}
-.faq summary .sign{margin-left:auto;flex:none;width:13px;height:13px;position:relative;margin-top:.6em}
-.faq summary .sign::before,.faq summary .sign::after{content:"";position:absolute;background:var(--green);
+.faq summary .sign2{margin-left:auto;flex:none;width:13px;height:13px;position:relative;margin-top:.6em}
+.faq summary .sign2::before,.faq summary .sign2::after{content:"";position:absolute;background:var(--green);
   left:0;top:6px;width:13px;height:1px;transition:transform .3s}
-.faq summary .sign::after{transform:rotate(90deg)}
-.faq details[open] summary .sign::after{transform:rotate(0)}
+.faq summary .sign2::after{transform:rotate(90deg)}
+.faq details[open] summary .sign2::after{transform:rotate(0)}
 .faq .ans{display:flex;gap:14px;padding:0 2px 24px;color:var(--sub);font-size:14px;line-height:2}
 .faq .ans .a{font-family:var(--en);color:var(--green-l);font-size:13px;flex:none}
 .faq .ans p{margin:0}
@@ -232,6 +225,44 @@ footer{background:var(--base);border-top:1px solid var(--line);
   padding:9px 18px;border-radius:100px;transition:background .3s,color .3s,border-color .3s}
 .sns a:hover{background:var(--green);color:#fff;border-color:var(--green)}
 .copy{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--sub);margin:0}
+
+/* ---------- プロフィール（人物写真は丸くくり抜く） ---------- */
+/* 元画像は濃いグレーの地に丸く切り抜かれた写真。
+   写真の中の丸より "少しだけ内側" を表示するので、縁に黒が出ない。
+   中心(598,570) 半径407 / 原寸1206x1184 から算出した数値。触らないこと。 */
+.avatar{position:relative;width:100%;aspect-ratio:1;border-radius:50%;
+  overflow:hidden;background:var(--gray)}
+.avatar img{position:absolute;width:161.5%;height:auto;max-width:none;
+  left:-30.1%;top:-26.3%}
+
+.prof{display:grid;gap:clamp(28px,5.6vw,40px)}
+.prof-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;
+  clip-path:polygon(0 2.4%,100% 0,100% 97.6%,0 100%)}
+.prof-name{font-family:var(--mincho);font-size:clamp(28px,7vw,36px);
+  letter-spacing:.06em;line-height:1.2;margin:0 0 8px}
+.prof-en{font-family:var(--en);font-size:11px;letter-spacing:.28em;
+  color:var(--sub);margin:0 0 20px}
+.prof-role{font-size:clamp(15px,4.2vw,18px);font-weight:500;color:var(--green);
+  letter-spacing:.06em;margin:0 0 6px}
+.prof-sub{font-size:13.5px;color:var(--sub);margin:0 0 26px}
+.career{list-style:none;margin:0 0 28px;padding:0;border-top:1px solid var(--line)}
+.career li{display:grid;grid-template-columns:78px 1fr;gap:14px;
+  padding:15px 2px;border-bottom:1px solid var(--line);
+  font-size:14px;line-height:1.85}
+.career .y{font-family:var(--en);font-size:12px;letter-spacing:.1em;
+  color:var(--rose);padding-top:.35em}
+
+/* ---------- メッセージ（お仕事への想い） ---------- */
+.narrow{max-width:680px}
+.msg-quote{font-family:var(--mincho);font-size:clamp(20px,5.4vw,30px);
+  line-height:1.75;letter-spacing:.02em;color:var(--green);margin:0 0 30px}
+.msg-body p{margin:0 0 1.5em;color:var(--sub)}
+.msg-body .em{color:var(--ink);font-weight:500;
+  border-left:2px solid var(--green-l);padding-left:18px}
+.sign{font-family:var(--mincho);font-size:19px;letter-spacing:.08em;
+  text-align:right;margin:34px 0 0}
+.sign small{display:block;font-family:var(--en);font-size:10.5px;
+  letter-spacing:.24em;color:var(--sub);margin-top:8px}
 
 /* ---------- Stagger Reveal（No.008）カード・リストを順番に ---------- */
 .stg>*{opacity:0;transform:translateY(16px);
@@ -259,8 +290,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 @media (min-width:820px){
   body{font-size:15.5px}
   .hero-grid{grid-template-columns:1.2fr .8fr;align-items:center}
-  .hv-img{aspect-ratio:3/4}
-  .bg-grid{grid-template-columns:.85fr 1.15fr;gap:clamp(32px,4.4vw,48px);align-items:start}
+  .prof{grid-template-columns:.82fr 1.18fr;gap:clamp(36px,5vw,56px);align-items:start}
   .hero h1{font-size:clamp(30px,3.6vw,44px)}
   .works{grid-template-columns:repeat(3,1fr);gap:18px}
   .stats li{padding:30px 10px}
@@ -298,7 +328,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
       </p>
       <div class="rv" style="--d:130ms">
         <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
-          <span>無料で相談してみる</span><span class="arw">→</span>
+          <span>無料で相談してみる</span><span class="arw">&#8594;</span>
         </a>
         <p class="btn-note">Googleフォームが開きます。</p>
       </div>
@@ -306,8 +336,10 @@ footer{background:var(--base);border-top:1px solid var(--line);
     </div>
 
     <div class="hero-visual rv" style="--d:100ms">
-      <img class="hv-img" src="images/hero-desk.jpg?v=202609011838" width="900" height="1200"
-           alt="朝の光が入る机の上に、開いたノートとペン、観葉植物、ノートパソコンが置かれている">
+      <div class="avatar">
+        <img src="images/profile.jpg?v=202609011907" width="900" height="883"
+             alt="ノートパソコンに向かい、頬杖をついて考えているところ">
+      </div>
     <div class="card">
       <p class="en">PROFILE</p>
       <p class="nm">ミー</p>
@@ -346,22 +378,72 @@ footer{background:var(--base);border-top:1px solid var(--line);
       <h2 class="rv" style="--d:30ms">「ないもの」を増やすより、<br><em>「すでにあるもの」</em>を生かす。</h2>
       <div class="rv" style="--d:80ms">
         <p class="lead">技術やサービスへの想いがあるのに、伝え方や仕組みが整っていないだけで、必要な人に届かず埋もれてしまう。そんなサービスを減らしたいと思っています。</p>
-        <p class="lead">地方だから。ひとりだから。SNSが得意じゃないから。<br>その理由だけで、せっかくのサービスを諦めてほしくないんです。</p>
         <p class="lead">広告がある。LINEがある。SNSがある。もう来てくださっているお客様がいる。<br>まずは、それがちゃんとつながっているかを見にいく。足りないものを増やすより、いま持っているものが活きる流れを整えます。</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- 04 プロフィール -->
+<section class="sec" id="profile">
+  <div class="wrap">
+    <p class="lbl rv"><span class="num">04</span><i class="bar"></i>PROFILE</p>
+    <div class="prof">
+      <div class="prof-photo rv" style="--d:40ms">
+        <img src="images/hero-desk.jpg?v=202609011907" width="900" height="1200" loading="lazy" decoding="async"
+             alt="朝の光が入る机の上に、開いたノートとペン、観葉植物、ノートパソコンが置かれている">
+      </div>
+      <div>
+        <div class="rv" style="--d:70ms">
+          <p class="prof-name">ミー</p>
+          <p class="prof-en">MEE</p>
+          <p class="prof-role">地方サロンの裏方</p>
+          <p class="prof-sub">SNS・広告・LINEをつないで、予約までの流れを整えます。</p>
+        </div>
+        <ul class="career stg">
+          <li><span class="y">7年</span><span>オーガニックコスメの美容業界で、美容部員として対面で接客。<br>売るより先に相手を知ること、最初の言葉だけで判断しないことを、ここで身につけました。</span></li>
+          <li><span class="y">いま</span><span>地方でひとり事業をしている方に向けて、SNS・広告・LINEをつなぎ、<br>お客様がサービスを知ってから予約するまでの流れを設計・構築しています。</span></li>
+          <li><span class="y">実績</span><span>LINE構築 5件 ／ 集客導線サポート 3件<br>ネイル・アイブロウ・エステ・ヨガ・ピラティス・セラピー・教室業など、<br>地域のお客様との関係を大切にしている方が中心です。</span></li>
+          <li><span class="y">発信</span><span>Threadsで、試していることをそのまま共有中。<br>うまくいったことも、反応がなくてへこんだことも書いています。</span></li>
+        </ul>
+        <ul class="stats stg">
+          <li><span class="n">7<small>年</small></span><span class="t">美容部員として<br>対面で接客</span></li>
+          <li><span class="n">5<small>件</small></span><span class="t">LINE構築</span></li>
+          <li><span class="n">3<small>件</small></span><span class="t">集客導線<br>サポート</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="band-img rv">
-  <img src="images/thought-paper.jpg?v=202609011838" width="1500" height="844" loading="lazy" decoding="async"
-       alt="深い緑の面の上に置かれた紙に、葉のやわらかな影が落ちている">
+  <img src="images/background-hands.jpg?v=202609011907" width="1000" height="1000" loading="lazy" decoding="async"
+       alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
 </div>
 
-<!-- 04 できること -->
+<!-- 05 お仕事への想い -->
+<section class="sec" id="message" style="background:var(--white);border-block:1px solid var(--line)">
+  <div class="wrap narrow">
+    <p class="lbl rv"><span class="num">05</span><i class="bar"></i>MESSAGE</p>
+    <h2 class="rv" style="--d:30ms">お仕事への想い</h2>
+    <p class="msg-quote rv" style="--d:60ms">私は、頑張っている人に<br>「もっとやりましょう」と<br>言いたいわけではありません。</p>
+    <div class="msg-body rv" style="--d:90ms">
+      <p>地方だから難しい。ひとりでやっているから時間がない。広告費をかけないと集客できない。SNSが得意じゃないから無理。<br>そんな理由だけで、せっかくのサービスを諦めてほしくないんです。</p>
+      <p>ひとり事業主さんは、施術や接客だけでなく、SNS、LINE、広告、予約対応まで、たくさんのことをひとりで持っています。だから私は、すべてを「自分でできるように頑張りましょう」とは伝えません。その人が本来いちばん大切にしたい仕事に時間を使えるように、必要な部分だけを整理して、仕組みにします。</p>
+      <p>「これをやれば必ず集客できます」と約束することもしません。目指しているゴールを聞いたうえで、いま何が必要で、何はまだ必要ないのか。私がどこまで力になれるのか。きちんとすり合わせてから、お仕事をしたいと思っています。</p>
+      <p class="em">私がやりたいのは、ツールを作ることそのものではなく、その人がすでに持っているサービスや魅力を、必要としているお客様に届く形へ整えることです。</p>
+      <p>新しいものをどんどん増やす前に、いま持っているものを、一度ちゃんと見る。<br>そして最終的には、誰かにずっと依存するのではなく、自分で考えて、自分で選べるようになる。</p>
+      <p class="em">そこまでのつなぎとして、私がいます。</p>
+      <p>「ないもの」を増やすより、「すでにあるもの」を生かして、地方だからこそできる仕事の形を、一緒につくっていけたらうれしいです。</p>
+    </div>
+    <p class="sign rv" style="--d:120ms">ミー<small>MEE</small></p>
+  </div>
+</section>
+
+<!-- 06 やっていること -->
 <section class="sec" id="work">
   <div class="wrap">
-    <p class="lbl rv"><span class="num">04</span><i class="bar"></i>WHAT I DO</p>
+    <p class="lbl rv"><span class="num">06</span><i class="bar"></i>WHAT I DO</p>
     <h2 class="rv" style="--d:30ms">やっていることは、<br>この3つです。</h2>
     <div class="works stg">
       <div class="work">
@@ -380,46 +462,6 @@ footer{background:var(--base);border-top:1px solid var(--line);
         <p>仕組みを渡して終わりにはしません。自分で考えられる。自分で回せる。自分に必要なものを、自分で選べる。そこまでのつなぎとして、私がいます。</p>
       </div>
     </div>
-    <p class="lead rv" style="--d:160ms;margin-top:30px">サロン・教室・スクールなど、地域のお客様との関係を大切にしながら、ひとりでサービスを届けている方と多くお仕事をしています。</p>
-  </div>
-</section>
-
-<!-- 05 土台 -->
-<section class="sec" id="background" style="background:var(--white);border-block:1px solid var(--line)">
-  <div class="wrap">
-    <p class="lbl rv"><span class="num">05</span><i class="bar"></i>BACKGROUND</p>
-    <h2 class="rv" style="--d:30ms">根っこにあるのは、<br>7年間の<em>対面接客</em>です。</h2>
-    <div class="bg-grid">
-      <figure class="fig rv" style="--d:60ms">
-        <img src="images/background-hands.jpg?v=202609011838" width="1000" height="1000" loading="lazy" decoding="async"
-             alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
-      </figure>
-      <div>
-    <ul class="stats stg">
-      <li><span class="n">7<small>年</small></span><span class="t">美容部員として<br>対面で接客</span></li>
-      <li><span class="n">5<small>件</small></span><span class="t">LINE構築</span></li>
-      <li><span class="n">3<small>件</small></span><span class="t">集客導線<br>サポート</span></li>
-    </ul>
-    <div class="rv" style="--d:100ms">
-      <p class="lead">オーガニックコスメの美容部員として、7年間お客様と向き合ってきました。<br>商品をおすすめする前に、何を聞くか。お客様の最初の言葉だけで判断しないこと。売るより先に、相手を知ること。<br>「また来たい」と思ってもらえる流れを考えられるのは、この7年があるからです。</p>
-      <p class="lead">いまは Threads で発信しながら、自分でも試している途中です。うまくいったことも、反応がなくてへこんだことも、そのまま共有しています。</p>
-    </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 06 約束 -->
-<section class="sec" id="promise">
-  <div class="wrap">
-    <p class="lbl rv"><span class="num">06</span><i class="bar"></i>PROMISE</p>
-    <div class="cols">
-      <h2 class="rv" style="--d:30ms">「必ず集客できます」<br>とは、<em>言いません</em>。</h2>
-      <div class="rv" style="--d:80ms">
-        <p class="lead">代わりに、目指しているゴールを聞かせてください。そのうえで、いま何が必要で、何はまだ必要ないのか。私がどこまで力になれるのか。きちんとすり合わせてから、お仕事をしたいと思っています。</p>
-        <p class="lead">「全部を自分でできるように頑張りましょう」とも言いません。あなたが本当に時間を使いたいのは、目の前のお客様のはずだから。必要なところだけを整理して、仕組みにします。</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -430,38 +472,43 @@ footer{background:var(--base);border-top:1px solid var(--line);
     <h2 class="rv" style="--d:30ms">よくいただく質問</h2>
     <div class="faq stg">
       <details>
-        <summary><span class="q">Q.</span><span>地方でも、集客ってできるものでしょうか。</span><span class="sign"></span></summary>
+        <summary><span class="q">Q.</span><span>地方でも、集客ってできるものでしょうか。</span><span class="sign2"></span></summary>
         <div class="ans"><span class="a">A.</span><p>地方だから難しい、とは思っていません。むしろ地域のお客様との関係が近いぶん、「また来たい」がつくりやすい場所だと感じています。まずは、いまある広告・SNS・LINEがつながっているかを見るところからです。</p></div>
       </details>
       <details>
-        <summary><span class="q">Q.</span><span>SNSが得意ではありません。それでも大丈夫ですか。</span><span class="sign"></span></summary>
+        <summary><span class="q">Q.</span><span>SNSが得意ではありません。それでも大丈夫ですか。</span><span class="sign2"></span></summary>
         <div class="ans"><span class="a">A.</span><p>大丈夫です。毎日たくさん投稿しましょう、という話はしません。プロフィールなど最低限の土台を整えたうえで、投稿以外のところ（LINEや予約までの流れ）で受けとめられるように設計していきます。</p></div>
       </details>
       <details>
-        <summary><span class="q">Q.</span><span>何から手をつければいいか、分かっていません。</span><span class="sign"></span></summary>
+        <summary><span class="q">Q.</span><span>何から手をつければいいか、分かっていません。</span><span class="sign2"></span></summary>
         <div class="ans"><span class="a">A.</span><p>その状態でご相談ください。むしろ、整理されていないまま見せていただいたほうが、どこで止まっているのかが分かります。いま必要なこと・まだ必要ないことを、一緒に切り分けるところから始めます。</p></div>
       </details>
       <details>
-        <summary><span class="q">Q.</span><span>LINEはもう作ってあります。それでも相談できますか。</span><span class="sign"></span></summary>
+        <summary><span class="q">Q.</span><span>LINEはもう作ってあります。それでも相談できますか。</span><span class="sign2"></span></summary>
         <div class="ans"><span class="a">A.</span><p>はい。私はLINE単体ではなく、その前後の流れを見ています。「作ったけれど動いてもらえない」のは、多くの場合LINEの中だけの問題ではありません。すでにあるものを、生かす方向で考えます。</p></div>
       </details>
       <details>
-        <summary><span class="q">Q.</span><span>相談したら、申し込まないといけませんか。</span><span class="sign"></span></summary>
+        <summary><span class="q">Q.</span><span>相談したら、申し込まないといけませんか。</span><span class="sign2"></span></summary>
         <div class="ans"><span class="a">A.</span><p>いいえ。まずはゴールと現状をすり合わせる時間です。私がどこまで力になれるかを確認したうえで、お互いに納得できたときにお仕事をさせてください。</p></div>
       </details>
     </div>
   </div>
 </section>
 
+<div class="band-img rv">
+  <img src="images/thought-paper.jpg?v=202609011907" width="1500" height="844" loading="lazy" decoding="async"
+       alt="深い緑の面の上に置かれた紙に、葉のやわらかな影が落ちている">
+</div>
+
 <!-- 08 CTA -->
 <section class="sec cta on-green slant" id="contact">
   <div class="wrap inner">
     <p class="lbl rv"><span class="num">08</span><i class="bar"></i>CONTACT</p>
     <h2 class="rv" style="--d:30ms">まずは、いまの状態を<br>見せてください。</h2>
-    <p class="lead rv" style="--d:70ms">整っていなくて大丈夫です。途中のままで見せてもらえたほうが、どこで止まっているのかが見つけやすくなります。<br>ご相談は無料です。ひとつずつ、一緒に見ていきましょう。</p>
+    <p class="lead rv" style="--d:60ms">整っていなくて大丈夫です。途中のままで見せてもらえたほうが、どこで止まっているのかが見つけやすくなります。<br>ご相談は無料です。ひとつずつ、一緒に見ていきましょう。</p>
     <div class="rv" style="--d:100ms">
       <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
-        <span>無料で相談してみる</span><span class="arw">→</span>
+        <span>無料で相談してみる</span><span class="arw">&#8594;</span>
       </a>
       <p class="btn-note">Googleフォームが開きます。</p>
     </div>
