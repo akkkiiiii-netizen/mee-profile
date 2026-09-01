@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011745">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011832">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -231,6 +231,13 @@ footer{background:var(--base);border-top:1px solid var(--line);
 .sns a:hover{background:var(--green);color:#fff;border-color:var(--green)}
 .copy{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--sub);margin:0}
 
+/* ---------- Stagger Reveal（No.008）カード・リストを順番に ---------- */
+.stg>*{opacity:0;transform:translateY(20px);
+  transition:opacity .6s ease-out,transform .6s ease-out;
+  transition-delay:var(--sd,0ms)}
+.stg>*.in{opacity:1;transform:none}
+.no-js .stg>*{opacity:1;transform:none}
+
 /* ---------- 出現アニメ ---------- */
 .rv{opacity:0;transform:translateY(20px);
   transition:opacity .95s cubic-bezier(.2,.7,.2,1),transform .95s cubic-bezier(.2,.7,.2,1);
@@ -241,7 +248,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 .no-js .rv{opacity:1;transform:none}
 .no-js .rv .bar{transform:none}
 @media (prefers-reduced-motion:reduce){
-  .rv{opacity:1!important;transform:none!important}
+  .rv,.stg>*{opacity:1!important;transform:none!important;transition:none!important}
   .rv .bar,.hero h1 em::after{transform:none!important}
   .scroll-cue i::after{animation:none}
 }
@@ -297,7 +304,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
     </div>
 
     <div class="hero-visual rv" style="--d:180ms">
-      <img class="hv-img" src="images/hero-desk.jpg?v=202609011745" width="900" height="1200"
+      <img class="hv-img" src="images/hero-desk.jpg?v=202609011832" width="900" height="1200"
            alt="朝の光が入る机の上に、開いたノートとペン、観葉植物、ノートパソコンが置かれている">
     <div class="card">
       <p class="en">PROFILE</p>
@@ -314,7 +321,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
   <div class="wrap">
     <p class="lbl rv"><span class="num">02</span><i class="bar"></i>ISSUE</p>
     <h2 class="rv" style="--d:60ms">こんな状態に、<br>なっていませんか。</h2>
-    <ul class="checks rv" style="--d:120ms">
+    <ul class="checks stg">
       <li><span class="mk"></span>技術やサービスには自信があるけれど、発信や集客は苦手</li>
       <li><span class="mk"></span>SNS・LINE・広告、それぞれ頑張っているのに、バラバラになっている</li>
       <li><span class="mk"></span>広告費はかけているけれど、売上につながっている実感が薄い</li>
@@ -345,7 +352,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 </section>
 
 <div class="band-img rv">
-  <img src="images/thought-paper.jpg?v=202609011745" width="1500" height="844" loading="lazy" decoding="async"
+  <img src="images/thought-paper.jpg?v=202609011832" width="1500" height="844" loading="lazy" decoding="async"
        alt="深い緑の面の上に置かれた紙に、葉のやわらかな影が落ちている">
 </div>
 
@@ -354,18 +361,18 @@ footer{background:var(--base);border-top:1px solid var(--line);
   <div class="wrap">
     <p class="lbl rv"><span class="num">04</span><i class="bar"></i>WHAT I DO</p>
     <h2 class="rv" style="--d:60ms">やっていることは、<br>この3つです。</h2>
-    <div class="works">
-      <div class="work rv" style="--d:100ms">
+    <div class="works stg">
+      <div class="work">
         <p class="no">01</p>
         <h3>迷っている場所を、<br>一緒に見つける</h3>
         <p>広告・SNS・LINE・予約・来店・リピート。その流れの中で、お客様がどこで迷い、どこで離れているのか。お客様側の目線から、一緒に見ていきます。</p>
       </div>
-      <div class="work rv" style="--d:180ms">
+      <div class="work">
         <p class="no">02</p>
         <h3>知ってから予約までを、<br>一本につなぐ</h3>
         <p>SNSのプロフィールなど最低限の土台を整え、広告からLINE登録へ。LINE公式アカウントやL Messageを使って、サービス案内から予約までの導線をつくります。</p>
       </div>
-      <div class="work rv" style="--d:260ms">
+      <div class="work">
         <p class="no">03</p>
         <h3>最後は、自分で<br>回せる状態へ</h3>
         <p>仕組みを渡して終わりにはしません。自分で考えられる。自分で回せる。自分に必要なものを、自分で選べる。そこまでのつなぎとして、私がいます。</p>
@@ -382,11 +389,11 @@ footer{background:var(--base);border-top:1px solid var(--line);
     <h2 class="rv" style="--d:60ms">根っこにあるのは、<br>7年間の<em>対面接客</em>です。</h2>
     <div class="bg-grid">
       <figure class="fig rv" style="--d:100ms">
-        <img src="images/background-hands.jpg?v=202609011745" width="1000" height="1000" loading="lazy" decoding="async"
+        <img src="images/background-hands.jpg?v=202609011832" width="1000" height="1000" loading="lazy" decoding="async"
              alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
       </figure>
       <div>
-    <ul class="stats rv" style="--d:120ms">
+    <ul class="stats stg">
       <li><span class="n">7<small>年</small></span><span class="t">美容部員として<br>対面で接客</span></li>
       <li><span class="n">5<small>件</small></span><span class="t">LINE構築</span></li>
       <li><span class="n">3<small>件</small></span><span class="t">集客導線<br>サポート</span></li>
@@ -419,7 +426,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
   <div class="wrap">
     <p class="lbl rv"><span class="num">07</span><i class="bar"></i>FAQ</p>
     <h2 class="rv" style="--d:60ms">よくいただく質問</h2>
-    <div class="faq rv" style="--d:120ms">
+    <div class="faq stg">
       <details>
         <summary><span class="q">Q.</span><span>地方でも、集客ってできるものでしょうか。</span><span class="sign"></span></summary>
         <div class="ans"><span class="a">A.</span><p>地方だから難しい、とは思っていません。むしろ地域のお客様との関係が近いぶん、「また来たい」がつくりやすい場所だと感じています。まずは、いまある広告・SNS・LINEがつながっているかを見るところからです。</p></div>
@@ -483,6 +490,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
   var hero = document.getElementById('hero');
   if(!('IntersectionObserver' in window)){
     items.forEach(function(el){el.classList.add('in');});
+    document.querySelectorAll('.stg>*').forEach(function(el){el.classList.add('in');});
     hero.classList.add('in');
     return;
   }
@@ -493,6 +501,29 @@ footer{background:var(--base);border-top:1px solid var(--line);
   },{rootMargin:'0px 0px -12% 0px',threshold:0.08});
   items.forEach(function(el){ io.observe(el); });
   requestAnimationFrame(function(){ hero.classList.add('in'); });
+
+  /* Stagger Reveal（No.008）
+     同じタイミングで画面に入ったカードたちを1グループとみなし、
+     入った順に少しずつ遅らせて表示する。1度出たら二度と動かさない。 */
+  var STEP = 110;   /* 1枚ごとにずらす時間 */
+  var CAP  = 5;     /* 遅延を足すのはここまで（合計が長くなりすぎないように） */
+  var kids = [];
+  document.querySelectorAll('.stg').forEach(function(g){
+    Array.prototype.forEach.call(g.children, function(el, i){
+      el.__order = i; kids.push(el);
+    });
+  });
+  if(!kids.length) return;
+  var sio = new IntersectionObserver(function(es){
+    es.filter(function(e){ return e.isIntersecting; })
+      .sort(function(a,b){ return a.target.__order - b.target.__order; })
+      .forEach(function(e, k){
+        e.target.style.setProperty('--sd', (Math.min(k, CAP) * STEP) + 'ms');
+        e.target.classList.add('in');
+        sio.unobserve(e.target);
+      });
+  },{rootMargin:'0px 0px -10% 0px',threshold:0.12});
+  kids.forEach(function(el){ sio.observe(el); });
 })();
 </script>
 </body>
