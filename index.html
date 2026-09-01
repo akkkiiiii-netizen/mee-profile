@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011916">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011921">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -114,33 +114,29 @@ header{position:sticky;top:0;z-index:50;
 @media (max-width:430px){ .hd-name span{display:none} }
 
 /* ---------- ヒーロー ---------- */
-.hero{position:relative;padding-block:clamp(52px,11vw,92px) clamp(64px,12vw,104px)}
-.hero-grid{display:grid;gap:clamp(34px,6vw,56px)}
+.hero{position:relative;display:flex;align-items:flex-end;
+  min-height:min(94svh,780px);
+  padding-block:clamp(96px,20vw,150px) clamp(46px,9vw,72px);
+  background:var(--green-d);overflow:hidden;isolation:isolate}
+/* 背景いっぱいの写真。上に深緑の膜をかけて文字を読めるようにする */
+.hero-bg{position:absolute;inset:0;z-index:-1}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,52,42,.78) 0%,rgba(20,52,42,.62) 42%,rgba(20,52,42,.86) 100%)}
+.hero-grid{display:grid;gap:clamp(34px,6vw,56px);width:100%}
 .hero h1{font-family:var(--mincho);font-weight:600;
   font-size:clamp(25px,6.8vw,48px);line-height:1.62;letter-spacing:.01em;margin:0 0 26px}
-.hero h1 em{font-style:normal;color:var(--green);position:relative;white-space:nowrap}
-.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.1em;height:8px;
-  background:var(--rose-pale);z-index:-1;transform:scaleX(0);transform-origin:left;
+.hero h1 em{font-style:normal;color:#fff;position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:2px;
+  background:var(--rose);transform:scaleX(0);transform-origin:left;
   transition:transform .5s .38s var(--snap)}
 .hero.in h1 em::after{transform:scaleX(1)}
 .hero h1 em{z-index:0;isolation:isolate}
 .hero-lead{max-width:30em;margin-bottom:32px}
-
-/* 名刺パネル（深緑の変形面） */
-.card{position:relative;background:var(--green);color:#F4F4EF;
-  padding:clamp(30px,6.4vw,44px) clamp(24px,5.4vw,40px);
-  clip-path:polygon(0 2.4%,100% 0,100% 97.6%,0 100%);
-  overflow:hidden}
-.card::after{content:"";position:absolute;right:-64px;bottom:-84px;
-  width:210px;height:210px;border:1px solid rgba(118,166,111,.55);border-radius:50%}
-.card .en{font-family:var(--en);font-size:11px;letter-spacing:.28em;
-  color:rgba(244,244,239,.6);margin:0 0 16px}
-.card .nm{font-family:var(--mincho);font-size:clamp(30px,8vw,42px);letter-spacing:.06em;
-  line-height:1.2;margin:0 0 14px}
-.card .ttl{font-size:clamp(16px,4.4vw,20px);font-weight:500;letter-spacing:.08em;margin:0 0 12px}
-.card .ttl::before{content:"";display:block;width:26px;height:1px;
-  background:var(--rose-pale);margin-bottom:14px}
-.card .desc{font-size:13px;line-height:1.95;color:rgba(244,244,239,.8);margin:0;position:relative;z-index:1}
+.hero .lead{color:rgba(244,244,239,.9)}
+.on-green .scroll-cue{color:rgba(244,244,239,.66)}
+.on-green .scroll-cue i{background:rgba(244,244,239,.35)}
+.on-green .scroll-cue i::after{background:var(--rose-pale)}
 
 .scroll-cue{display:flex;align-items:center;gap:10px;margin-top:38px;
   font-family:var(--en);font-size:10px;letter-spacing:.24em;color:var(--sub)}
@@ -150,10 +146,6 @@ header{position:sticky;top:0;z-index:50;
 @keyframes cue{0%{transform:translateX(-100%)}55%{transform:translateX(0)}100%{transform:translateX(100%)}}
 
 /* ---------- 写真 ---------- */
-.hero-visual{position:relative}
-.hero-visual .card{margin-top:-52px;margin-left:clamp(16px,4vw,30px);
-  position:relative;z-index:2;box-shadow:0 26px 54px -32px rgba(46,50,48,.6)}
-
 .band-img{overflow:hidden;clip-path:polygon(0 5%,100% 0,100% 95%,0 100%)}
 .band-img img{display:block;width:100%;height:clamp(170px,32vw,330px);object-fit:cover}
 
@@ -236,8 +228,6 @@ footer{background:var(--base);border-top:1px solid var(--line);
   left:-30.1%;top:-26.3%}
 
 .prof{display:grid;gap:clamp(28px,5.6vw,40px)}
-.prof-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;
-  clip-path:polygon(0 2.4%,100% 0,100% 97.6%,0 100%)}
 .prof-name{font-family:var(--mincho);font-size:clamp(28px,7vw,36px);
   letter-spacing:.06em;line-height:1.2;margin:0 0 8px}
 .prof-en{font-family:var(--en);font-size:11px;letter-spacing:.28em;
@@ -289,9 +279,9 @@ footer{background:var(--base);border-top:1px solid var(--line);
 /* ---------- パソコン ---------- */
 @media (min-width:820px){
   body{font-size:15.5px}
-  .hero-grid{grid-template-columns:1.2fr .8fr;align-items:center}
   .prof{grid-template-columns:.82fr 1.18fr;gap:clamp(36px,5vw,56px);align-items:start}
-  .hero h1{font-size:clamp(30px,3.6vw,44px)}
+  .hero h1{font-size:clamp(34px,4.2vw,54px)}
+  .hero-lead{font-size:16px}
   .works{grid-template-columns:repeat(3,1fr);gap:18px}
   .stats li{padding:30px 10px}
   .stats .t{font-size:12.5px}
@@ -316,7 +306,12 @@ footer{background:var(--base);border-top:1px solid var(--line);
 <main>
 
 <!-- 01 ヒーロー -->
-<section class="hero sec" id="hero">
+<section class="hero sec on-green" id="hero">
+  <!-- ▼ ヒーローの一枚絵。新しい画像が届いたら、この src だけ差し替える -->
+  <div class="hero-bg">
+    <img src="images/hero-desk.jpg?v=202609011921" width="900" height="1200" fetchpriority="high"
+         alt="朝の光が入る机。開いたノートとペン、観葉植物、ノートパソコン">
+  </div>
   <div class="wrap hero-grid">
     <div>
       <p class="lbl rv"><span class="num">01</span><i class="bar"></i>PROFILE</p>
@@ -327,7 +322,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
         その「止まっている場所」を、一緒に見つけて整えます。
       </p>
       <div class="rv" style="--d:130ms">
-        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
+        <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
           <span>無料で相談してみる</span><span class="arw">&#8594;</span>
         </a>
         <p class="btn-note">Googleフォームが開きます。</p>
@@ -335,18 +330,6 @@ footer{background:var(--base);border-top:1px solid var(--line);
       <div class="scroll-cue rv" style="--d:180ms"><i></i>SCROLL</div>
     </div>
 
-    <div class="hero-visual rv" style="--d:100ms">
-      <div class="avatar">
-        <img src="images/profile.jpg?v=202609011916" width="900" height="883"
-             alt="ミー｜地方サロンの裏方。ノートパソコンに向かい、頬杖をついて考えているミーさん">
-      </div>
-    <div class="card">
-      <p class="en">PROFILE</p>
-      <p class="nm">ミー</p>
-      <p class="ttl">地方サロンの裏方</p>
-      <p class="desc">SNS・広告・LINEをつないで、<br>予約までの流れを整えます。</p>
-    </div>
-    </div>
   </div>
 </section>
 
@@ -389,9 +372,9 @@ footer{background:var(--base);border-top:1px solid var(--line);
   <div class="wrap">
     <p class="lbl rv"><span class="num">04</span><i class="bar"></i>PROFILE</p>
     <div class="prof">
-      <div class="prof-photo rv" style="--d:40ms">
-        <img src="images/hero-desk.jpg?v=202609011916" width="900" height="1200" loading="lazy" decoding="async"
-             alt="朝の光が入る机の上に、開いたノートとペン、観葉植物、ノートパソコンが置かれている">
+      <div class="avatar rv" style="--d:40ms">
+        <img src="images/profile.jpg?v=202609011921" width="900" height="883" loading="lazy" decoding="async"
+             alt="ミー｜地方サロンの裏方。ノートパソコンに向かい、頬杖をついて考えているミーさん">
       </div>
       <div>
         <div class="rv" style="--d:70ms">
@@ -417,7 +400,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 </section>
 
 <div class="band-img rv">
-  <img src="images/background-hands.jpg?v=202609011916" width="1000" height="1000" loading="lazy" decoding="async"
+  <img src="images/background-hands.jpg?v=202609011921" width="1000" height="1000" loading="lazy" decoding="async"
        alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
 </div>
 
@@ -496,7 +479,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 </section>
 
 <div class="band-img rv">
-  <img src="images/thought-paper.jpg?v=202609011916" width="1500" height="844" loading="lazy" decoding="async"
+  <img src="images/thought-paper.jpg?v=202609011921" width="1500" height="844" loading="lazy" decoding="async"
        alt="深い緑の面の上に置かれた紙に、葉のやわらかな影が落ちている">
 </div>
 
