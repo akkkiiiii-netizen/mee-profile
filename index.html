@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011832">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011838">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -40,6 +40,8 @@
   --mincho:"Zen Old Mincho",serif;
   --gothic:"Zen Kaku Gothic New",sans-serif;
   --en:"Jost",sans-serif;
+  /* 一気に立ち上がって、ピタッと止まるカーブ */
+  --snap:cubic-bezier(.2,.9,.3,1);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -84,8 +86,8 @@ p{margin:0 0 1.4em}
   font-family:var(--gothic);font-weight:500;font-size:15px;letter-spacing:.06em;
   padding:19px 24px;border-radius:2px;
   box-shadow:0 10px 26px -18px rgba(36,91,73,.9);
-  transition:background .3s,transform .3s,box-shadow .3s}
-.btn .arw{font-family:var(--en);font-size:15px;transition:transform .3s}
+  transition:background .22s,transform .22s,box-shadow .22s}
+.btn .arw{font-family:var(--en);font-size:15px;transition:transform .22s}
 .btn:hover{background:var(--green-d);transform:translateY(-2px);box-shadow:0 16px 30px -18px rgba(36,91,73,.95)}
 .btn:hover .arw{transform:translateX(5px)}
 .btn.is-light{background:var(--base);color:var(--green)}
@@ -119,7 +121,7 @@ header{position:sticky;top:0;z-index:50;
 .hero h1 em{font-style:normal;color:var(--green);position:relative;white-space:nowrap}
 .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.1em;height:8px;
   background:var(--rose-pale);z-index:-1;transform:scaleX(0);transform-origin:left;
-  transition:transform 1s .7s cubic-bezier(.2,.7,.2,1)}
+  transition:transform .5s .38s var(--snap)}
 .hero.in h1 em::after{transform:scaleX(1)}
 .hero h1 em{z-index:0;isolation:isolate}
 .hero-lead{max-width:30em;margin-bottom:32px}
@@ -232,18 +234,18 @@ footer{background:var(--base);border-top:1px solid var(--line);
 .copy{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--sub);margin:0}
 
 /* ---------- Stagger Reveal（No.008）カード・リストを順番に ---------- */
-.stg>*{opacity:0;transform:translateY(20px);
-  transition:opacity .6s ease-out,transform .6s ease-out;
+.stg>*{opacity:0;transform:translateY(16px);
+  transition:opacity .42s var(--snap),transform .42s var(--snap);
   transition-delay:var(--sd,0ms)}
 .stg>*.in{opacity:1;transform:none}
 .no-js .stg>*{opacity:1;transform:none}
 
 /* ---------- 出現アニメ ---------- */
-.rv{opacity:0;transform:translateY(20px);
-  transition:opacity .95s cubic-bezier(.2,.7,.2,1),transform .95s cubic-bezier(.2,.7,.2,1);
+.rv{opacity:0;transform:translateY(16px);
+  transition:opacity .5s var(--snap),transform .5s var(--snap);
   transition-delay:var(--d,0ms)}
 .rv.in{opacity:1;transform:none}
-.rv .bar{transform:scaleX(0);transition:transform .9s .25s cubic-bezier(.2,.7,.2,1)}
+.rv .bar{transform:scaleX(0);transition:transform .5s .1s var(--snap)}
 .rv.in .bar{transform:scaleX(1)}
 .no-js .rv{opacity:1;transform:none}
 .no-js .rv .bar{transform:none}
@@ -288,23 +290,23 @@ footer{background:var(--base);border-top:1px solid var(--line);
   <div class="wrap hero-grid">
     <div>
       <p class="lbl rv"><span class="num">01</span><i class="bar"></i>PROFILE</p>
-      <h1 class="rv" style="--d:60ms">お客様は、いま<br>どこで<em>止まっている</em>のか。</h1>
-      <p class="lead hero-lead rv" style="--d:160ms">
+      <h1 class="rv" style="--d:30ms">お客様は、いま<br>どこで<em>止まっている</em>のか。</h1>
+      <p class="lead hero-lead rv" style="--d:90ms">
         SNSも、LINEも、広告も。<br>
         ぜんぶ持っているのに、つながっていない。<br>
         その「止まっている場所」を、一緒に見つけて整えます。
       </p>
-      <div class="rv" style="--d:240ms">
+      <div class="rv" style="--d:130ms">
         <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
           <span>無料で相談してみる</span><span class="arw">→</span>
         </a>
         <p class="btn-note">Googleフォームが開きます。</p>
       </div>
-      <div class="scroll-cue rv" style="--d:320ms"><i></i>SCROLL</div>
+      <div class="scroll-cue rv" style="--d:180ms"><i></i>SCROLL</div>
     </div>
 
-    <div class="hero-visual rv" style="--d:180ms">
-      <img class="hv-img" src="images/hero-desk.jpg?v=202609011832" width="900" height="1200"
+    <div class="hero-visual rv" style="--d:100ms">
+      <img class="hv-img" src="images/hero-desk.jpg?v=202609011838" width="900" height="1200"
            alt="朝の光が入る机の上に、開いたノートとペン、観葉植物、ノートパソコンが置かれている">
     <div class="card">
       <p class="en">PROFILE</p>
@@ -320,7 +322,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 <section class="sec" id="issue">
   <div class="wrap">
     <p class="lbl rv"><span class="num">02</span><i class="bar"></i>ISSUE</p>
-    <h2 class="rv" style="--d:60ms">こんな状態に、<br>なっていませんか。</h2>
+    <h2 class="rv" style="--d:30ms">こんな状態に、<br>なっていませんか。</h2>
     <ul class="checks stg">
       <li><span class="mk"></span>技術やサービスには自信があるけれど、発信や集客は苦手</li>
       <li><span class="mk"></span>SNS・LINE・広告、それぞれ頑張っているのに、バラバラになっている</li>
@@ -329,7 +331,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
       <li><span class="mk"></span>自分のサービスの良さを、どう言葉にすればいいか分からない</li>
       <li><span class="mk"></span>紹介や口コミだけに頼らず、続けてお客様と出会える流れを作りたい</li>
     </ul>
-    <p class="after-note rv" style="--d:180ms">
+    <p class="after-note rv" style="--d:100ms">
       ひとつでも当てはまったなら、それは「頑張りが足りない」からではありません。<br>
       ただ、お客様の流れが、どこかで途切れているだけです。
     </p>
@@ -341,8 +343,8 @@ footer{background:var(--base);border-top:1px solid var(--line);
   <div class="wrap">
     <p class="lbl rv"><span class="num">03</span><i class="bar"></i>THOUGHT</p>
     <div class="cols">
-      <h2 class="rv" style="--d:60ms">「ないもの」を増やすより、<br><em>「すでにあるもの」</em>を生かす。</h2>
-      <div class="rv" style="--d:140ms">
+      <h2 class="rv" style="--d:30ms">「ないもの」を増やすより、<br><em>「すでにあるもの」</em>を生かす。</h2>
+      <div class="rv" style="--d:80ms">
         <p class="lead">技術やサービスへの想いがあるのに、伝え方や仕組みが整っていないだけで、必要な人に届かず埋もれてしまう。そんなサービスを減らしたいと思っています。</p>
         <p class="lead">地方だから。ひとりだから。SNSが得意じゃないから。<br>その理由だけで、せっかくのサービスを諦めてほしくないんです。</p>
         <p class="lead">広告がある。LINEがある。SNSがある。もう来てくださっているお客様がいる。<br>まずは、それがちゃんとつながっているかを見にいく。足りないものを増やすより、いま持っているものが活きる流れを整えます。</p>
@@ -352,7 +354,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 </section>
 
 <div class="band-img rv">
-  <img src="images/thought-paper.jpg?v=202609011832" width="1500" height="844" loading="lazy" decoding="async"
+  <img src="images/thought-paper.jpg?v=202609011838" width="1500" height="844" loading="lazy" decoding="async"
        alt="深い緑の面の上に置かれた紙に、葉のやわらかな影が落ちている">
 </div>
 
@@ -360,7 +362,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 <section class="sec" id="work">
   <div class="wrap">
     <p class="lbl rv"><span class="num">04</span><i class="bar"></i>WHAT I DO</p>
-    <h2 class="rv" style="--d:60ms">やっていることは、<br>この3つです。</h2>
+    <h2 class="rv" style="--d:30ms">やっていることは、<br>この3つです。</h2>
     <div class="works stg">
       <div class="work">
         <p class="no">01</p>
@@ -378,7 +380,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
         <p>仕組みを渡して終わりにはしません。自分で考えられる。自分で回せる。自分に必要なものを、自分で選べる。そこまでのつなぎとして、私がいます。</p>
       </div>
     </div>
-    <p class="lead rv" style="--d:300ms;margin-top:30px">サロン・教室・スクールなど、地域のお客様との関係を大切にしながら、ひとりでサービスを届けている方と多くお仕事をしています。</p>
+    <p class="lead rv" style="--d:160ms;margin-top:30px">サロン・教室・スクールなど、地域のお客様との関係を大切にしながら、ひとりでサービスを届けている方と多くお仕事をしています。</p>
   </div>
 </section>
 
@@ -386,10 +388,10 @@ footer{background:var(--base);border-top:1px solid var(--line);
 <section class="sec" id="background" style="background:var(--white);border-block:1px solid var(--line)">
   <div class="wrap">
     <p class="lbl rv"><span class="num">05</span><i class="bar"></i>BACKGROUND</p>
-    <h2 class="rv" style="--d:60ms">根っこにあるのは、<br>7年間の<em>対面接客</em>です。</h2>
+    <h2 class="rv" style="--d:30ms">根っこにあるのは、<br>7年間の<em>対面接客</em>です。</h2>
     <div class="bg-grid">
-      <figure class="fig rv" style="--d:100ms">
-        <img src="images/background-hands.jpg?v=202609011832" width="1000" height="1000" loading="lazy" decoding="async"
+      <figure class="fig rv" style="--d:60ms">
+        <img src="images/background-hands.jpg?v=202609011838" width="1000" height="1000" loading="lazy" decoding="async"
              alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
       </figure>
       <div>
@@ -398,7 +400,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
       <li><span class="n">5<small>件</small></span><span class="t">LINE構築</span></li>
       <li><span class="n">3<small>件</small></span><span class="t">集客導線<br>サポート</span></li>
     </ul>
-    <div class="rv" style="--d:180ms">
+    <div class="rv" style="--d:100ms">
       <p class="lead">オーガニックコスメの美容部員として、7年間お客様と向き合ってきました。<br>商品をおすすめする前に、何を聞くか。お客様の最初の言葉だけで判断しないこと。売るより先に、相手を知ること。<br>「また来たい」と思ってもらえる流れを考えられるのは、この7年があるからです。</p>
       <p class="lead">いまは Threads で発信しながら、自分でも試している途中です。うまくいったことも、反応がなくてへこんだことも、そのまま共有しています。</p>
     </div>
@@ -412,8 +414,8 @@ footer{background:var(--base);border-top:1px solid var(--line);
   <div class="wrap">
     <p class="lbl rv"><span class="num">06</span><i class="bar"></i>PROMISE</p>
     <div class="cols">
-      <h2 class="rv" style="--d:60ms">「必ず集客できます」<br>とは、<em>言いません</em>。</h2>
-      <div class="rv" style="--d:140ms">
+      <h2 class="rv" style="--d:30ms">「必ず集客できます」<br>とは、<em>言いません</em>。</h2>
+      <div class="rv" style="--d:80ms">
         <p class="lead">代わりに、目指しているゴールを聞かせてください。そのうえで、いま何が必要で、何はまだ必要ないのか。私がどこまで力になれるのか。きちんとすり合わせてから、お仕事をしたいと思っています。</p>
         <p class="lead">「全部を自分でできるように頑張りましょう」とも言いません。あなたが本当に時間を使いたいのは、目の前のお客様のはずだから。必要なところだけを整理して、仕組みにします。</p>
       </div>
@@ -425,7 +427,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 <section class="sec" id="faq">
   <div class="wrap">
     <p class="lbl rv"><span class="num">07</span><i class="bar"></i>FAQ</p>
-    <h2 class="rv" style="--d:60ms">よくいただく質問</h2>
+    <h2 class="rv" style="--d:30ms">よくいただく質問</h2>
     <div class="faq stg">
       <details>
         <summary><span class="q">Q.</span><span>地方でも、集客ってできるものでしょうか。</span><span class="sign"></span></summary>
@@ -455,9 +457,9 @@ footer{background:var(--base);border-top:1px solid var(--line);
 <section class="sec cta on-green slant" id="contact">
   <div class="wrap inner">
     <p class="lbl rv"><span class="num">08</span><i class="bar"></i>CONTACT</p>
-    <h2 class="rv" style="--d:60ms">まずは、いまの状態を<br>見せてください。</h2>
-    <p class="lead rv" style="--d:120ms">整っていなくて大丈夫です。途中のままで見せてもらえたほうが、どこで止まっているのかが見つけやすくなります。<br>ご相談は無料です。ひとつずつ、一緒に見ていきましょう。</p>
-    <div class="rv" style="--d:180ms">
+    <h2 class="rv" style="--d:30ms">まずは、いまの状態を<br>見せてください。</h2>
+    <p class="lead rv" style="--d:70ms">整っていなくて大丈夫です。途中のままで見せてもらえたほうが、どこで止まっているのかが見つけやすくなります。<br>ご相談は無料です。ひとつずつ、一緒に見ていきましょう。</p>
+    <div class="rv" style="--d:100ms">
       <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
         <span>無料で相談してみる</span><span class="arw">→</span>
       </a>
@@ -505,7 +507,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
   /* Stagger Reveal（No.008）
      同じタイミングで画面に入ったカードたちを1グループとみなし、
      入った順に少しずつ遅らせて表示する。1度出たら二度と動かさない。 */
-  var STEP = 110;   /* 1枚ごとにずらす時間 */
+  var STEP = 70;    /* 1枚ごとにずらす時間 */
   var CAP  = 5;     /* 遅延を足すのはここまで（合計が長くなりすぎないように） */
   var kids = [];
   document.querySelectorAll('.stg').forEach(function(g){
