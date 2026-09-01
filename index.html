@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609012315">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609012321">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -46,7 +46,8 @@
   --gothic:"Zen Kaku Gothic New",sans-serif;
   --en:"Jost",sans-serif;
   --serif:"Cormorant Garamond","Zen Old Mincho",serif;
-  --snap:cubic-bezier(.2,.9,.3,1);
+  /* ゆっくり動いて、静かに止まるカーブ */
+  --snap:cubic-bezier(.22,.68,.24,1);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -96,11 +97,11 @@ p{margin:0 0 1.4em}
   background:var(--green);color:#fff;text-decoration:none;
   font-weight:500;font-size:15px;letter-spacing:.08em;
   padding:20px 24px;border-radius:2px;position:relative;overflow:hidden;
-  transition:background .22s,transform .22s}
+  transition:background .34s,transform .34s}
 .btn::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rose);
   transform:scaleY(0);transform-origin:bottom;transition:transform .3s var(--snap)}
 .btn:hover::before{transform:scaleY(1)}
-.btn .arw{font-family:var(--en);font-size:15px;transition:transform .22s}
+.btn .arw{font-family:var(--en);font-size:15px;transition:transform .34s}
 .btn:hover{background:var(--green-d);transform:translateY(-2px)}
 .btn:hover .arw{transform:translateX(5px)}
 .btn.is-light{background:var(--base);color:var(--green)}
@@ -140,7 +141,7 @@ header{position:sticky;top:0;z-index:50;
 .hero h1 em{font-style:normal;position:relative;white-space:nowrap}
 .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:3px;
   background:var(--rose);transform:scaleX(0);transform-origin:left;
-  transition:transform .5s .38s var(--snap)}
+  transition:transform .9s .55s var(--snap)}
 .hero.in h1 em::after{transform:scaleX(1)}
 .hero .lead{color:rgba(244,244,239,.9);max-width:31em;margin-bottom:26px}
 
@@ -317,20 +318,27 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
   color:rgba(244,244,239,.45);margin:26px 0 0}
 
 /* ---------- 出現アニメ ---------- */
-.rv{opacity:0;transform:translateY(16px);
-  transition:opacity .5s var(--snap),transform .5s var(--snap);
+.rv{opacity:0;transform:translateY(26px);
+  transition:opacity 1.05s var(--snap),transform 1.05s var(--snap);
   transition-delay:var(--d,0ms)}
 .rv.in{opacity:1;transform:none}
-.rv i.bar,.rv .sec-num i{transform:scaleX(0);transition:transform .5s .1s var(--snap)}
+.rv i.bar,.rv .sec-num i{transform:scaleX(0);transition:transform .9s .15s var(--snap)}
 .rv.in i.bar,.rv.in .sec-num i{transform:scaleX(1)}
-.stg>*{opacity:0;transform:translateY(16px);
-  transition:opacity .42s var(--snap),transform .42s var(--snap);
+.stg>*{opacity:0;transform:translateY(24px);
+  transition:opacity .9s var(--snap),transform .9s var(--snap);
   transition-delay:var(--sd,0ms)}
 .stg>*.in{opacity:1;transform:none}
+/* 写真は 1.06倍から等倍へ、ゆっくり引いていく */
+.rv img,.stg>* img{transform:scale(1.06);
+  transition:transform 1.8s var(--snap);transition-delay:var(--sd,var(--d,0ms))}
+.rv.in img,.stg>*.in img{transform:none}
+.gal figure{overflow:hidden}
 .no-js .rv,.no-js .stg>*{opacity:1;transform:none}
+.no-js .rv img,.no-js .stg>* img{transform:none}
 .no-js .rv i.bar,.no-js .rv .sec-num i{transform:none}
 @media (prefers-reduced-motion:reduce){
   .rv,.stg>*{opacity:1!important;transform:none!important;transition:none!important}
+  .rv img,.stg>* img{transform:none!important;transition:none!important}
   .rv i.bar,.rv .sec-num i,.hero h1 em::after{transform:none!important}
   .scroll-cue i::after{animation:none}
 }
@@ -371,28 +379,28 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
 <!-- ヒーロー -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="images/hero-flow.jpg?v=202609012315" width="1672" height="941" fetchpriority="high"
+    <img src="images/hero-flow.jpg?v=202609012321" width="1672" height="941" fetchpriority="high"
          alt="木の机の上のノートに、丸いカードが線でつながれて並び、手が1枚を置いているところ。奥にノートパソコンとコーヒー">
   </div>
   <div class="wrap">
     <p class="hero-tag rv"><i class="bar"></i>MEE ／ 地方サロンの裏方</p>
-    <h1 class="rv" style="--d:30ms">お客様は、いま<br>どこで<em>止まっている</em>のか。</h1>
-    <p class="lead rv" style="--d:80ms">
+    <h1 class="rv" style="--d:50ms">お客様は、いま<br>どこで<em>止まっている</em>のか。</h1>
+    <p class="lead rv" style="--d:140ms">
       SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。<br>
       その「止まっている場所」を、一緒に見つけて整えます。
     </p>
-    <ul class="chips rv" style="--d:110ms">
+    <ul class="chips rv" style="--d:190ms">
       <li><span class="jp">美容部員</span> <b>7年</b></li>
       <li><span class="jp">LINE構築</span> <b>5件</b></li>
       <li><span class="jp">集客導線サポート</span> <b>3件</b></li>
     </ul>
-    <div class="rv" style="--d:140ms">
+    <div class="rv" style="--d:240ms">
       <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
         <span>無料で相談してみる</span><span class="arw">&#8594;</span>
       </a>
       <p class="btn-note">Googleフォームが開きます。</p>
     </div>
-    <div class="scroll-cue rv" style="--d:190ms"><i></i>SCROLL</div>
+    <div class="scroll-cue rv" style="--d:320ms"><i></i>SCROLL</div>
   </div>
 </section>
 
@@ -414,7 +422,7 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
       <li><span class="no">05</span><span>自分のサービスの良さを、どう言葉にすればいいか分からない</span></li>
       <li><span class="no">06</span><span>紹介や口コミだけに頼らず、続けてお客様と出会える流れを作りたい</span></li>
     </ul>
-    <p class="after-note rv" style="--d:80ms">
+    <p class="after-note rv" style="--d:140ms">
       ひとつでも当てはまったなら、それは「頑張りが足りない」からではありません。<br>
       ただ、お客様の流れが、どこかで途切れているだけです。
     </p>
@@ -432,8 +440,8 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
       <h2>「ないもの」を増やすより、<br><em>「すでにあるもの」</em>を生かす。</h2>
     </div>
     <div class="cols">
-      <p class="lead rv" style="--d:40ms">技術やサービスへの想いがあるのに、伝え方や仕組みが整っていないだけで、必要な人に届かず埋もれてしまう。そんなサービスを減らしたいと思っています。</p>
-      <p class="lead rv" style="--d:90ms">広告がある。LINEがある。SNSがある。もう来てくださっているお客様がいる。まずは、それがちゃんとつながっているかを見にいく。足りないものを増やすより、いま持っているものが活きる流れを整えます。</p>
+      <p class="lead rv" style="--d:70ms">技術やサービスへの想いがあるのに、伝え方や仕組みが整っていないだけで、必要な人に届かず埋もれてしまう。そんなサービスを減らしたいと思っています。</p>
+      <p class="lead rv" style="--d:150ms">広告がある。LINEがある。SNSがある。もう来てくださっているお客様がいる。まずは、それがちゃんとつながっているかを見にいく。足りないものを増やすより、いま持っているものが活きる流れを整えます。</p>
     </div>
   </div>
 </section>
@@ -449,12 +457,12 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
       <h2>お客様が迷っている場所を、<br>一緒に見つける裏方です。</h2>
     </div>
     <div class="prof">
-      <div class="avatar rv" style="--d:40ms">
-        <img src="images/profile.jpg?v=202609012315" width="900" height="883" loading="lazy" decoding="async"
+      <div class="avatar rv" style="--d:70ms">
+        <img src="images/profile.jpg?v=202609012321" width="900" height="883" loading="lazy" decoding="async"
              alt="ミー｜地方サロンの裏方。ノートパソコンに向かい、頬杖をついて考えているミーさん">
       </div>
       <div>
-        <div class="rv" style="--d:70ms">
+        <div class="rv" style="--d:120ms">
           <p class="prof-name">ミー</p>
           <p class="prof-en">MEE</p>
           <p class="prof-role">地方サロンの裏方</p>
@@ -471,11 +479,11 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
     <div class="gal-block">
     <p class="gal-lbl rv"><i class="bar"></i>FIELD<span class="jp">こんな方の裏方お任せください</span></p>
     <div class="gal stg" data-step="230">
-      <figure><img src="images/field-nail.jpg?v=202609012315" width="900" height="900" loading="lazy" decoding="async" alt="自然光の入る小さなネイルサロン。リネンのクロスの上で、お客様の手元に施術をしているところ"><figcaption>ネイルサロン</figcaption></figure>
-      <figure><img src="images/field-eyebrow.jpg?v=202609012315" width="900" height="900" loading="lazy" decoding="async" alt="アイブロウの施術ルーム。トレイに並べられた道具と、たたまれたタオル、丸い鏡と観葉植物"><figcaption>アイブロウ・まつげ</figcaption></figure>
-      <figure><img src="images/field-esthe.jpg?v=202609012315" width="900" height="900" loading="lazy" decoding="async" alt="エステの施術室。白いリネンを敷いたベッドと、木の台に置かれた器や植物"><figcaption>エステ・フェイシャル</figcaption></figure>
-      <figure><img src="images/field-yoga.jpg?v=202609012315" width="900" height="900" loading="lazy" decoding="async" alt="朝の光が差し込むヨガスタジオ。木の床に置かれた2本のヨガマットとたたまれたブランケット"><figcaption>ヨガ・ピラティス</figcaption></figure>
-      <figure><img src="images/field-school.jpg?v=202609012315" width="900" height="900" loading="lazy" decoding="async" alt="窓辺の教室。木のテーブルに、開いたノートとペン、カップと小さな植物が並んでいる"><figcaption>教室・レッスン</figcaption></figure>
+      <figure><img src="images/field-nail.jpg?v=202609012321" width="900" height="900" loading="lazy" decoding="async" alt="自然光の入る小さなネイルサロン。リネンのクロスの上で、お客様の手元に施術をしているところ"><figcaption>ネイルサロン</figcaption></figure>
+      <figure><img src="images/field-eyebrow.jpg?v=202609012321" width="900" height="900" loading="lazy" decoding="async" alt="アイブロウの施術ルーム。トレイに並べられた道具と、たたまれたタオル、丸い鏡と観葉植物"><figcaption>アイブロウ・まつげ</figcaption></figure>
+      <figure><img src="images/field-esthe.jpg?v=202609012321" width="900" height="900" loading="lazy" decoding="async" alt="エステの施術室。白いリネンを敷いたベッドと、木の台に置かれた器や植物"><figcaption>エステ・フェイシャル</figcaption></figure>
+      <figure><img src="images/field-yoga.jpg?v=202609012321" width="900" height="900" loading="lazy" decoding="async" alt="朝の光が差し込むヨガスタジオ。木の床に置かれた2本のヨガマットとたたまれたブランケット"><figcaption>ヨガ・ピラティス</figcaption></figure>
+      <figure><img src="images/field-school.jpg?v=202609012321" width="900" height="900" loading="lazy" decoding="async" alt="窓辺の教室。木のテーブルに、開いたノートとペン、カップと小さな植物が並んでいる"><figcaption>教室・レッスン</figcaption></figure>
     </div>
     </div>
   </div>
@@ -521,12 +529,12 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
       <h2>試していることを、<br>そのまま書いています。</h2>
     </div>
     <div class="th">
-      <div class="rv" style="--d:40ms">
+      <div class="rv" style="--d:70ms">
         <p class="lead">Threadsで、いま自分が試していることをそのまま共有しています。うまくいったことも、反応がなくてへこんだことも。</p>
         <p class="lead">LINEを作るときに考えていること、メニューを増やしすぎて迷わせてしまうこと、登録して終わりにしないための工夫。日々の中で気づいたことを、そのまま書いています。</p>
         <p class="lead">「この人はどんなふうに考える人なんだろう」を、先に見ておいてもらえたらうれしいです。</p>
       </div>
-      <div class="th-card rv" style="--d:90ms">
+      <div class="th-card rv" style="--d:150ms">
         <p class="th-en">FOLLOW</p>
         <p class="th-handle">@mee__work__</p>
         <p class="th-note">Threadsで発信中</p>
@@ -570,12 +578,12 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
         <p class="rn">地方の<br>ひとり事業主</p>
       </div>
     </div>
-    <p class="results-note rv" style="--d:80ms">※ 実績はミー本人のものです。成果を保証するものではありません。</p>
+    <p class="results-note rv" style="--d:140ms">※ 実績はミー本人のものです。成果を保証するものではありません。</p>
   </div>
 </section>
 
 <div class="band-img rv">
-  <img src="images/background-hands.jpg?v=202609012315" width="1000" height="1000" loading="lazy" decoding="async"
+  <img src="images/background-hands.jpg?v=202609012321" width="1000" height="1000" loading="lazy" decoding="async"
        alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
 </div>
 
@@ -587,8 +595,8 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
       <p class="sec-en">Message</p>
       <h2>お仕事への想い</h2>
     </div>
-    <p class="msg-quote rv" style="--d:40ms">私は、頑張っている人に<br>「もっとやりましょう」と<br>言いたいわけではありません。</p>
-    <div class="msg-body rv" style="--d:80ms">
+    <p class="msg-quote rv" style="--d:70ms">私は、頑張っている人に<br>「もっとやりましょう」と<br>言いたいわけではありません。</p>
+    <div class="msg-body stg" data-step="160">
       <p>地方だから難しい。ひとりでやっているから時間がない。広告費をかけないと集客できない。SNSが得意じゃないから無理。<br>そんな理由だけで、せっかくのサービスを諦めてほしくないんです。</p>
       <p>ひとり事業主さんは、施術や接客だけでなく、SNS、LINE、広告、予約対応まで、たくさんのことをひとりで持っています。だから私は、すべてを「自分でできるように頑張りましょう」とは伝えません。その人が本来いちばん大切にしたい仕事に時間を使えるように、必要な部分だけを整理して、仕組みにします。</p>
       <p>「これをやれば必ず集客できます」と約束することもしません。目指しているゴールを聞いたうえで、いま何が必要で、何はまだ必要ないのか。私がどこまで力になれるのか。きちんとすり合わせてから、お仕事をしたいと思っています。</p>
@@ -597,7 +605,7 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
       <p class="em">そこまでのつなぎとして、私がいます。</p>
       <p>「ないもの」を増やすより、「すでにあるもの」を生かして、地方だからこそできる仕事の形を、一緒につくっていけたらうれしいです。</p>
     </div>
-    <p class="sign rv" style="--d:110ms">ミー<small>MEE</small></p>
+    <p class="sign rv" style="--d:190ms">ミー<small>MEE</small></p>
   </div>
 </section>
 
@@ -672,8 +680,8 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
       <p class="sec-en">Contact</p>
       <h2>まずは、いまの状態を<br>見せてください。</h2>
     </div>
-    <p class="lead rv" style="--d:40ms">整っていなくて大丈夫です。途中のままで見せてもらえたほうが、どこで止まっているのかが見つけやすくなります。<br>ご相談は無料です。ひとつずつ、一緒に見ていきましょう。</p>
-    <div class="rv" style="--d:90ms">
+    <p class="lead rv" style="--d:70ms">整っていなくて大丈夫です。途中のままで見せてもらえたほうが、どこで止まっているのかが見つけやすくなります。<br>ご相談は無料です。ひとつずつ、一緒に見ていきましょう。</p>
+    <div class="rv" style="--d:150ms">
       <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
         <span>無料で相談してみる</span><span class="arw">&#8594;</span>
       </a>
@@ -734,7 +742,7 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
   requestAnimationFrame(function(){ hero.classList.add('in'); });
 
   /* Stagger Reveal：同時に画面へ入ったものを1グループとして、順に出す */
-  var STEP = 70, CAP = 5, kids = [];
+  var STEP = 120, CAP = 5, kids = [];
   document.querySelectorAll('.stg').forEach(function(g){
     /* data-step があれば、そのグループだけ間隔を変える（例：写真をゆっくり出す） */
     var st = parseInt(g.dataset.step, 10) || STEP;
