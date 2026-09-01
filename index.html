@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011921">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011932">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -120,7 +120,7 @@ header{position:sticky;top:0;z-index:50;
   background:var(--green-d);overflow:hidden;isolation:isolate}
 /* 背景いっぱいの写真。上に深緑の膜をかけて文字を読めるようにする */
 .hero-bg{position:absolute;inset:0;z-index:-1}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:66% 50%}
 .hero-bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(20,52,42,.78) 0%,rgba(20,52,42,.62) 42%,rgba(20,52,42,.86) 100%)}
 .hero-grid{display:grid;gap:clamp(34px,6vw,56px);width:100%}
@@ -280,6 +280,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 @media (min-width:820px){
   body{font-size:15.5px}
   .prof{grid-template-columns:.82fr 1.18fr;gap:clamp(36px,5vw,56px);align-items:start}
+  .hero-bg img{object-position:52% 50%}
   .hero h1{font-size:clamp(34px,4.2vw,54px)}
   .hero-lead{font-size:16px}
   .works{grid-template-columns:repeat(3,1fr);gap:18px}
@@ -309,8 +310,8 @@ footer{background:var(--base);border-top:1px solid var(--line);
 <section class="hero sec on-green" id="hero">
   <!-- ▼ ヒーローの一枚絵。新しい画像が届いたら、この src だけ差し替える -->
   <div class="hero-bg">
-    <img src="images/hero-desk.jpg?v=202609011921" width="900" height="1200" fetchpriority="high"
-         alt="朝の光が入る机。開いたノートとペン、観葉植物、ノートパソコン">
+    <img src="images/hero-flow.jpg?v=202609011932" width="1672" height="941" fetchpriority="high"
+         alt="木の机の上のノートに、丸いカードが線でつながれて並び、手が1枚を置いているところ。奥にノートパソコンとコーヒー">
   </div>
   <div class="wrap hero-grid">
     <div>
@@ -373,7 +374,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
     <p class="lbl rv"><span class="num">04</span><i class="bar"></i>PROFILE</p>
     <div class="prof">
       <div class="avatar rv" style="--d:40ms">
-        <img src="images/profile.jpg?v=202609011921" width="900" height="883" loading="lazy" decoding="async"
+        <img src="images/profile.jpg?v=202609011932" width="900" height="883" loading="lazy" decoding="async"
              alt="ミー｜地方サロンの裏方。ノートパソコンに向かい、頬杖をついて考えているミーさん">
       </div>
       <div>
@@ -400,7 +401,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 </section>
 
 <div class="band-img rv">
-  <img src="images/background-hands.jpg?v=202609011921" width="1000" height="1000" loading="lazy" decoding="async"
+  <img src="images/background-hands.jpg?v=202609011932" width="1000" height="1000" loading="lazy" decoding="async"
        alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
 </div>
 
@@ -479,7 +480,7 @@ footer{background:var(--base);border-top:1px solid var(--line);
 </section>
 
 <div class="band-img rv">
-  <img src="images/thought-paper.jpg?v=202609011921" width="1500" height="844" loading="lazy" decoding="async"
+  <img src="images/thought-paper.jpg?v=202609011932" width="1500" height="844" loading="lazy" decoding="async"
        alt="深い緑の面の上に置かれた紙に、葉のやわらかな影が落ちている">
 </div>
 
