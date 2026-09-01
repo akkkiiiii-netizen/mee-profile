@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ミー｜地方サロンの裏方 － SNS・広告・LINEをつないで、予約までの流れを整えます</title>
+<meta name="description" content="地方でサロンや教室をひとりで営む方へ。SNS・広告・LINE・予約がバラバラになっていませんか。お客様がどこで止まっているのかを一緒に見つけて、知ってから予約までの流れを整える裏方です。まずは無料相談から。">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://mee-profile.lpidentity.workers.dev/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mee-profile.lpidentity.workers.dev/">
+<meta property="og:site_name" content="ミー｜地方サロンの裏方">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="ミー｜地方サロンの裏方">
+<meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011745">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23245B49'/><path d='M26 66V38l24 16 24-16v28' fill='none' stroke='%23F4F4EF' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --base:#F4F4EF;
+  --white:#FBFBF8;
+  --green:#245B49;
+  --green-d:#1B4638;
+  --green-l:#76A66F;
+  --rose:#CF6A80;
+  --rose-pale:#EEC9D2;
+  --gray:#C7CAC8;
+  --ink:#2E3230;
+  --sub:#5D635F;
+  --line:#DFDFD6;
+  --wrap:1040px;
+  --pad:clamp(20px,5.4vw,40px);
+  --mincho:"Zen Old Mincho",serif;
+  --gothic:"Zen Kaku Gothic New",sans-serif;
+  --en:"Jost",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--base);color:var(--ink);
+  font-family:var(--gothic);
+  font-size:15px;line-height:2;letter-spacing:.04em;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+
+/* ---------- 共通パーツ ---------- */
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
+.sec{padding-block:clamp(72px,13vw,132px);position:relative}
+
+/* 英字ラベル＋番号（雑誌風インデックス） */
+.lbl{display:flex;align-items:center;gap:12px;font-family:var(--en);
+  font-size:11px;letter-spacing:.22em;font-weight:400;color:var(--sub);
+  margin:0 0 22px}
+.lbl .num{color:var(--rose);font-weight:500}
+.lbl .bar{display:block;height:1px;background:var(--gray);width:34px;transform-origin:left}
+.on-green .lbl{color:rgba(255,255,255,.66)}
+.on-green .lbl .num{color:var(--rose-pale)}
+.on-green .lbl .bar{background:rgba(255,255,255,.4)}
+
+h2{font-family:var(--mincho);font-weight:600;
+  font-size:clamp(22px,5.9vw,38px);line-height:1.68;letter-spacing:.02em;
+  margin:0 0 28px}
+h2 em{font-style:normal;color:var(--green-l)}
+.on-green h2 em{color:var(--rose-pale)}
+p{margin:0 0 1.4em}
+.lead{color:var(--sub);font-size:15px}
+.on-green{color:#F4F4EF}
+.on-green .lead{color:rgba(244,244,239,.82)}
+
+/* ボタン */
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;
+  width:100%;max-width:360px;
+  background:var(--green);color:#fff;text-decoration:none;
+  font-family:var(--gothic);font-weight:500;font-size:15px;letter-spacing:.06em;
+  padding:19px 24px;border-radius:2px;
+  box-shadow:0 10px 26px -18px rgba(36,91,73,.9);
+  transition:background .3s,transform .3s,box-shadow .3s}
+.btn .arw{font-family:var(--en);font-size:15px;transition:transform .3s}
+.btn:hover{background:var(--green-d);transform:translateY(-2px);box-shadow:0 16px 30px -18px rgba(36,91,73,.95)}
+.btn:hover .arw{transform:translateX(5px)}
+.btn.is-light{background:var(--base);color:var(--green)}
+.btn.is-light:hover{background:#fff}
+.btn-note{margin:12px 0 0;font-size:12px;letter-spacing:.03em;color:var(--sub)}
+.on-green .btn-note{color:rgba(244,244,239,.66)}
+
+/* 面（変形） */
+.slant{clip-path:polygon(0 1.6%,100% 0,100% 98.4%,0 100%)}
+
+/* ---------- ヘッダー ---------- */
+header{position:sticky;top:0;z-index:50;
+  background:rgba(244,244,239,.88);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  height:58px;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
+.hd-name{display:flex;align-items:baseline;gap:10px;min-width:0}
+.hd-name b{font-family:var(--mincho);font-weight:600;font-size:17px;letter-spacing:.04em}
+.hd-name span{font-size:11px;letter-spacing:.1em;color:var(--sub);white-space:nowrap}
+.hd-cta{flex:none;text-decoration:none;background:var(--green);color:#fff;
+  font-size:12px;letter-spacing:.06em;padding:10px 16px;border-radius:2px;
+  transition:background .3s}
+.hd-cta:hover{background:var(--green-d)}
+@media (max-width:430px){ .hd-name span{display:none} }
+
+/* ---------- ヒーロー ---------- */
+.hero{position:relative;padding-block:clamp(52px,11vw,92px) clamp(64px,12vw,104px)}
+.hero-grid{display:grid;gap:clamp(34px,6vw,56px)}
+.hero h1{font-family:var(--mincho);font-weight:600;
+  font-size:clamp(25px,6.8vw,48px);line-height:1.62;letter-spacing:.01em;margin:0 0 26px}
+.hero h1 em{font-style:normal;color:var(--green);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.1em;height:8px;
+  background:var(--rose-pale);z-index:-1;transform:scaleX(0);transform-origin:left;
+  transition:transform 1s .7s cubic-bezier(.2,.7,.2,1)}
+.hero.in h1 em::after{transform:scaleX(1)}
+.hero h1 em{z-index:0;isolation:isolate}
+.hero-lead{max-width:30em;margin-bottom:32px}
+
+/* 名刺パネル（深緑の変形面） */
+.card{position:relative;background:var(--green);color:#F4F4EF;
+  padding:clamp(30px,6.4vw,44px) clamp(24px,5.4vw,40px);
+  clip-path:polygon(0 2.4%,100% 0,100% 97.6%,0 100%);
+  overflow:hidden}
+.card::after{content:"";position:absolute;right:-64px;bottom:-84px;
+  width:210px;height:210px;border:1px solid rgba(118,166,111,.55);border-radius:50%}
+.card .en{font-family:var(--en);font-size:11px;letter-spacing:.28em;
+  color:rgba(244,244,239,.6);margin:0 0 16px}
+.card .nm{font-family:var(--mincho);font-size:clamp(30px,8vw,42px);letter-spacing:.06em;
+  line-height:1.2;margin:0 0 14px}
+.card .ttl{font-size:clamp(16px,4.4vw,20px);font-weight:500;letter-spacing:.08em;margin:0 0 12px}
+.card .ttl::before{content:"";display:block;width:26px;height:1px;
+  background:var(--rose-pale);margin-bottom:14px}
+.card .desc{font-size:13px;line-height:1.95;color:rgba(244,244,239,.8);margin:0;position:relative;z-index:1}
+
+.scroll-cue{display:flex;align-items:center;gap:10px;margin-top:38px;
+  font-family:var(--en);font-size:10px;letter-spacing:.24em;color:var(--sub)}
+.scroll-cue i{display:block;width:52px;height:1px;background:var(--gray);position:relative;overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;inset:0;background:var(--green);
+  transform:translateX(-100%);animation:cue 2.6s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes cue{0%{transform:translateX(-100%)}55%{transform:translateX(0)}100%{transform:translateX(100%)}}
+
+/* ---------- 写真 ---------- */
+.hero-visual{position:relative}
+.hv-img{width:100%;aspect-ratio:4/3;object-fit:cover;
+  clip-path:polygon(0 2.2%,100% 0,100% 97.8%,0 100%)}
+.hero-visual .card{margin-top:-52px;margin-left:clamp(16px,4vw,30px);
+  position:relative;z-index:2;box-shadow:0 26px 54px -32px rgba(46,50,48,.6)}
+
+.band-img{overflow:hidden;clip-path:polygon(0 5%,100% 0,100% 95%,0 100%)}
+.band-img img{display:block;width:100%;height:clamp(170px,32vw,330px);object-fit:cover}
+
+.bg-grid{display:grid;gap:30px}
+.fig{margin:0}
+.fig img{width:100%;aspect-ratio:1/1;object-fit:cover;
+  clip-path:polygon(0 3%,100% 0,100% 97%,0 100%)}
+
+/* ---------- 悩みリスト ---------- */
+.checks{list-style:none;margin:0 0 30px;padding:0;
+  border-top:1px solid var(--line)}
+.checks li{display:flex;gap:14px;align-items:flex-start;
+  padding:17px 2px;border-bottom:1px solid var(--line);line-height:1.85}
+.checks li .mk{flex:none;margin-top:.5em;width:9px;height:9px;border:1px solid var(--green-l);
+  border-radius:50%}
+.checks li:nth-child(2n) .mk{border-color:var(--rose)}
+.after-note{background:var(--white);border-left:2px solid var(--green-l);
+  padding:22px 24px;margin:0;font-size:14px;line-height:2}
+
+/* ---------- 深緑ベタのセクション ---------- */
+.band{background:var(--green);position:relative}
+.band .quote{font-family:var(--mincho);font-size:clamp(13px,3.4vw,15px);
+  letter-spacing:.06em;color:var(--rose-pale);margin:0 0 8px}
+
+/* ---------- できること3つ ---------- */
+.works{display:grid;gap:22px;margin-top:6px}
+.work{background:var(--white);padding:clamp(26px,5.6vw,34px);position:relative;
+  border:1px solid var(--line)}
+.work .no{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--rose);margin:0 0 14px}
+.work h3{font-family:var(--mincho);font-weight:600;font-size:clamp(19px,4.8vw,23px);
+  line-height:1.6;margin:0 0 14px;color:var(--green)}
+.work p{font-size:14px;color:var(--sub);margin:0}
+
+/* ---------- 実績 ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 34px;padding:0;list-style:none}
+.stats li{background:var(--white);border:1px solid var(--line);
+  padding:22px 8px;text-align:center}
+.stats .n{display:block;font-family:var(--en);font-weight:300;
+  font-size:clamp(30px,9vw,46px);line-height:1;color:var(--green);letter-spacing:.02em}
+.stats .n small{font-family:var(--gothic);font-size:14px;font-weight:500;margin-left:2px}
+.stats .t{display:block;margin-top:12px;font-size:11.5px;line-height:1.6;color:var(--sub);letter-spacing:.02em}
+
+/* ---------- FAQ ---------- */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:flex-start;
+  padding:20px 2px;font-weight:500;line-height:1.8}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .q{font-family:var(--en);color:var(--rose);font-size:13px;margin-top:.25em;flex:none}
+.faq summary .sign{margin-left:auto;flex:none;width:13px;height:13px;position:relative;margin-top:.6em}
+.faq summary .sign::before,.faq summary .sign::after{content:"";position:absolute;background:var(--green);
+  left:0;top:6px;width:13px;height:1px;transition:transform .3s}
+.faq summary .sign::after{transform:rotate(90deg)}
+.faq details[open] summary .sign::after{transform:rotate(0)}
+.faq .ans{display:flex;gap:14px;padding:0 2px 24px;color:var(--sub);font-size:14px;line-height:2}
+.faq .ans .a{font-family:var(--en);color:var(--green-l);font-size:13px;flex:none}
+.faq .ans p{margin:0}
+
+/* ---------- CTA ---------- */
+.cta{background:var(--green);position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;left:-80px;top:-90px;width:260px;height:260px;
+  border:1px solid rgba(118,166,111,.4);border-radius:50%}
+.cta .inner{position:relative;z-index:1}
+
+/* ---------- フッター ---------- */
+footer{background:var(--base);border-top:1px solid var(--line);
+  padding-block:44px}
+.ft{display:grid;gap:26px}
+.ft .nm{font-family:var(--mincho);font-size:19px;letter-spacing:.05em;margin:0 0 6px}
+.ft .ro{font-size:12px;color:var(--sub);margin:0}
+.sns{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
+.sns a{display:inline-block;text-decoration:none;font-family:var(--en);font-size:11.5px;
+  letter-spacing:.14em;color:var(--green);border:1px solid var(--gray);
+  padding:9px 18px;border-radius:100px;transition:background .3s,color .3s,border-color .3s}
+.sns a:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.copy{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--sub);margin:0}
+
+/* ---------- 出現アニメ ---------- */
+.rv{opacity:0;transform:translateY(20px);
+  transition:opacity .95s cubic-bezier(.2,.7,.2,1),transform .95s cubic-bezier(.2,.7,.2,1);
+  transition-delay:var(--d,0ms)}
+.rv.in{opacity:1;transform:none}
+.rv .bar{transform:scaleX(0);transition:transform .9s .25s cubic-bezier(.2,.7,.2,1)}
+.rv.in .bar{transform:scaleX(1)}
+.no-js .rv{opacity:1;transform:none}
+.no-js .rv .bar{transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1!important;transform:none!important}
+  .rv .bar,.hero h1 em::after{transform:none!important}
+  .scroll-cue i::after{animation:none}
+}
+
+/* ---------- パソコン ---------- */
+@media (min-width:820px){
+  body{font-size:15.5px}
+  .hero-grid{grid-template-columns:1.2fr .8fr;align-items:center}
+  .hv-img{aspect-ratio:3/4}
+  .bg-grid{grid-template-columns:.85fr 1.15fr;gap:clamp(32px,4.4vw,48px);align-items:start}
+  .hero h1{font-size:clamp(30px,3.6vw,44px)}
+  .works{grid-template-columns:repeat(3,1fr);gap:18px}
+  .stats li{padding:30px 10px}
+  .stats .t{font-size:12.5px}
+  .ft{grid-template-columns:1fr auto;align-items:end}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.6vw,54px)}
+  .cols h2{margin-bottom:0}
+}
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove('no-js');</script>
+
+<header>
+  <div class="hd">
+    <div class="hd-name">
+      <b>ミー</b><span>地方サロンの裏方</span>
+    </div>
+    <a class="hd-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">無料で相談する</a>
+  </div>
+</header>
+
+<main>
+
+<!-- 01 ヒーロー -->
+<section class="hero sec" id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="lbl rv"><span class="num">01</span><i class="bar"></i>PROFILE</p>
+      <h1 class="rv" style="--d:60ms">お客様は、いま<br>どこで<em>止まっている</em>のか。</h1>
+      <p class="lead hero-lead rv" style="--d:160ms">
+        SNSも、LINEも、広告も。<br>
+        ぜんぶ持っているのに、つながっていない。<br>
+        その「止まっている場所」を、一緒に見つけて整えます。
+      </p>
+      <div class="rv" style="--d:240ms">
+        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
+          <span>無料で相談してみる</span><span class="arw">→</span>
+        </a>
+        <p class="btn-note">Googleフォームが開きます。</p>
+      </div>
+      <div class="scroll-cue rv" style="--d:320ms"><i></i>SCROLL</div>
+    </div>
+
+    <div class="hero-visual rv" style="--d:180ms">
+      <img class="hv-img" src="images/hero-desk.jpg?v=202609011745" width="900" height="1200"
+           alt="朝の光が入る机の上に、開いたノートとペン、観葉植物、ノートパソコンが置かれている">
+    <div class="card">
+      <p class="en">PROFILE</p>
+      <p class="nm">ミー</p>
+      <p class="ttl">地方サロンの裏方</p>
+      <p class="desc">SNS・広告・LINEをつないで、<br>予約までの流れを整えます。</p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 共感 -->
+<section class="sec" id="issue">
+  <div class="wrap">
+    <p class="lbl rv"><span class="num">02</span><i class="bar"></i>ISSUE</p>
+    <h2 class="rv" style="--d:60ms">こんな状態に、<br>なっていませんか。</h2>
+    <ul class="checks rv" style="--d:120ms">
+      <li><span class="mk"></span>技術やサービスには自信があるけれど、発信や集客は苦手</li>
+      <li><span class="mk"></span>SNS・LINE・広告、それぞれ頑張っているのに、バラバラになっている</li>
+      <li><span class="mk"></span>広告費はかけているけれど、売上につながっている実感が薄い</li>
+      <li><span class="mk"></span>施術も接客も発信も予約対応も、全部ひとりでやっていて時間がない</li>
+      <li><span class="mk"></span>自分のサービスの良さを、どう言葉にすればいいか分からない</li>
+      <li><span class="mk"></span>紹介や口コミだけに頼らず、続けてお客様と出会える流れを作りたい</li>
+    </ul>
+    <p class="after-note rv" style="--d:180ms">
+      ひとつでも当てはまったなら、それは「頑張りが足りない」からではありません。<br>
+      ただ、お客様の流れが、どこかで途切れているだけです。
+    </p>
+  </div>
+</section>
+
+<!-- 03 想い -->
+<section class="sec band on-green slant" id="thought">
+  <div class="wrap">
+    <p class="lbl rv"><span class="num">03</span><i class="bar"></i>THOUGHT</p>
+    <div class="cols">
+      <h2 class="rv" style="--d:60ms">「ないもの」を増やすより、<br><em>「すでにあるもの」</em>を生かす。</h2>
+      <div class="rv" style="--d:140ms">
+        <p class="lead">技術やサービスへの想いがあるのに、伝え方や仕組みが整っていないだけで、必要な人に届かず埋もれてしまう。そんなサービスを減らしたいと思っています。</p>
+        <p class="lead">地方だから。ひとりだから。SNSが得意じゃないから。<br>その理由だけで、せっかくのサービスを諦めてほしくないんです。</p>
+        <p class="lead">広告がある。LINEがある。SNSがある。もう来てくださっているお客様がいる。<br>まずは、それがちゃんとつながっているかを見にいく。足りないものを増やすより、いま持っているものが活きる流れを整えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band-img rv">
+  <img src="images/thought-paper.jpg?v=202609011745" width="1500" height="844" loading="lazy" decoding="async"
+       alt="深い緑の面の上に置かれた紙に、葉のやわらかな影が落ちている">
+</div>
+
+<!-- 04 できること -->
+<section class="sec" id="work">
+  <div class="wrap">
+    <p class="lbl rv"><span class="num">04</span><i class="bar"></i>WHAT I DO</p>
+    <h2 class="rv" style="--d:60ms">やっていることは、<br>この3つです。</h2>
+    <div class="works">
+      <div class="work rv" style="--d:100ms">
+        <p class="no">01</p>
+        <h3>迷っている場所を、<br>一緒に見つける</h3>
+        <p>広告・SNS・LINE・予約・来店・リピート。その流れの中で、お客様がどこで迷い、どこで離れているのか。お客様側の目線から、一緒に見ていきます。</p>
+      </div>
+      <div class="work rv" style="--d:180ms">
+        <p class="no">02</p>
+        <h3>知ってから予約までを、<br>一本につなぐ</h3>
+        <p>SNSのプロフィールなど最低限の土台を整え、広告からLINE登録へ。LINE公式アカウントやL Messageを使って、サービス案内から予約までの導線をつくります。</p>
+      </div>
+      <div class="work rv" style="--d:260ms">
+        <p class="no">03</p>
+        <h3>最後は、自分で<br>回せる状態へ</h3>
+        <p>仕組みを渡して終わりにはしません。自分で考えられる。自分で回せる。自分に必要なものを、自分で選べる。そこまでのつなぎとして、私がいます。</p>
+      </div>
+    </div>
+    <p class="lead rv" style="--d:300ms;margin-top:30px">サロン・教室・スクールなど、地域のお客様との関係を大切にしながら、ひとりでサービスを届けている方と多くお仕事をしています。</p>
+  </div>
+</section>
+
+<!-- 05 土台 -->
+<section class="sec" id="background" style="background:var(--white);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <p class="lbl rv"><span class="num">05</span><i class="bar"></i>BACKGROUND</p>
+    <h2 class="rv" style="--d:60ms">根っこにあるのは、<br>7年間の<em>対面接客</em>です。</h2>
+    <div class="bg-grid">
+      <figure class="fig rv" style="--d:100ms">
+        <img src="images/background-hands.jpg?v=202609011745" width="1000" height="1000" loading="lazy" decoding="async"
+             alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
+      </figure>
+      <div>
+    <ul class="stats rv" style="--d:120ms">
+      <li><span class="n">7<small>年</small></span><span class="t">美容部員として<br>対面で接客</span></li>
+      <li><span class="n">5<small>件</small></span><span class="t">LINE構築</span></li>
+      <li><span class="n">3<small>件</small></span><span class="t">集客導線<br>サポート</span></li>
+    </ul>
+    <div class="rv" style="--d:180ms">
+      <p class="lead">オーガニックコスメの美容部員として、7年間お客様と向き合ってきました。<br>商品をおすすめする前に、何を聞くか。お客様の最初の言葉だけで判断しないこと。売るより先に、相手を知ること。<br>「また来たい」と思ってもらえる流れを考えられるのは、この7年があるからです。</p>
+      <p class="lead">いまは Threads で発信しながら、自分でも試している途中です。うまくいったことも、反応がなくてへこんだことも、そのまま共有しています。</p>
+    </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 約束 -->
+<section class="sec" id="promise">
+  <div class="wrap">
+    <p class="lbl rv"><span class="num">06</span><i class="bar"></i>PROMISE</p>
+    <div class="cols">
+      <h2 class="rv" style="--d:60ms">「必ず集客できます」<br>とは、<em>言いません</em>。</h2>
+      <div class="rv" style="--d:140ms">
+        <p class="lead">代わりに、目指しているゴールを聞かせてください。そのうえで、いま何が必要で、何はまだ必要ないのか。私がどこまで力になれるのか。きちんとすり合わせてから、お仕事をしたいと思っています。</p>
+        <p class="lead">「全部を自分でできるように頑張りましょう」とも言いません。あなたが本当に時間を使いたいのは、目の前のお客様のはずだから。必要なところだけを整理して、仕組みにします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <p class="lbl rv"><span class="num">07</span><i class="bar"></i>FAQ</p>
+    <h2 class="rv" style="--d:60ms">よくいただく質問</h2>
+    <div class="faq rv" style="--d:120ms">
+      <details>
+        <summary><span class="q">Q.</span><span>地方でも、集客ってできるものでしょうか。</span><span class="sign"></span></summary>
+        <div class="ans"><span class="a">A.</span><p>地方だから難しい、とは思っていません。むしろ地域のお客様との関係が近いぶん、「また来たい」がつくりやすい場所だと感じています。まずは、いまある広告・SNS・LINEがつながっているかを見るところからです。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span><span>SNSが得意ではありません。それでも大丈夫ですか。</span><span class="sign"></span></summary>
+        <div class="ans"><span class="a">A.</span><p>大丈夫です。毎日たくさん投稿しましょう、という話はしません。プロフィールなど最低限の土台を整えたうえで、投稿以外のところ（LINEや予約までの流れ）で受けとめられるように設計していきます。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span><span>何から手をつければいいか、分かっていません。</span><span class="sign"></span></summary>
+        <div class="ans"><span class="a">A.</span><p>その状態でご相談ください。むしろ、整理されていないまま見せていただいたほうが、どこで止まっているのかが分かります。いま必要なこと・まだ必要ないことを、一緒に切り分けるところから始めます。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span><span>LINEはもう作ってあります。それでも相談できますか。</span><span class="sign"></span></summary>
+        <div class="ans"><span class="a">A.</span><p>はい。私はLINE単体ではなく、その前後の流れを見ています。「作ったけれど動いてもらえない」のは、多くの場合LINEの中だけの問題ではありません。すでにあるものを、生かす方向で考えます。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q.</span><span>相談したら、申し込まないといけませんか。</span><span class="sign"></span></summary>
+        <div class="ans"><span class="a">A.</span><p>いいえ。まずはゴールと現状をすり合わせる時間です。私がどこまで力になれるかを確認したうえで、お互いに納得できたときにお仕事をさせてください。</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 08 CTA -->
+<section class="sec cta on-green slant" id="contact">
+  <div class="wrap inner">
+    <p class="lbl rv"><span class="num">08</span><i class="bar"></i>CONTACT</p>
+    <h2 class="rv" style="--d:60ms">まずは、いまの状態を<br>見せてください。</h2>
+    <p class="lead rv" style="--d:120ms">整っていなくて大丈夫です。途中のままで見せてもらえたほうが、どこで止まっているのかが見つけやすくなります。<br>ご相談は無料です。ひとつずつ、一緒に見ていきましょう。</p>
+    <div class="rv" style="--d:180ms">
+      <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
+        <span>無料で相談してみる</span><span class="arw">→</span>
+      </a>
+      <p class="btn-note">Googleフォームが開きます。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap ft">
+    <div>
+      <p class="nm">ミー</p>
+      <p class="ro">地方サロンの裏方 ／ SNS・広告・LINE導線設計</p>
+    </div>
+    <ul class="sns">
+      <li><a href="https://www.threads.com/@mee__work__" target="_blank" rel="noopener">THREADS</a></li>
+      <li><a href="https://www.instagram.com/mee__work__" target="_blank" rel="noopener">INSTAGRAM</a></li>
+    </ul>
+  </div>
+  <div class="wrap" style="margin-top:26px">
+    <p class="copy">&copy; 2026 mee</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var items = document.querySelectorAll('.rv');
+  var hero = document.getElementById('hero');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){el.classList.add('in');});
+    hero.classList.add('in');
+    return;
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{rootMargin:'0px 0px -12% 0px',threshold:0.08});
+  items.forEach(function(el){ io.observe(el); });
+  requestAnimationFrame(function(){ hero.classList.add('in'); });
+})();
+</script>
+</body>
+</html>
