@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609012249">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609012259">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,6 +261,34 @@ header{position:sticky;top:0;z-index:50;
   line-height:1.6;margin:0 0 14px;color:var(--green)}
 .work p{font-size:14px;color:var(--sub);margin:0;line-height:1.95}
 
+/* ---------- お手伝いできること ---------- */
+.svc{display:grid;gap:1px;background:var(--line);border-block:1px solid var(--line)}
+.svc-item{background:var(--surface);display:flex;flex-direction:column;
+  padding:clamp(28px,5.6vw,38px) clamp(20px,4vw,30px)}
+.svc-item .no{font-family:var(--en);font-size:12px;letter-spacing:.22em;color:var(--rose);margin:0 0 16px}
+.svc-item h3{font-weight:700;font-size:clamp(17px,4.4vw,20px);line-height:1.6;
+  margin:0 0 14px;color:var(--green)}
+.svc-item p{font-size:14px;color:var(--sub);margin:0;line-height:1.95;flex:1}
+.more{align-self:flex-start;margin-top:22px;display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;letter-spacing:.08em;text-decoration:none;color:var(--green);
+  border-bottom:1px solid var(--green-l);padding-bottom:6px;
+  transition:color .22s,border-color .22s}
+.more .arw{font-family:var(--en);transition:transform .22s}
+.more:hover{color:var(--rose);border-color:var(--rose)}
+.more:hover .arw{transform:translateX(4px)}
+/* リンク先がまだ決まっていないもの */
+.more.is-soon{color:var(--sub);border-bottom-style:dashed;border-color:var(--cool);cursor:default}
+.more.is-soon small{font-size:11px;letter-spacing:.06em}
+
+/* ---------- 発信（Threads） ---------- */
+.th{display:grid;gap:clamp(26px,5vw,44px);align-items:center}
+.th-card{background:var(--surface);border:1px solid var(--line);
+  padding:clamp(28px,5.6vw,40px)}
+.th-en{font-family:var(--en);font-size:11px;letter-spacing:.28em;color:var(--sub);margin:0 0 14px}
+.th-handle{font-family:var(--en);font-weight:300;
+  font-size:clamp(22px,5.6vw,30px);letter-spacing:.04em;color:var(--green);margin:0 0 6px}
+.th-note{font-size:12.5px;color:var(--sub);margin:0 0 24px}
+
 /* ---------- FAQ ---------- */
 .faq{border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
@@ -323,6 +351,8 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
   .prof{grid-template-columns:.8fr 1.2fr;gap:clamp(38px,5vw,60px);align-items:start}
   .results{grid-template-columns:repeat(4,1fr)}
   .works{grid-template-columns:repeat(3,1fr)}
+  .svc{grid-template-columns:repeat(3,1fr)}
+  .th{grid-template-columns:1.25fr .75fr}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.6vw,54px)}
   .ft{grid-template-columns:1fr auto;align-items:end}
 }
@@ -348,7 +378,7 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
 <!-- ヒーロー -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="images/hero-flow.jpg?v=202609012249" width="1672" height="941" fetchpriority="high"
+    <img src="images/hero-flow.jpg?v=202609012259" width="1672" height="941" fetchpriority="high"
          alt="木の机の上のノートに、丸いカードが線でつながれて並び、手が1枚を置いているところ。奥にノートパソコンとコーヒー">
   </div>
   <div class="wrap">
@@ -427,7 +457,7 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
     </div>
     <div class="prof">
       <div class="avatar rv" style="--d:40ms">
-        <img src="images/profile.jpg?v=202609012249" width="900" height="883" loading="lazy" decoding="async"
+        <img src="images/profile.jpg?v=202609012259" width="900" height="883" loading="lazy" decoding="async"
              alt="ミー｜地方サロンの裏方。ノートパソコンに向かい、頬杖をついて考えているミーさん">
       </div>
       <div>
@@ -449,23 +479,80 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
     <div class="gal-block">
     <p class="gal-lbl rv"><i class="bar"></i>FIELD<span class="jp">こんな方の裏方お任せください</span></p>
     <div class="gal stg" data-step="230">
-      <figure><img src="images/field-nail.jpg?v=202609012249" width="900" height="900" loading="lazy" decoding="async" alt="自然光の入る小さなネイルサロン。リネンのクロスの上で、お客様の手元に施術をしているところ"><figcaption>ネイルサロン</figcaption></figure>
-      <figure><img src="images/field-eyebrow.jpg?v=202609012249" width="900" height="900" loading="lazy" decoding="async" alt="アイブロウの施術ルーム。トレイに並べられた道具と、たたまれたタオル、丸い鏡と観葉植物"><figcaption>アイブロウ・まつげ</figcaption></figure>
-      <figure><img src="images/field-esthe.jpg?v=202609012249" width="900" height="900" loading="lazy" decoding="async" alt="エステの施術室。白いリネンを敷いたベッドと、木の台に置かれた器や植物"><figcaption>エステ・フェイシャル</figcaption></figure>
-      <figure><img src="images/field-yoga.jpg?v=202609012249" width="900" height="900" loading="lazy" decoding="async" alt="朝の光が差し込むヨガスタジオ。木の床に置かれた2本のヨガマットとたたまれたブランケット"><figcaption>ヨガ・ピラティス</figcaption></figure>
-      <figure><img src="images/field-school.jpg?v=202609012249" width="900" height="900" loading="lazy" decoding="async" alt="窓辺の教室。木のテーブルに、開いたノートとペン、カップと小さな植物が並んでいる"><figcaption>教室・レッスン</figcaption></figure>
+      <figure><img src="images/field-nail.jpg?v=202609012259" width="900" height="900" loading="lazy" decoding="async" alt="自然光の入る小さなネイルサロン。リネンのクロスの上で、お客様の手元に施術をしているところ"><figcaption>ネイルサロン</figcaption></figure>
+      <figure><img src="images/field-eyebrow.jpg?v=202609012259" width="900" height="900" loading="lazy" decoding="async" alt="アイブロウの施術ルーム。トレイに並べられた道具と、たたまれたタオル、丸い鏡と観葉植物"><figcaption>アイブロウ・まつげ</figcaption></figure>
+      <figure><img src="images/field-esthe.jpg?v=202609012259" width="900" height="900" loading="lazy" decoding="async" alt="エステの施術室。白いリネンを敷いたベッドと、木の台に置かれた器や植物"><figcaption>エステ・フェイシャル</figcaption></figure>
+      <figure><img src="images/field-yoga.jpg?v=202609012259" width="900" height="900" loading="lazy" decoding="async" alt="朝の光が差し込むヨガスタジオ。木の床に置かれた2本のヨガマットとたたまれたブランケット"><figcaption>ヨガ・ピラティス</figcaption></figure>
+      <figure><img src="images/field-school.jpg?v=202609012259" width="900" height="900" loading="lazy" decoding="async" alt="窓辺の教室。木のテーブルに、開いたノートとペン、カップと小さな植物が並んでいる"><figcaption>教室・レッスン</figcaption></figure>
     </div>
     </div>
   </div>
 </section>
 
-<div class="slant rv" style="--from:#FBFBF9;--to:#245B49" aria-hidden="true"></div>
+<!-- 04 お手伝いできること -->
+<section class="sec s-base" id="work-menu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>WORK — 04</p>
+      <p class="sec-en">Work</p>
+      <h2>お手伝いできること</h2>
+    </div>
+    <div class="svc stg">
+      <div class="svc-item">
+        <p class="no">01</p>
+        <h3>公式LINE構築</h3>
+        <p>サービスを知ってから予約するまでの流れを、LINE公式アカウントの中に組み立てます。リッチメニュー、登録後のご案内、予約までの導線まで。「作ったけれど動いてもらえない」にならない形を、一緒に考えます。</p>
+        <span class="more is-soon">詳しくはこちら<small>（準備中）</small></span>
+      </div>
+      <div class="svc-item">
+        <p class="no">02</p>
+        <h3>LINEスタンプ制作</h3>
+        <p>お店の雰囲気に合わせたLINEスタンプをお作りします。予約のやりとりや、来店後のひとことが、少しやわらかくなります。お客様との距離を近くしたい方へ。</p>
+        <span class="more is-soon">詳しくはこちら<small>（準備中）</small></span>
+      </div>
+      <div class="svc-item">
+        <p class="no">03</p>
+        <h3>メイクサポート</h3>
+        <p>オーガニックコスメの美容部員として7年、対面で接客してきた経験から、メイクのご相談にのります。撮影前や、発信で自分を見せるときの「どう見せるか」も一緒に整えます。</p>
+        <span class="more is-soon">詳しくはこちら<small>（準備中）</small></span>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- 04 実績 -->
+<!-- 05 発信 -->
+<section class="sec s-gray" id="threads">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>THREADS — 05</p>
+      <p class="sec-en">Threads</p>
+      <h2>試していることを、<br>そのまま書いています。</h2>
+    </div>
+    <div class="th">
+      <div class="rv" style="--d:40ms">
+        <p class="lead">Threadsで、いま自分が試していることをそのまま共有しています。うまくいったことも、反応がなくてへこんだことも。</p>
+        <p class="lead">LINEを作るときに考えていること、メニューを増やしすぎて迷わせてしまうこと、登録して終わりにしないための工夫。日々の中で気づいたことを、そのまま書いています。</p>
+        <p class="lead">「この人はどんなふうに考える人なんだろう」を、先に見ておいてもらえたらうれしいです。</p>
+      </div>
+      <div class="th-card rv" style="--d:90ms">
+        <p class="th-en">FOLLOW</p>
+        <p class="th-handle">@mee__work__</p>
+        <p class="th-note">Threadsで発信中</p>
+        <a class="btn" href="https://www.threads.com/@mee__work__" target="_blank" rel="noopener">
+          <span>Threadsを見てみる</span><span class="arw">&#8594;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="slant rv" style="--from:#E4E7E3;--to:#245B49" aria-hidden="true"></div>
+
+<!-- 06 実績 -->
 <section class="sec s-green" id="results">
   <div class="wrap">
     <div class="sec-head rv">
-      <p class="sec-num"><i></i>RESULTS — 04</p>
+      <p class="sec-num"><i></i>RESULTS — 06</p>
       <p class="sec-en">Results</p>
       <h2>積み上げてきたこと</h2>
     </div>
@@ -496,15 +583,15 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
 </section>
 
 <div class="band-img rv">
-  <img src="images/background-hands.jpg?v=202609012249" width="1000" height="1000" loading="lazy" decoding="async"
+  <img src="images/background-hands.jpg?v=202609012259" width="1000" height="1000" loading="lazy" decoding="async"
        alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
 </div>
 
-<!-- 05 お仕事への想い -->
+<!-- 07 お仕事への想い -->
 <section class="sec s-base" id="message">
   <div class="wrap narrow">
     <div class="sec-head rv">
-      <p class="sec-num"><i></i>MESSAGE — 05</p>
+      <p class="sec-num"><i></i>MESSAGE — 07</p>
       <p class="sec-en">Message</p>
       <h2>お仕事への想い</h2>
     </div>
@@ -522,11 +609,11 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
   </div>
 </section>
 
-<!-- 06 やっていること -->
+<!-- 08 やっていること -->
 <section class="sec s-gray" id="work">
   <div class="wrap">
     <div class="sec-head rv">
-      <p class="sec-num"><i></i>WHAT I DO — 06</p>
+      <p class="sec-num"><i></i>WHAT I DO — 08</p>
       <p class="sec-en">What<br>I Do</p>
       <h2>やっていることは、<br>この3つです。</h2>
     </div>
@@ -550,11 +637,11 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
   </div>
 </section>
 
-<!-- 07 FAQ -->
+<!-- 09 FAQ -->
 <section class="sec s-surface" id="faq">
   <div class="wrap">
     <div class="sec-head rv">
-      <p class="sec-num"><i></i>FAQ — 07</p>
+      <p class="sec-num"><i></i>FAQ — 09</p>
       <p class="sec-en">FAQ</p>
       <h2>よくいただく質問</h2>
     </div>
@@ -585,11 +672,11 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
 
 <div class="slant rv" style="--from:#FBFBF9;--to:#245B49" aria-hidden="true"></div>
 
-<!-- 08 CTA -->
+<!-- 10 CTA -->
 <section class="sec s-green" id="contact">
   <div class="wrap">
     <div class="sec-head rv">
-      <p class="sec-num"><i></i>CONTACT — 08</p>
+      <p class="sec-num"><i></i>CONTACT — 10</p>
       <p class="sec-en">Contact</p>
       <h2>まずは、いまの状態を<br>見せてください。</h2>
     </div>
