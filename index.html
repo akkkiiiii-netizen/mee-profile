@@ -13,34 +13,38 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609011932">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609012144">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23245B49'/><path d='M26 66V38l24 16 24-16v28' fill='none' stroke='%23F4F4EF' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --base:#F4F4EF;
-  --white:#FBFBF8;
-  --green:#245B49;
+  /* ---- 面（背景）：この4枚を切り替えてリズムを作る ---- */
+  --base:#F4F4EF;      /* 面1 いつもの地 */
+  --surface:#FBFBF9;   /* 面2 白寄り */
+  --gray:#E4E7E3;      /* 面3 グレー（COOL GRAYを薄めたもの） */
+  --green:#245B49;     /* 面4 深緑（要所を落とす） */
+
   --green-d:#1B4638;
   --green-l:#76A66F;
-  --rose:#CF6A80;
+  --rose:#CF6A80;      /* 差し色。細く・小さく・鋭く使う */
   --rose-pale:#EEC9D2;
-  --gray:#C7CAC8;
+  --cool:#C7CAC8;
   --ink:#2E3230;
   --sub:#5D635F;
-  --line:#DFDFD6;
-  --wrap:1040px;
-  --pad:clamp(20px,5.4vw,40px);
+  --line:#DCDED8;
+  --line-d:rgba(244,244,239,.18);
+
+  --wrap:1080px;
+  --pad:clamp(20px,5.4vw,44px);
   --mincho:"Zen Old Mincho",serif;
   --gothic:"Zen Kaku Gothic New",sans-serif;
   --en:"Jost",sans-serif;
-  /* 一気に立ち上がって、ピタッと止まるカーブ */
   --snap:cubic-bezier(.2,.9,.3,1);
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -48,247 +52,255 @@ html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--base);color:var(--ink);
   font-family:var(--gothic);
-  font-size:15px;line-height:2;letter-spacing:.04em;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
+  font-size:15px;line-height:1.95;letter-spacing:.045em;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 
-/* ---------- 共通パーツ ---------- */
+/* ---------- 面の切り替え ---------- */
+.s-base{background:var(--base)}
+.s-surface{background:var(--surface)}
+.s-gray{background:var(--gray)}
+.s-green{background:var(--green);color:#F4F4EF}
+.s-green .lead,.s-green p{color:rgba(244,244,239,.82)}
+.s-green .sec-en{color:rgba(244,244,239,.34)}
+.s-green .sec-num{color:var(--rose-pale)}
+.s-green h2{color:#F4F4EF}
+.s-green h2 em{color:var(--rose-pale)}
+
 .wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
-.sec{padding-block:clamp(72px,13vw,132px);position:relative}
+.narrow{max-width:700px}
+.sec{padding-block:clamp(80px,14vw,150px);position:relative}
 
-/* 英字ラベル＋番号（雑誌風インデックス） */
-.lbl{display:flex;align-items:center;gap:12px;font-family:var(--en);
-  font-size:11px;letter-spacing:.22em;font-weight:400;color:var(--sub);
-  margin:0 0 22px}
-.lbl .num{color:var(--rose);font-weight:500}
-.lbl .bar{display:block;height:1px;background:var(--gray);width:34px;transform-origin:left}
-.on-green .lbl{color:rgba(255,255,255,.66)}
-.on-green .lbl .num{color:var(--rose-pale)}
-.on-green .lbl .bar{background:rgba(255,255,255,.4)}
-
-h2{font-family:var(--mincho);font-weight:600;
-  font-size:clamp(22px,5.9vw,38px);line-height:1.68;letter-spacing:.02em;
-  margin:0 0 28px}
-h2 em{font-style:normal;color:var(--green-l)}
-.on-green h2 em{color:var(--rose-pale)}
+/* ---------- セクション見出し（英字を大きく積む） ---------- */
+.sec-head{margin:0 0 clamp(34px,6vw,52px)}
+.sec-num{font-family:var(--en);font-size:12px;letter-spacing:.28em;
+  font-weight:400;color:var(--rose);margin:0 0 10px;display:flex;align-items:center;gap:12px}
+.sec-num i{display:block;width:30px;height:1px;background:var(--rose);
+  transform-origin:left;opacity:.7}
+.sec-en{font-family:var(--en);font-weight:200;
+  font-size:clamp(34px,9vw,62px);line-height:.98;letter-spacing:.06em;
+  color:rgba(46,50,48,.2);margin:0 0 18px;text-transform:uppercase}
+h2{font-family:var(--gothic);font-weight:700;
+  font-size:clamp(21px,5.4vw,34px);line-height:1.55;letter-spacing:.01em;margin:0}
+h2 em{font-style:normal;color:var(--green)}
 p{margin:0 0 1.4em}
-.lead{color:var(--sub);font-size:15px}
-.on-green{color:#F4F4EF}
-.on-green .lead{color:rgba(244,244,239,.82)}
+.lead{color:var(--sub);font-size:15px;line-height:2}
 
-/* ボタン */
+/* ---------- ボタン ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;
-  width:100%;max-width:360px;
+  width:100%;max-width:370px;
   background:var(--green);color:#fff;text-decoration:none;
-  font-family:var(--gothic);font-weight:500;font-size:15px;letter-spacing:.06em;
-  padding:19px 24px;border-radius:2px;
-  box-shadow:0 10px 26px -18px rgba(36,91,73,.9);
-  transition:background .22s,transform .22s,box-shadow .22s}
+  font-weight:500;font-size:15px;letter-spacing:.08em;
+  padding:20px 24px;border-radius:2px;position:relative;overflow:hidden;
+  transition:background .22s,transform .22s}
+.btn::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rose);
+  transform:scaleY(0);transform-origin:bottom;transition:transform .3s var(--snap)}
+.btn:hover::before{transform:scaleY(1)}
 .btn .arw{font-family:var(--en);font-size:15px;transition:transform .22s}
-.btn:hover{background:var(--green-d);transform:translateY(-2px);box-shadow:0 16px 30px -18px rgba(36,91,73,.95)}
+.btn:hover{background:var(--green-d);transform:translateY(-2px)}
 .btn:hover .arw{transform:translateX(5px)}
 .btn.is-light{background:var(--base);color:var(--green)}
 .btn.is-light:hover{background:#fff}
 .btn-note{margin:12px 0 0;font-size:12px;letter-spacing:.03em;color:var(--sub)}
-.on-green .btn-note{color:rgba(244,244,239,.66)}
-
-/* 面（変形） */
-.slant{clip-path:polygon(0 1.6%,100% 0,100% 98.4%,0 100%)}
+.s-green .btn-note,.hero .btn-note{color:rgba(244,244,239,.62)}
 
 /* ---------- ヘッダー ---------- */
 header{position:sticky;top:0;z-index:50;
-  background:rgba(244,244,239,.88);backdrop-filter:blur(10px);
+  background:rgba(244,244,239,.9);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line)}
 .hd{display:flex;align-items:center;justify-content:space-between;gap:16px;
-  height:58px;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
-.hd-name{display:flex;align-items:baseline;gap:10px;min-width:0}
-.hd-name b{font-family:var(--mincho);font-weight:600;font-size:17px;letter-spacing:.04em}
-.hd-name span{font-size:11px;letter-spacing:.1em;color:var(--sub);white-space:nowrap}
+  height:60px;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
+.hd-name{display:flex;align-items:baseline;gap:12px;min-width:0}
+.hd-name b{font-weight:700;font-size:16px;letter-spacing:.14em}
+.hd-name span{font-size:11px;letter-spacing:.12em;color:var(--sub);white-space:nowrap}
 .hd-cta{flex:none;text-decoration:none;background:var(--green);color:#fff;
-  font-size:12px;letter-spacing:.06em;padding:10px 16px;border-radius:2px;
-  transition:background .3s}
+  font-size:12px;letter-spacing:.08em;padding:11px 18px;border-radius:2px;
+  transition:background .22s}
 .hd-cta:hover{background:var(--green-d)}
 @media (max-width:430px){ .hd-name span{display:none} }
 
-/* ---------- ヒーロー ---------- */
+/* ---------- ヒーロー（全面写真） ---------- */
 .hero{position:relative;display:flex;align-items:flex-end;
-  min-height:min(94svh,780px);
-  padding-block:clamp(96px,20vw,150px) clamp(46px,9vw,72px);
-  background:var(--green-d);overflow:hidden;isolation:isolate}
-/* 背景いっぱいの写真。上に深緑の膜をかけて文字を読めるようにする */
+  min-height:min(94svh,800px);
+  padding-block:clamp(96px,20vw,150px) clamp(46px,9vw,74px);
+  background:var(--green-d);color:#F4F4EF;overflow:hidden;isolation:isolate}
 .hero-bg{position:absolute;inset:0;z-index:-1}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:66% 50%}
 .hero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(20,52,42,.78) 0%,rgba(20,52,42,.62) 42%,rgba(20,52,42,.86) 100%)}
-.hero-grid{display:grid;gap:clamp(34px,6vw,56px);width:100%}
-.hero h1{font-family:var(--mincho);font-weight:600;
-  font-size:clamp(25px,6.8vw,48px);line-height:1.62;letter-spacing:.01em;margin:0 0 26px}
-.hero h1 em{font-style:normal;color:#fff;position:relative;white-space:nowrap}
-.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:2px;
+  background:linear-gradient(180deg,rgba(20,52,42,.80) 0%,rgba(20,52,42,.60) 40%,rgba(20,52,42,.88) 100%)}
+.hero-tag{display:flex;align-items:center;gap:12px;margin:0 0 24px;
+  font-family:var(--en);font-size:11px;letter-spacing:.3em;color:rgba(244,244,239,.7)}
+.hero-tag i{display:block;width:34px;height:1px;background:var(--rose);transform-origin:left}
+.hero h1{font-family:var(--gothic);font-weight:700;
+  font-size:clamp(26px,7vw,50px);line-height:1.5;letter-spacing:.005em;margin:0 0 26px}
+.hero h1 em{font-style:normal;position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:3px;
   background:var(--rose);transform:scaleX(0);transform-origin:left;
   transition:transform .5s .38s var(--snap)}
 .hero.in h1 em::after{transform:scaleX(1)}
-.hero h1 em{z-index:0;isolation:isolate}
-.hero-lead{max-width:30em;margin-bottom:32px}
-.hero .lead{color:rgba(244,244,239,.9)}
-.on-green .scroll-cue{color:rgba(244,244,239,.66)}
-.on-green .scroll-cue i{background:rgba(244,244,239,.35)}
-.on-green .scroll-cue i::after{background:var(--rose-pale)}
+.hero .lead{color:rgba(244,244,239,.9);max-width:31em;margin-bottom:26px}
 
-.scroll-cue{display:flex;align-items:center;gap:10px;margin-top:38px;
-  font-family:var(--en);font-size:10px;letter-spacing:.24em;color:var(--sub)}
-.scroll-cue i{display:block;width:52px;height:1px;background:var(--gray);position:relative;overflow:hidden}
-.scroll-cue i::after{content:"";position:absolute;inset:0;background:var(--green);
+/* ヒーローの実績チップ */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:0;list-style:none}
+.chips li{font-family:var(--en);font-size:11.5px;letter-spacing:.1em;
+  border:1px solid rgba(244,244,239,.34);border-radius:100px;
+  padding:8px 15px;color:rgba(244,244,239,.9)}
+.chips li b{font-weight:500;color:#fff}
+.chips li .jp{font-family:var(--gothic);font-size:11.5px;letter-spacing:.06em}
+
+.scroll-cue{display:flex;align-items:center;gap:10px;margin-top:34px;
+  font-family:var(--en);font-size:10px;letter-spacing:.26em;color:rgba(244,244,239,.6)}
+.scroll-cue i{display:block;width:56px;height:1px;background:rgba(244,244,239,.32);position:relative;overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;inset:0;background:var(--rose);
   transform:translateX(-100%);animation:cue 2.6s cubic-bezier(.5,0,.3,1) infinite}
 @keyframes cue{0%{transform:translateX(-100%)}55%{transform:translateX(0)}100%{transform:translateX(100%)}}
 
-/* ---------- 写真 ---------- */
-.band-img{overflow:hidden;clip-path:polygon(0 5%,100% 0,100% 95%,0 100%)}
-.band-img img{display:block;width:100%;height:clamp(170px,32vw,330px);object-fit:cover}
+/* ---------- 流れる文字（マーキー） ---------- */
+.marquee{overflow:hidden;background:var(--green);color:#F4F4EF;
+  padding-block:16px;border-block:1px solid rgba(244,244,239,.12)}
+.marquee-in{display:flex;width:max-content;animation:flow 26s linear infinite}
+.marquee span{font-family:var(--en);font-size:13px;letter-spacing:.22em;
+  white-space:nowrap;padding-inline:22px;display:flex;align-items:center;gap:22px}
+.marquee span .jp{font-family:var(--gothic);font-size:13px;letter-spacing:.14em}
+.marquee span::after{content:"◆";color:var(--rose);font-size:8px}
+@keyframes flow{to{transform:translateX(-50%)}}
 
-/* ---------- 悩みリスト ---------- */
-.checks{list-style:none;margin:0 0 30px;padding:0;
-  border-top:1px solid var(--line)}
-.checks li{display:flex;gap:14px;align-items:flex-start;
-  padding:17px 2px;border-bottom:1px solid var(--line);line-height:1.85}
-.checks li .mk{flex:none;margin-top:.5em;width:9px;height:9px;border:1px solid var(--green-l);
-  border-radius:50%}
-.checks li:nth-child(2n) .mk{border-color:var(--rose)}
-.after-note{background:var(--white);border-left:2px solid var(--green-l);
-  padding:22px 24px;margin:0;font-size:14px;line-height:2}
+/* ---------- 悩みリスト（番号つき） ---------- */
+.checks{list-style:none;margin:0 0 34px;padding:0;border-top:1px solid var(--line)}
+.checks li{display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;
+  padding:19px 2px;border-bottom:1px solid var(--line);line-height:1.85}
+.checks li .no{font-family:var(--en);font-size:12px;letter-spacing:.14em;
+  color:var(--rose);padding-top:.4em}
+.after-note{border-left:3px solid var(--rose);padding:4px 0 4px 22px;margin:0;
+  font-size:15px;line-height:2;font-weight:500}
 
-/* ---------- 深緑ベタのセクション ---------- */
-.band{background:var(--green);position:relative}
-.band .quote{font-family:var(--mincho);font-size:clamp(13px,3.4vw,15px);
-  letter-spacing:.06em;color:var(--rose-pale);margin:0 0 8px}
+/* ---------- 全面画像で区切る ---------- */
+.band-img{overflow:hidden;position:relative}
+.band-img img{display:block;width:100%;height:clamp(220px,46vw,460px);object-fit:cover}
 
-/* ---------- できること3つ ---------- */
-.works{display:grid;gap:22px;margin-top:6px}
-.work{background:var(--white);padding:clamp(26px,5.6vw,34px);position:relative;
-  border:1px solid var(--line)}
-.work .no{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--rose);margin:0 0 14px}
-.work h3{font-family:var(--mincho);font-weight:600;font-size:clamp(19px,4.8vw,23px);
+/* ---------- プロフィール ---------- */
+.avatar{position:relative;width:100%;aspect-ratio:1;border-radius:50%;
+  overflow:hidden;background:var(--cool)}
+/* 元画像は濃い地に丸く抜かれた写真。丸の少し内側だけを出して黒フチを防ぐ。
+   中心(598,570) 半径407 / 原寸1206x1184 から算出。触らないこと。 */
+.avatar img{position:absolute;width:161.5%;height:auto;max-width:none;
+  left:-30.1%;top:-26.3%}
+.prof{display:grid;gap:clamp(30px,6vw,44px)}
+.prof-name{font-weight:700;font-size:clamp(26px,6.6vw,34px);
+  letter-spacing:.14em;line-height:1.2;margin:0 0 10px}
+.prof-en{font-family:var(--en);font-size:11px;letter-spacing:.3em;
+  color:var(--sub);margin:0 0 22px}
+.prof-role{font-size:clamp(15px,4.2vw,18px);font-weight:700;color:var(--green);
+  letter-spacing:.08em;margin:0 0 6px}
+.prof-sub{font-size:13.5px;color:var(--sub);margin:0 0 28px}
+.career{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.career li{display:grid;grid-template-columns:74px 1fr;gap:14px;
+  padding:16px 2px;border-bottom:1px solid var(--line);
+  font-size:14px;line-height:1.85}
+.career .y{font-family:var(--en);font-size:12px;letter-spacing:.12em;
+  color:var(--rose);padding-top:.35em}
+
+/* ---------- 実績（数え上がる数字） ---------- */
+.results{display:grid;gap:1px;background:var(--line-d);border-block:1px solid var(--line-d)}
+.result{background:var(--green);padding:clamp(26px,5.4vw,34px) clamp(18px,3.4vw,26px)}
+.result .rl{font-family:var(--en);font-size:10.5px;letter-spacing:.26em;
+  color:var(--rose-pale);margin:0 0 16px}
+.result .rt{font-size:12.5px;letter-spacing:.06em;color:rgba(244,244,239,.7);margin:0 0 6px}
+.result .rn{font-family:var(--en);font-weight:200;font-size:clamp(44px,12vw,64px);
+  line-height:1;letter-spacing:.01em;color:#F4F4EF;margin:0;display:flex;align-items:baseline;gap:4px}
+.result .rn small{font-family:var(--gothic);font-weight:500;font-size:15px;letter-spacing:.04em}
+.result.is-text .rn{font-size:clamp(19px,5vw,24px);font-family:var(--gothic);font-weight:700;line-height:1.5}
+.results-note{margin:20px 0 0;font-size:11.5px;line-height:1.9;color:rgba(244,244,239,.55)}
+
+/* ---------- メッセージ ---------- */
+.msg-quote{font-family:var(--mincho);font-weight:600;
+  font-size:clamp(20px,5.6vw,32px);line-height:1.75;letter-spacing:.02em;
+  color:var(--green);margin:0 0 34px}
+.msg-body p{margin:0 0 1.6em;color:var(--sub)}
+.msg-body .em{color:var(--ink);font-weight:500;
+  border-left:3px solid var(--rose);padding-left:20px}
+.sign{font-family:var(--mincho);font-size:19px;letter-spacing:.1em;
+  text-align:right;margin:38px 0 0}
+.sign small{display:block;font-family:var(--en);font-size:10.5px;
+  letter-spacing:.26em;color:var(--sub);margin-top:8px}
+
+/* ---------- やっていること ---------- */
+.works{display:grid;gap:1px;background:var(--line);border-block:1px solid var(--line)}
+.work{background:var(--gray);padding:clamp(28px,5.6vw,38px) clamp(20px,4vw,30px)}
+.work .no{font-family:var(--en);font-size:12px;letter-spacing:.22em;color:var(--rose);margin:0 0 16px}
+.work h3{font-weight:700;font-size:clamp(17px,4.4vw,20px);
   line-height:1.6;margin:0 0 14px;color:var(--green)}
-.work p{font-size:14px;color:var(--sub);margin:0}
-
-/* ---------- 実績 ---------- */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 34px;padding:0;list-style:none}
-.stats li{background:var(--white);border:1px solid var(--line);
-  padding:22px 8px;text-align:center}
-.stats .n{display:block;font-family:var(--en);font-weight:300;
-  font-size:clamp(30px,9vw,46px);line-height:1;color:var(--green);letter-spacing:.02em}
-.stats .n small{font-family:var(--gothic);font-size:14px;font-weight:500;margin-left:2px}
-.stats .t{display:block;margin-top:12px;font-size:11.5px;line-height:1.6;color:var(--sub);letter-spacing:.02em}
+.work p{font-size:14px;color:var(--sub);margin:0;line-height:1.95}
 
 /* ---------- FAQ ---------- */
 .faq{border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
-.faq summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:flex-start;
-  padding:20px 2px;font-weight:500;line-height:1.8}
+.faq summary{list-style:none;cursor:pointer;display:flex;gap:16px;align-items:flex-start;
+  padding:21px 2px;font-weight:500;line-height:1.8}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary .q{font-family:var(--en);color:var(--rose);font-size:13px;margin-top:.25em;flex:none}
-.faq summary .sign2{margin-left:auto;flex:none;width:13px;height:13px;position:relative;margin-top:.6em}
-.faq summary .sign2::before,.faq summary .sign2::after{content:"";position:absolute;background:var(--green);
-  left:0;top:6px;width:13px;height:1px;transition:transform .3s}
-.faq summary .sign2::after{transform:rotate(90deg)}
-.faq details[open] summary .sign2::after{transform:rotate(0)}
-.faq .ans{display:flex;gap:14px;padding:0 2px 24px;color:var(--sub);font-size:14px;line-height:2}
+.faq summary .sw{margin-left:auto;flex:none;width:13px;height:13px;position:relative;margin-top:.6em}
+.faq summary .sw::before,.faq summary .sw::after{content:"";position:absolute;background:var(--green);
+  left:0;top:6px;width:13px;height:1px;transition:transform .3s var(--snap)}
+.faq summary .sw::after{transform:rotate(90deg)}
+.faq details[open] summary .sw::after{transform:rotate(0)}
+.faq .ans{display:flex;gap:16px;padding:0 2px 26px;color:var(--sub);font-size:14px;line-height:2}
 .faq .ans .a{font-family:var(--en);color:var(--green-l);font-size:13px;flex:none}
 .faq .ans p{margin:0}
 
-/* ---------- CTA ---------- */
-.cta{background:var(--green);position:relative;overflow:hidden}
-.cta::before{content:"";position:absolute;left:-80px;top:-90px;width:260px;height:260px;
-  border:1px solid rgba(118,166,111,.4);border-radius:50%}
-.cta .inner{position:relative;z-index:1}
-
 /* ---------- フッター ---------- */
-footer{background:var(--base);border-top:1px solid var(--line);
-  padding-block:44px}
-.ft{display:grid;gap:26px}
-.ft .nm{font-family:var(--mincho);font-size:19px;letter-spacing:.05em;margin:0 0 6px}
-.ft .ro{font-size:12px;color:var(--sub);margin:0}
+footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
+.ft{display:grid;gap:28px}
+.ft .nm{font-weight:700;font-size:19px;letter-spacing:.16em;margin:0 0 8px;color:#F4F4EF}
+.ft .ro{font-size:12px;color:rgba(244,244,239,.62);margin:0}
 .sns{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
 .sns a{display:inline-block;text-decoration:none;font-family:var(--en);font-size:11.5px;
-  letter-spacing:.14em;color:var(--green);border:1px solid var(--gray);
-  padding:9px 18px;border-radius:100px;transition:background .3s,color .3s,border-color .3s}
-.sns a:hover{background:var(--green);color:#fff;border-color:var(--green)}
-.copy{font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--sub);margin:0}
-
-/* ---------- プロフィール（人物写真は丸くくり抜く） ---------- */
-/* 元画像は濃いグレーの地に丸く切り抜かれた写真。
-   写真の中の丸より "少しだけ内側" を表示するので、縁に黒が出ない。
-   中心(598,570) 半径407 / 原寸1206x1184 から算出した数値。触らないこと。 */
-.avatar{position:relative;width:100%;aspect-ratio:1;border-radius:50%;
-  overflow:hidden;background:var(--gray)}
-.avatar img{position:absolute;width:161.5%;height:auto;max-width:none;
-  left:-30.1%;top:-26.3%}
-
-.prof{display:grid;gap:clamp(28px,5.6vw,40px)}
-.prof-name{font-family:var(--mincho);font-size:clamp(28px,7vw,36px);
-  letter-spacing:.06em;line-height:1.2;margin:0 0 8px}
-.prof-en{font-family:var(--en);font-size:11px;letter-spacing:.28em;
-  color:var(--sub);margin:0 0 20px}
-.prof-role{font-size:clamp(15px,4.2vw,18px);font-weight:500;color:var(--green);
-  letter-spacing:.06em;margin:0 0 6px}
-.prof-sub{font-size:13.5px;color:var(--sub);margin:0 0 26px}
-.career{list-style:none;margin:0 0 28px;padding:0;border-top:1px solid var(--line)}
-.career li{display:grid;grid-template-columns:78px 1fr;gap:14px;
-  padding:15px 2px;border-bottom:1px solid var(--line);
-  font-size:14px;line-height:1.85}
-.career .y{font-family:var(--en);font-size:12px;letter-spacing:.1em;
-  color:var(--rose);padding-top:.35em}
-
-/* ---------- メッセージ（お仕事への想い） ---------- */
-.narrow{max-width:680px}
-.msg-quote{font-family:var(--mincho);font-size:clamp(20px,5.4vw,30px);
-  line-height:1.75;letter-spacing:.02em;color:var(--green);margin:0 0 30px}
-.msg-body p{margin:0 0 1.5em;color:var(--sub)}
-.msg-body .em{color:var(--ink);font-weight:500;
-  border-left:2px solid var(--green-l);padding-left:18px}
-.sign{font-family:var(--mincho);font-size:19px;letter-spacing:.08em;
-  text-align:right;margin:34px 0 0}
-.sign small{display:block;font-family:var(--en);font-size:10.5px;
-  letter-spacing:.24em;color:var(--sub);margin-top:8px}
-
-/* ---------- Stagger Reveal（No.008）カード・リストを順番に ---------- */
-.stg>*{opacity:0;transform:translateY(16px);
-  transition:opacity .42s var(--snap),transform .42s var(--snap);
-  transition-delay:var(--sd,0ms)}
-.stg>*.in{opacity:1;transform:none}
-.no-js .stg>*{opacity:1;transform:none}
+  letter-spacing:.16em;color:rgba(244,244,239,.9);border:1px solid rgba(244,244,239,.3);
+  padding:10px 20px;border-radius:100px;transition:background .22s,color .22s,border-color .22s}
+.sns a:hover{background:var(--rose);color:#fff;border-color:var(--rose)}
+.copy{font-family:var(--en);font-size:10.5px;letter-spacing:.16em;
+  color:rgba(244,244,239,.45);margin:26px 0 0}
 
 /* ---------- 出現アニメ ---------- */
 .rv{opacity:0;transform:translateY(16px);
   transition:opacity .5s var(--snap),transform .5s var(--snap);
   transition-delay:var(--d,0ms)}
 .rv.in{opacity:1;transform:none}
-.rv .bar{transform:scaleX(0);transition:transform .5s .1s var(--snap)}
-.rv.in .bar{transform:scaleX(1)}
-.no-js .rv{opacity:1;transform:none}
-.no-js .rv .bar{transform:none}
+.rv i.bar,.rv .sec-num i{transform:scaleX(0);transition:transform .5s .1s var(--snap)}
+.rv.in i.bar,.rv.in .sec-num i{transform:scaleX(1)}
+.stg>*{opacity:0;transform:translateY(16px);
+  transition:opacity .42s var(--snap),transform .42s var(--snap);
+  transition-delay:var(--sd,0ms)}
+.stg>*.in{opacity:1;transform:none}
+.no-js .rv,.no-js .stg>*{opacity:1;transform:none}
+.no-js .rv i.bar,.no-js .rv .sec-num i{transform:none}
 @media (prefers-reduced-motion:reduce){
   .rv,.stg>*{opacity:1!important;transform:none!important;transition:none!important}
-  .rv .bar,.hero h1 em::after{transform:none!important}
+  .rv i.bar,.rv .sec-num i,.hero h1 em::after{transform:none!important}
   .scroll-cue i::after{animation:none}
+  .marquee-in{animation:none}
 }
 
 /* ---------- パソコン ---------- */
 @media (min-width:820px){
   body{font-size:15.5px}
-  .prof{grid-template-columns:.82fr 1.18fr;gap:clamp(36px,5vw,56px);align-items:start}
   .hero-bg img{object-position:52% 50%}
   .hero h1{font-size:clamp(34px,4.2vw,54px)}
-  .hero-lead{font-size:16px}
-  .works{grid-template-columns:repeat(3,1fr);gap:18px}
-  .stats li{padding:30px 10px}
-  .stats .t{font-size:12.5px}
-  .ft{grid-template-columns:1fr auto;align-items:end}
+  .hero .lead{font-size:16px}
+  .sec-head{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(30px,4.6vw,56px);align-items:end}
+  .sec-head .sec-num{grid-column:1;margin-bottom:14px}
+  .sec-head .sec-en{grid-column:1;grid-row:2;margin:0}
+  .sec-head h2{grid-column:2;grid-row:2}
+  .prof{grid-template-columns:.8fr 1.2fr;gap:clamp(38px,5vw,60px);align-items:start}
+  .results{grid-template-columns:repeat(4,1fr)}
+  .works{grid-template-columns:repeat(3,1fr)}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.6vw,54px)}
-  .cols h2{margin-bottom:0}
+  .ft{grid-template-columns:1fr auto;align-items:end}
+}
+@media (min-width:560px) and (max-width:819px){
+  .results{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -297,84 +309,103 @@ footer{background:var(--base);border-top:1px solid var(--line);
 
 <header>
   <div class="hd">
-    <div class="hd-name">
-      <b>ミー</b><span>地方サロンの裏方</span>
-    </div>
+    <div class="hd-name"><b>ミー</b><span>地方サロンの裏方</span></div>
     <a class="hd-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">無料で相談する</a>
   </div>
 </header>
 
 <main>
 
-<!-- 01 ヒーロー -->
-<section class="hero sec on-green" id="hero">
-  <!-- ▼ ヒーローの一枚絵。新しい画像が届いたら、この src だけ差し替える -->
+<!-- ヒーロー -->
+<section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="images/hero-flow.jpg?v=202609011932" width="1672" height="941" fetchpriority="high"
+    <img src="images/hero-flow.jpg?v=202609012144" width="1672" height="941" fetchpriority="high"
          alt="木の机の上のノートに、丸いカードが線でつながれて並び、手が1枚を置いているところ。奥にノートパソコンとコーヒー">
   </div>
-  <div class="wrap hero-grid">
-    <div>
-      <p class="lbl rv"><span class="num">01</span><i class="bar"></i>PROFILE</p>
-      <h1 class="rv" style="--d:30ms">お客様は、いま<br>どこで<em>止まっている</em>のか。</h1>
-      <p class="lead hero-lead rv" style="--d:90ms">
-        SNSも、LINEも、広告も。<br>
-        ぜんぶ持っているのに、つながっていない。<br>
-        その「止まっている場所」を、一緒に見つけて整えます。
-      </p>
-      <div class="rv" style="--d:130ms">
-        <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
-          <span>無料で相談してみる</span><span class="arw">&#8594;</span>
-        </a>
-        <p class="btn-note">Googleフォームが開きます。</p>
-      </div>
-      <div class="scroll-cue rv" style="--d:180ms"><i></i>SCROLL</div>
+  <div class="wrap">
+    <p class="hero-tag rv"><i class="bar"></i>MEE ／ 地方サロンの裏方</p>
+    <h1 class="rv" style="--d:30ms">お客様は、いま<br>どこで<em>止まっている</em>のか。</h1>
+    <p class="lead rv" style="--d:80ms">
+      SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。<br>
+      その「止まっている場所」を、一緒に見つけて整えます。
+    </p>
+    <ul class="chips rv" style="--d:110ms">
+      <li><span class="jp">美容部員</span> <b>7年</b></li>
+      <li><span class="jp">LINE構築</span> <b>5件</b></li>
+      <li><span class="jp">集客導線サポート</span> <b>3件</b></li>
+    </ul>
+    <div class="rv" style="--d:140ms">
+      <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
+        <span>無料で相談してみる</span><span class="arw">&#8594;</span>
+      </a>
+      <p class="btn-note">Googleフォームが開きます。</p>
     </div>
-
+    <div class="scroll-cue rv" style="--d:190ms"><i></i>SCROLL</div>
   </div>
 </section>
 
-<!-- 02 共感 -->
-<section class="sec" id="issue">
+<!-- 流れる文字 -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-in">
+    <span><span class="jp">整える。</span></span><span><span class="jp">つなぐ。</span></span><span><span class="jp">また来たくなる。</span></span><span><span class="jp">お客様目線で、一緒に見る。</span></span>
+    <span><span class="jp">整える。</span></span><span><span class="jp">つなぐ。</span></span><span><span class="jp">また来たくなる。</span></span><span><span class="jp">お客様目線で、一緒に見る。</span></span>
+  </div>
+</div>
+
+<!-- 01 共感 -->
+<section class="sec s-base" id="issue">
   <div class="wrap">
-    <p class="lbl rv"><span class="num">02</span><i class="bar"></i>ISSUE</p>
-    <h2 class="rv" style="--d:30ms">こんな状態に、<br>なっていませんか。</h2>
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>ISSUE — 01</p>
+      <p class="sec-en">Issue</p>
+      <h2>こんな状態に、<br>なっていませんか。</h2>
+    </div>
     <ul class="checks stg">
-      <li><span class="mk"></span>技術やサービスには自信があるけれど、発信や集客は苦手</li>
-      <li><span class="mk"></span>SNS・LINE・広告、それぞれ頑張っているのに、バラバラになっている</li>
-      <li><span class="mk"></span>広告費はかけているけれど、売上につながっている実感が薄い</li>
-      <li><span class="mk"></span>施術も接客も発信も予約対応も、全部ひとりでやっていて時間がない</li>
-      <li><span class="mk"></span>自分のサービスの良さを、どう言葉にすればいいか分からない</li>
-      <li><span class="mk"></span>紹介や口コミだけに頼らず、続けてお客様と出会える流れを作りたい</li>
+      <li><span class="no">01</span><span>技術やサービスには自信があるけれど、発信や集客は苦手</span></li>
+      <li><span class="no">02</span><span>SNS・LINE・広告、それぞれ頑張っているのに、バラバラになっている</span></li>
+      <li><span class="no">03</span><span>広告費はかけているけれど、売上につながっている実感が薄い</span></li>
+      <li><span class="no">04</span><span>施術も接客も発信も予約対応も、全部ひとりでやっていて時間がない</span></li>
+      <li><span class="no">05</span><span>自分のサービスの良さを、どう言葉にすればいいか分からない</span></li>
+      <li><span class="no">06</span><span>紹介や口コミだけに頼らず、続けてお客様と出会える流れを作りたい</span></li>
     </ul>
-    <p class="after-note rv" style="--d:100ms">
+    <p class="after-note rv" style="--d:80ms">
       ひとつでも当てはまったなら、それは「頑張りが足りない」からではありません。<br>
       ただ、お客様の流れが、どこかで途切れているだけです。
     </p>
   </div>
 </section>
 
-<!-- 03 想い -->
-<section class="sec band on-green slant" id="thought">
+<!-- 02 想い -->
+<section class="sec s-green" id="thought">
   <div class="wrap">
-    <p class="lbl rv"><span class="num">03</span><i class="bar"></i>THOUGHT</p>
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>THOUGHT — 02</p>
+      <p class="sec-en">Thought</p>
+      <h2>「ないもの」を増やすより、<br><em>「すでにあるもの」</em>を生かす。</h2>
+    </div>
     <div class="cols">
-      <h2 class="rv" style="--d:30ms">「ないもの」を増やすより、<br><em>「すでにあるもの」</em>を生かす。</h2>
-      <div class="rv" style="--d:80ms">
-        <p class="lead">技術やサービスへの想いがあるのに、伝え方や仕組みが整っていないだけで、必要な人に届かず埋もれてしまう。そんなサービスを減らしたいと思っています。</p>
-        <p class="lead">広告がある。LINEがある。SNSがある。もう来てくださっているお客様がいる。<br>まずは、それがちゃんとつながっているかを見にいく。足りないものを増やすより、いま持っているものが活きる流れを整えます。</p>
-      </div>
+      <p class="lead rv" style="--d:40ms">技術やサービスへの想いがあるのに、伝え方や仕組みが整っていないだけで、必要な人に届かず埋もれてしまう。そんなサービスを減らしたいと思っています。</p>
+      <p class="lead rv" style="--d:90ms">広告がある。LINEがある。SNSがある。もう来てくださっているお客様がいる。まずは、それがちゃんとつながっているかを見にいく。足りないものを増やすより、いま持っているものが活きる流れを整えます。</p>
     </div>
   </div>
 </section>
 
-<!-- 04 プロフィール -->
-<section class="sec" id="profile">
+<div class="band-img rv">
+  <img src="images/thought-paper.jpg?v=202609012144" width="1500" height="844" loading="lazy" decoding="async"
+       alt="深い緑の面の上に置かれた紙に、葉のやわらかな影が落ちている">
+</div>
+
+<!-- 03 プロフィール -->
+<section class="sec s-surface" id="profile">
   <div class="wrap">
-    <p class="lbl rv"><span class="num">04</span><i class="bar"></i>PROFILE</p>
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>PROFILE — 03</p>
+      <p class="sec-en">Profile</p>
+      <h2>お客様が迷っている場所を、<br>一緒に見つける裏方です。</h2>
+    </div>
     <div class="prof">
       <div class="avatar rv" style="--d:40ms">
-        <img src="images/profile.jpg?v=202609011932" width="900" height="883" loading="lazy" decoding="async"
+        <img src="images/profile.jpg?v=202609012144" width="900" height="883" loading="lazy" decoding="async"
              alt="ミー｜地方サロンの裏方。ノートパソコンに向かい、頬杖をついて考えているミーさん">
       </div>
       <div>
@@ -387,31 +418,63 @@ footer{background:var(--base);border-top:1px solid var(--line);
         <ul class="career stg">
           <li><span class="y">7年</span><span>オーガニックコスメの美容業界で、美容部員として対面で接客。<br>売るより先に相手を知ること、最初の言葉だけで判断しないことを、ここで身につけました。</span></li>
           <li><span class="y">いま</span><span>地方でひとり事業をしている方に向けて、SNS・広告・LINEをつなぎ、<br>お客様がサービスを知ってから予約するまでの流れを設計・構築しています。</span></li>
-          <li><span class="y">実績</span><span>LINE構築 5件 ／ 集客導線サポート 3件<br>ネイル・アイブロウ・エステ・ヨガ・ピラティス・セラピー・教室業など、<br>地域のお客様との関係を大切にしている方が中心です。</span></li>
+          <li><span class="y">領域</span><span>ネイル・アイブロウ・エステ・ヨガ・ピラティス・セラピー・教室業など、<br>地域のお客様との関係を大切にしている方が中心です。</span></li>
           <li><span class="y">発信</span><span>Threadsで、試していることをそのまま共有中。<br>うまくいったことも、反応がなくてへこんだことも書いています。</span></li>
-        </ul>
-        <ul class="stats stg">
-          <li><span class="n">7<small>年</small></span><span class="t">美容部員として<br>対面で接客</span></li>
-          <li><span class="n">5<small>件</small></span><span class="t">LINE構築</span></li>
-          <li><span class="n">3<small>件</small></span><span class="t">集客導線<br>サポート</span></li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
+<!-- 04 実績 -->
+<section class="sec s-green" id="results">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>RESULTS — 04</p>
+      <p class="sec-en">Results</p>
+      <h2>積み上げてきたこと</h2>
+    </div>
+    <div class="results stg">
+      <div class="result">
+        <p class="rl">BEAUTY</p>
+        <p class="rt">美容部員として対面で接客</p>
+        <p class="rn"><span class="cnt" data-to="7">0</span><small>年</small></p>
+      </div>
+      <div class="result">
+        <p class="rl">LINE</p>
+        <p class="rt">LINE構築</p>
+        <p class="rn"><span class="cnt" data-to="5">0</span><small>件</small></p>
+      </div>
+      <div class="result">
+        <p class="rl">FUNNEL</p>
+        <p class="rt">集客導線サポート</p>
+        <p class="rn"><span class="cnt" data-to="3">0</span><small>件</small></p>
+      </div>
+      <div class="result is-text">
+        <p class="rl">FIELD</p>
+        <p class="rt">対象としている方</p>
+        <p class="rn">地方の<br>ひとり事業主</p>
+      </div>
+    </div>
+    <p class="results-note rv" style="--d:80ms">※ 実績はミー本人のものです。成果を保証するものではありません。</p>
+  </div>
+</section>
+
 <div class="band-img rv">
-  <img src="images/background-hands.jpg?v=202609011932" width="1000" height="1000" loading="lazy" decoding="async"
+  <img src="images/background-hands.jpg?v=202609012144" width="1000" height="1000" loading="lazy" decoding="async"
        alt="両手でスキンケアのボトルをそっと持っている手元。リネンの布と植物">
 </div>
 
 <!-- 05 お仕事への想い -->
-<section class="sec" id="message" style="background:var(--white);border-block:1px solid var(--line)">
+<section class="sec s-base" id="message">
   <div class="wrap narrow">
-    <p class="lbl rv"><span class="num">05</span><i class="bar"></i>MESSAGE</p>
-    <h2 class="rv" style="--d:30ms">お仕事への想い</h2>
-    <p class="msg-quote rv" style="--d:60ms">私は、頑張っている人に<br>「もっとやりましょう」と<br>言いたいわけではありません。</p>
-    <div class="msg-body rv" style="--d:90ms">
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>MESSAGE — 05</p>
+      <p class="sec-en">Message</p>
+      <h2>お仕事への想い</h2>
+    </div>
+    <p class="msg-quote rv" style="--d:40ms">私は、頑張っている人に<br>「もっとやりましょう」と<br>言いたいわけではありません。</p>
+    <div class="msg-body rv" style="--d:80ms">
       <p>地方だから難しい。ひとりでやっているから時間がない。広告費をかけないと集客できない。SNSが得意じゃないから無理。<br>そんな理由だけで、せっかくのサービスを諦めてほしくないんです。</p>
       <p>ひとり事業主さんは、施術や接客だけでなく、SNS、LINE、広告、予約対応まで、たくさんのことをひとりで持っています。だから私は、すべてを「自分でできるように頑張りましょう」とは伝えません。その人が本来いちばん大切にしたい仕事に時間を使えるように、必要な部分だけを整理して、仕組みにします。</p>
       <p>「これをやれば必ず集客できます」と約束することもしません。目指しているゴールを聞いたうえで、いま何が必要で、何はまだ必要ないのか。私がどこまで力になれるのか。きちんとすり合わせてから、お仕事をしたいと思っています。</p>
@@ -420,15 +483,18 @@ footer{background:var(--base);border-top:1px solid var(--line);
       <p class="em">そこまでのつなぎとして、私がいます。</p>
       <p>「ないもの」を増やすより、「すでにあるもの」を生かして、地方だからこそできる仕事の形を、一緒につくっていけたらうれしいです。</p>
     </div>
-    <p class="sign rv" style="--d:120ms">ミー<small>MEE</small></p>
+    <p class="sign rv" style="--d:110ms">ミー<small>MEE</small></p>
   </div>
 </section>
 
 <!-- 06 やっていること -->
-<section class="sec" id="work">
+<section class="sec s-gray" id="work">
   <div class="wrap">
-    <p class="lbl rv"><span class="num">06</span><i class="bar"></i>WHAT I DO</p>
-    <h2 class="rv" style="--d:30ms">やっていることは、<br>この3つです。</h2>
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>WHAT I DO — 06</p>
+      <p class="sec-en">What<br>I Do</p>
+      <h2>やっていることは、<br>この3つです。</h2>
+    </div>
     <div class="works stg">
       <div class="work">
         <p class="no">01</p>
@@ -450,47 +516,56 @@ footer{background:var(--base);border-top:1px solid var(--line);
 </section>
 
 <!-- 07 FAQ -->
-<section class="sec" id="faq">
+<section class="sec s-surface" id="faq">
   <div class="wrap">
-    <p class="lbl rv"><span class="num">07</span><i class="bar"></i>FAQ</p>
-    <h2 class="rv" style="--d:30ms">よくいただく質問</h2>
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>FAQ — 07</p>
+      <p class="sec-en">FAQ</p>
+      <h2>よくいただく質問</h2>
+    </div>
     <div class="faq stg">
       <details>
-        <summary><span class="q">Q.</span><span>地方でも、集客ってできるものでしょうか。</span><span class="sign2"></span></summary>
+        <summary><span class="q">Q.</span><span>地方でも、集客ってできるものでしょうか。</span><span class="sw"></span></summary>
         <div class="ans"><span class="a">A.</span><p>地方だから難しい、とは思っていません。むしろ地域のお客様との関係が近いぶん、「また来たい」がつくりやすい場所だと感じています。まずは、いまある広告・SNS・LINEがつながっているかを見るところからです。</p></div>
       </details>
       <details>
-        <summary><span class="q">Q.</span><span>SNSが得意ではありません。それでも大丈夫ですか。</span><span class="sign2"></span></summary>
+        <summary><span class="q">Q.</span><span>SNSが得意ではありません。それでも大丈夫ですか。</span><span class="sw"></span></summary>
         <div class="ans"><span class="a">A.</span><p>大丈夫です。毎日たくさん投稿しましょう、という話はしません。プロフィールなど最低限の土台を整えたうえで、投稿以外のところ（LINEや予約までの流れ）で受けとめられるように設計していきます。</p></div>
       </details>
       <details>
-        <summary><span class="q">Q.</span><span>何から手をつければいいか、分かっていません。</span><span class="sign2"></span></summary>
+        <summary><span class="q">Q.</span><span>何から手をつければいいか、分かっていません。</span><span class="sw"></span></summary>
         <div class="ans"><span class="a">A.</span><p>その状態でご相談ください。むしろ、整理されていないまま見せていただいたほうが、どこで止まっているのかが分かります。いま必要なこと・まだ必要ないことを、一緒に切り分けるところから始めます。</p></div>
       </details>
       <details>
-        <summary><span class="q">Q.</span><span>LINEはもう作ってあります。それでも相談できますか。</span><span class="sign2"></span></summary>
+        <summary><span class="q">Q.</span><span>LINEはもう作ってあります。それでも相談できますか。</span><span class="sw"></span></summary>
         <div class="ans"><span class="a">A.</span><p>はい。私はLINE単体ではなく、その前後の流れを見ています。「作ったけれど動いてもらえない」のは、多くの場合LINEの中だけの問題ではありません。すでにあるものを、生かす方向で考えます。</p></div>
       </details>
       <details>
-        <summary><span class="q">Q.</span><span>相談したら、申し込まないといけませんか。</span><span class="sign2"></span></summary>
+        <summary><span class="q">Q.</span><span>相談したら、申し込まないといけませんか。</span><span class="sw"></span></summary>
         <div class="ans"><span class="a">A.</span><p>いいえ。まずはゴールと現状をすり合わせる時間です。私がどこまで力になれるかを確認したうえで、お互いに納得できたときにお仕事をさせてください。</p></div>
       </details>
     </div>
   </div>
 </section>
 
-<div class="band-img rv">
-  <img src="images/thought-paper.jpg?v=202609011932" width="1500" height="844" loading="lazy" decoding="async"
-       alt="深い緑の面の上に置かれた紙に、葉のやわらかな影が落ちている">
+<!-- 流れる文字 -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-in">
+    <span><span class="jp">まずは、いまの状態を見せてください。</span></span><span><span class="jp">整っていなくて大丈夫。</span></span><span><span class="jp">ご相談は無料です。</span></span>
+    <span><span class="jp">まずは、いまの状態を見せてください。</span></span><span><span class="jp">整っていなくて大丈夫。</span></span><span><span class="jp">ご相談は無料です。</span></span>
+  </div>
 </div>
 
 <!-- 08 CTA -->
-<section class="sec cta on-green slant" id="contact">
-  <div class="wrap inner">
-    <p class="lbl rv"><span class="num">08</span><i class="bar"></i>CONTACT</p>
-    <h2 class="rv" style="--d:30ms">まずは、いまの状態を<br>見せてください。</h2>
-    <p class="lead rv" style="--d:60ms">整っていなくて大丈夫です。途中のままで見せてもらえたほうが、どこで止まっているのかが見つけやすくなります。<br>ご相談は無料です。ひとつずつ、一緒に見ていきましょう。</p>
-    <div class="rv" style="--d:100ms">
+<section class="sec s-green" id="contact">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="sec-num"><i></i>CONTACT — 08</p>
+      <p class="sec-en">Contact</p>
+      <h2>まずは、いまの状態を<br>見せてください。</h2>
+    </div>
+    <p class="lead rv" style="--d:40ms">整っていなくて大丈夫です。途中のままで見せてもらえたほうが、どこで止まっているのかが見つけやすくなります。<br>ご相談は無料です。ひとつずつ、一緒に見ていきましょう。</p>
+    <div class="rv" style="--d:90ms">
       <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
         <span>無料で相談してみる</span><span class="arw">&#8594;</span>
       </a>
@@ -512,41 +587,49 @@ footer{background:var(--base);border-top:1px solid var(--line);
       <li><a href="https://www.instagram.com/mee__work__" target="_blank" rel="noopener">INSTAGRAM</a></li>
     </ul>
   </div>
-  <div class="wrap" style="margin-top:26px">
-    <p class="copy">&copy; 2026 mee</p>
-  </div>
+  <div class="wrap"><p class="copy">&copy; 2026 mee</p></div>
 </footer>
 
 <script>
 (function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var items = document.querySelectorAll('.rv');
   var hero = document.getElementById('hero');
+
+  function countUp(el){
+    var to = parseInt(el.dataset.to, 10) || 0;
+    if(reduce){ el.textContent = to; return; }
+    var dur = 900, t0 = null;
+    function step(t){
+      if(!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
   if(!('IntersectionObserver' in window)){
     items.forEach(function(el){el.classList.add('in');});
     document.querySelectorAll('.stg>*').forEach(function(el){el.classList.add('in');});
+    document.querySelectorAll('.cnt').forEach(function(el){el.textContent = el.dataset.to;});
     hero.classList.add('in');
     return;
   }
+
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  },{rootMargin:'0px 0px -12% 0px',threshold:0.08});
+  },{rootMargin:'0px 0px -12% 0px',threshold:0.06});
   items.forEach(function(el){ io.observe(el); });
   requestAnimationFrame(function(){ hero.classList.add('in'); });
 
-  /* Stagger Reveal（No.008）
-     同じタイミングで画面に入ったカードたちを1グループとみなし、
-     入った順に少しずつ遅らせて表示する。1度出たら二度と動かさない。 */
-  var STEP = 70;    /* 1枚ごとにずらす時間 */
-  var CAP  = 5;     /* 遅延を足すのはここまで（合計が長くなりすぎないように） */
-  var kids = [];
+  /* Stagger Reveal：同時に画面へ入ったものを1グループとして、順に出す */
+  var STEP = 70, CAP = 5, kids = [];
   document.querySelectorAll('.stg').forEach(function(g){
-    Array.prototype.forEach.call(g.children, function(el, i){
-      el.__order = i; kids.push(el);
-    });
+    Array.prototype.forEach.call(g.children, function(el, i){ el.__order = i; kids.push(el); });
   });
-  if(!kids.length) return;
   var sio = new IntersectionObserver(function(es){
     es.filter(function(e){ return e.isIntersecting; })
       .sort(function(a,b){ return a.target.__order - b.target.__order; })
@@ -557,6 +640,14 @@ footer{background:var(--base);border-top:1px solid var(--line);
       });
   },{rootMargin:'0px 0px -10% 0px',threshold:0.12});
   kids.forEach(function(el){ sio.observe(el); });
+
+  /* 数字を0から数え上げる（1回だけ） */
+  var cio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target); }
+    });
+  },{threshold:0.4});
+  document.querySelectorAll('.cnt').forEach(function(el){ cio.observe(el); });
 })();
 </script>
 </body>
