@@ -13,87 +13,95 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609022023">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609041131">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%233B4F45'/><path d='M26 66V38l24 16 24-16v28' fill='none' stroke='%23F5F2EA' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23456052'/><path d='M26 66V38l24 16 24-16v28' fill='none' stroke='%23F4F4EF' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@200;300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* ---- 面（背景）：この4枚を切り替えてリズムを作る ---- */
-  /* アイボリー × セージグリーンの2色が主役。ピンクは差し色だけ。
-     もとのブランドカラーから彩度を落として、大人っぽさに寄せている。 */
-  --base:#F5F2EA;      /* 面1 アイボリー */
-  --surface:#FAF8F2;   /* 面2 明るいアイボリー */
-  --gray:#E8E5DB;      /* 面3 アイボリー寄りのグレー */
-  --green:#3B4F45;     /* 面4 セージを深くした主役色 */
+  /* ---- 面（背景）：改修用パレット（アイボリー中心・ダークは最終CTAのみ） ---- */
+  --base:#F4F4EF;      /* Main canvas ソフトアイボリー（65〜72%） */
+  --surface:#FAF8F2;   /* Light surface ウォームホワイト（カード・プロフィール・FAQ） */
+  --sage-tint:#EDF0E9; /* THOUGHT用の淡いセージ背景 */
+  --gray:#D9D8D1;      /* Support ウォームグレー（区切り・カード背景） */
+  --green:#456052;     /* Primary deep ディープセージ（CTA・見出し・重要情報） */
 
-  --green-d:#2F4038;
-  --green-l:#8A9C87;   /* セージ */
-  --rose:#A2707C;      /* くすんだローズ。細く・小さくだけ */
-  --rose-pale:#DCC3C7;
+  --green-d:#2F4038;   /* ホバー・footer等、より濃い場面専用 */
+  --green-l:#7F947D;   /* Primary soft ダスティセージ（小面積背景・罫線・図・見出し補助） */
+  --rose:#C3949E;      /* Accent ダスティローズ（下線・番号・点・細い罫線のみ／1〜3%） */
+  --rose-pale:#DDC3C9; /* ローズの淡色。ダーク背景上のローズ代替に最小限使用 */
   --cool:#C6C7BF;
-  --ink:#2F332F;
-  --sub:#5F645C;
-  --line:#E0DDD2;
-  --line-d:rgba(245,242,234,.20);
+  --ink:#2E3230;        /* Text チャコール（本文） */
+  --sub:#5C6159;
+  --line:#DDDACF;
+  --line-strong:rgba(46,50,48,.16);
 
   --wrap:1080px;
   --pad:clamp(20px,5.4vw,44px);
   --mincho:"Zen Old Mincho",serif;
   --gothic:"Zen Kaku Gothic New",sans-serif;
-  --en:"Jost",sans-serif;
+  /* 英字見出し・ラベルは Cormorant Garamond に統一（使用ファミリーを3つに絞る） */
+  --en:"Cormorant Garamond","Zen Old Mincho",serif;
   --serif:"Cormorant Garamond","Zen Old Mincho",serif;
-  /* ゆっくり動いて、静かに止まるカーブ */
-  --snap:cubic-bezier(.22,.68,.24,1);
+  /* ゆっくり動いて、静かに止まるカーブ（ファーストビュー・スクロール共通） */
+  --snap:cubic-bezier(.22,1,.36,1);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--base);color:var(--ink);
   font-family:var(--gothic);
-  font-size:15px;line-height:2.05;letter-spacing:.05em;
+  font-size:16px;line-height:2.05;letter-spacing:.05em;
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 
+/* ---------- フォーカスリング（キーボード操作用） ---------- */
+a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid var(--green);outline-offset:3px;border-radius:2px}
+.s-green :focus-visible,footer :focus-visible{outline-color:#F4F4EF}
+
 /* ---------- 面の切り替え ---------- */
 .s-base{background:var(--base)}
 .s-surface{background:var(--surface)}
+.s-sage-tint{background:var(--sage-tint)}
 .s-gray{background:var(--gray)}
-.s-green{background:var(--green);color:#F5F2EA}
-.s-green .lead,.s-green p{color:rgba(245,242,234,.82)}
-.s-green .sec-en{color:rgba(245,242,234,.58)}
+.s-green{background:var(--green);color:#F4F4EF}
+.s-green .lead,.s-green p{color:rgba(244,244,239,.86)}
+.s-green .sec-en{color:rgba(244,244,239,.7)}
 .s-green .sec-num{color:var(--rose-pale)}
-.s-green h2{color:#F5F2EA}
+.s-green h2{color:#F4F4EF}
 .s-green h2 em{color:var(--rose-pale)}
 
 .wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
-.narrow{max-width:700px}
-.sec{padding-block:clamp(104px,17vw,190px);position:relative}
+.narrow{max-width:680px}
+/* セクション上下の余白：指示書 clamp(112px,12vw,176px) に統一。境界は斜めではなく薄い罫線で示す */
+.sec{padding-block:clamp(112px,12vw,176px);position:relative;border-top:1px solid var(--line)}
+.s-green{border-top-color:rgba(244,244,239,.16)}
 
-/* ---------- セクション見出し（英字を大きく積む） ---------- */
-.sec-head{margin:0 0 clamp(44px,7.4vw,72px);max-width:34em}
+/* ---------- セクション見出し ---------- */
+.sec-head{margin:0 0 clamp(40px,6.4vw,64px);max-width:34em}
 .sec-num{font-family:var(--en);font-size:12px;letter-spacing:.28em;
-  font-weight:400;color:var(--rose);margin:0 0 12px;display:flex;align-items:center;gap:12px}
+  font-weight:500;color:var(--rose);margin:0 0 10px;display:flex;align-items:center;gap:12px}
 .sec-num i{display:block;width:30px;height:1px;background:var(--rose);
-  transform-origin:left;opacity:.7}
-/* セクション名は欧文のセリフ体の大文字。日本語見出しの真上に置いて、上から下へ読ませる */
-.sec-en{font-family:var(--serif);font-weight:500;
-  font-size:clamp(38px,10vw,74px);line-height:.96;letter-spacing:.015em;
-  color:var(--green);margin:0 0 18px;text-transform:uppercase}
+  transform-origin:left;opacity:.85}
+/* 英字見出しは主役ではなく、日本語見出しの上に添える小さな補助ラベルに留める */
+.sec-en{font-family:var(--en);font-weight:500;
+  font-size:clamp(19px,3vw,25px);line-height:1.2;letter-spacing:.13em;
+  color:var(--green-l);margin:0 0 14px;text-transform:uppercase}
 h2{font-family:var(--gothic);font-weight:700;
   font-size:clamp(21px,5.4vw,34px);line-height:1.72;letter-spacing:.03em;margin:0}
 h2 em{font-style:normal;color:var(--green)}
 p{margin:0 0 1.4em}
-.lead{color:var(--sub);font-size:15px;line-height:2}
+.lead{color:var(--sub);font-size:15.5px;line-height:2}
 
-/* ---------- ボタン ---------- */
+/* ---------- ボタン（CTAは全ページでディープセージに統一） ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;
   width:100%;max-width:370px;
   background:var(--green);color:#fff;text-decoration:none;
@@ -106,14 +114,15 @@ p{margin:0 0 1.4em}
 .btn .arw{font-family:var(--en);font-size:15px;transition:transform .34s}
 .btn:hover{background:var(--green-d);transform:translateY(-2px)}
 .btn:hover .arw{transform:translateX(5px)}
+/* is-light は、最終CTA（ダーク背景）の中だけで使う反転ボタン */
 .btn.is-light{background:var(--base);color:var(--green)}
 .btn.is-light:hover{background:#fff}
 .btn-note{margin:12px 0 0;font-size:12px;letter-spacing:.03em;color:var(--sub)}
-.s-green .btn-note,.hero .btn-note{color:rgba(245,242,234,.62)}
+.s-green .btn-note{color:rgba(244,244,239,.68)}
 
 /* ---------- ヘッダー ---------- */
 header{position:sticky;top:0;z-index:50;
-  background:rgba(245,242,234,.9);backdrop-filter:blur(12px);
+  background:rgba(244,244,239,.9);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line)}
 .hd{display:flex;align-items:center;justify-content:space-between;gap:16px;
   height:60px;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
@@ -126,81 +135,63 @@ header{position:sticky;top:0;z-index:50;
 .hd-cta:hover{background:var(--green-d)}
 @media (max-width:430px){ .hd-name span{display:none} }
 
-/* ---------- ヒーロー（全面写真） ---------- */
+/* ---------- ヒーロー（写真＋薄いアイボリーの光彩。濃緑オーバーレイは使わない） ---------- */
 .hero{position:relative;display:flex;align-items:flex-end;
   min-height:min(94svh,800px);
   padding-block:clamp(62px,12vw,120px) clamp(26px,4.6vw,58px);
-  background:var(--green-d);color:#F5F2EA;overflow:hidden;isolation:isolate}
+  background:var(--base);color:var(--ink);overflow:hidden;isolation:isolate}
 .hero-bg{position:absolute;inset:0;z-index:-1}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:66% 50%}
+/* 縦：文字が乗る下側だけを強くアイボリーで守り、上側は写真をそのまま見せる */
 .hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
-  background:radial-gradient(115% 78% at 68% 38%,rgba(24,34,29,0) 0%,rgba(24,34,29,.58) 100%)}
+  background:linear-gradient(180deg,rgba(244,244,239,.12) 0%,rgba(244,244,239,.32) 38%,rgba(244,244,239,.74) 70%,rgba(244,244,239,.94) 100%)}
+/* 横：文字が始まる左側を少し強く、右側は写真を見せる */
 .hero-bg::after{content:"";position:absolute;inset:0;z-index:2;
-  background:linear-gradient(180deg,rgba(30,42,36,.82) 0%,rgba(30,42,36,.52) 38%,rgba(41,56,48,.94) 88%,rgba(47,64,56,1) 100%)}
+  background:linear-gradient(100deg,rgba(244,244,239,.5) 0%,rgba(244,244,239,.08) 48%,rgba(244,244,239,0) 72%)}
 .hero-pill{display:inline-block;margin:0 0 22px;
-  border:1px solid rgba(245,242,234,.42);border-radius:100px;
-  padding:10px 22px;font-size:12.5px;letter-spacing:.1em;color:rgba(245,242,234,.94)}
+  border:1px solid var(--line-strong);border-radius:100px;
+  padding:10px 22px;font-size:12.5px;letter-spacing:.1em;color:var(--sub)}
 .hero h1{font-family:var(--mincho);font-weight:600;
-  font-size:clamp(31px,8.6vw,62px);line-height:1.5;letter-spacing:.1em;margin:0 0 24px}
+  font-size:clamp(31px,8.6vw,62px);line-height:1.5;letter-spacing:.1em;margin:0 0 24px;color:var(--ink)}
 .hero-sub{font-size:clamp(14.5px,3.9vw,17px);font-weight:500;line-height:1.95;
-  color:rgba(245,242,234,.96);max-width:30em;margin:0 0 13px}
+  color:var(--ink);max-width:30em;margin:0 0 13px}
 .hero-last{margin-bottom:20px!important}
-.hero h1 em{font-style:normal;position:relative;white-space:nowrap;color:var(--rose-pale)}
+.hero h1 em{font-style:normal;position:relative;white-space:nowrap;color:var(--green)}
 .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-.1em;height:2px;
   background:var(--rose);transform:scaleX(0);transform-origin:left;
-  transition:transform .9s .55s var(--snap)}
+  transition:transform .9s .5s var(--snap)}
 .hero.in h1 em::after{transform:scaleX(1)}
-.hero .lead{color:rgba(245,242,234,.86);max-width:31em;margin-bottom:14px;font-size:14.5px;line-height:1.9}
+.hero .lead{color:var(--sub);max-width:31em;margin-bottom:14px;font-size:14.5px;line-height:1.9}
 
 /* ヒーローの実績チップ */
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:0;list-style:none}
-.chips li{font-family:var(--en);font-size:11.5px;letter-spacing:.1em;
-  border:1px solid rgba(245,242,234,.34);border-radius:100px;
-  padding:8px 15px;color:rgba(245,242,234,.9)}
-.chips li b{font-weight:500;color:#fff}
+.chips li{font-family:var(--en);font-size:12px;letter-spacing:.08em;
+  border:1px solid var(--line-strong);border-radius:100px;
+  padding:8px 15px;color:var(--sub)}
+.chips li b{font-weight:600;color:var(--green)}
 .chips li .jp{font-family:var(--gothic);font-size:11.5px;letter-spacing:.06em}
 
 .scroll-cue{display:flex;align-items:center;gap:10px;margin-top:26px;
-  font-family:var(--en);font-size:10px;letter-spacing:.26em;color:rgba(245,242,234,.6)}
-.scroll-cue i{display:block;width:56px;height:1px;background:rgba(245,242,234,.32);position:relative;overflow:hidden}
+  font-family:var(--en);font-size:10px;letter-spacing:.26em;color:var(--sub)}
+.scroll-cue i{display:block;width:56px;height:1px;background:var(--line-strong);position:relative;overflow:hidden}
 .scroll-cue i::after{content:"";position:absolute;inset:0;background:var(--rose);
   transform:translateX(-100%);animation:cue 2.6s cubic-bezier(.5,0,.3,1) infinite}
 @keyframes cue{0%{transform:translateX(-100%)}55%{transform:translateX(0)}100%{transform:translateX(100%)}}
 
-/* ---------- 斜めの仕切り（面が切り替わる場所に細いピンクの線） ----------
-   --from … 上の面の色 ／ --to … 下の面の色
-   上下の面を斜めに切り、その境目に細いピンクの線を1本走らせている。 */
-.slant{position:relative;overflow:hidden;background:var(--to);
-  --pw:clamp(8px,1.6vw,10px);             /* ピンクの帯の太さ（差し色なので細く） */
-  height:calc(var(--pw) + clamp(48px,7vw,74px))}
-.slant::before,.slant::after{content:"";position:absolute;left:-10%;width:120%;
-  transform:skewY(-2.8deg);transform-origin:0 50%}
-.slant::before{top:-100%;height:150%;background:var(--from)}
-.slant::after{top:calc(50% - var(--pw) / 2);height:var(--pw);background:var(--rose)}
-
-
-/* ---------- 点が線になる装飾（THOUGHTの背景） ---------- */
+/* ---------- 点が線になる装飾（THOUGHTの背景／静的表示） ---------- */
 .has-art{overflow:hidden}
 .tart{margin:clamp(34px,6vw,10px) 0 0;width:100%;max-width:600px;pointer-events:none}
 .tart svg{width:100%;height:auto;display:block;overflow:visible}
-.tart path{fill:none;stroke:rgba(118,166,111,.85);stroke-width:1.6;
-  stroke-linecap:round;stroke-linejoin:round;
-  stroke-dasharray:var(--len);stroke-dashoffset:var(--len);
-  transition:stroke-dashoffset 2.6s var(--snap) .25s}
-.tart.in path{stroke-dashoffset:0}
-.tart circle{fill:none;stroke:rgba(118,166,111,.9);stroke-width:1.6;
-  opacity:0;transition:opacity .9s var(--snap);
-  transition-delay:calc(var(--i) * 360ms + 350ms)}
+.tart path{fill:none;stroke:rgba(69,96,82,.5);stroke-width:1.4;
+  stroke-linecap:round;stroke-linejoin:round}
+.tart circle{fill:none;stroke:rgba(69,96,82,.55);stroke-width:1.4}
 .tart circle.is-end{fill:var(--rose);stroke:var(--rose)}
-.tart.in circle{opacity:1}
-.no-js .tart path{stroke-dashoffset:0}
-.no-js .tart circle{opacity:1}
 
 /* ---------- 悩みリスト（番号つき） ---------- */
 .checks{list-style:none;margin:0 0 34px;padding:0;border-top:1px solid var(--line)}
 .checks li{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;
   padding:24px 2px;border-bottom:1px solid var(--line);line-height:1.85}
-.checks li .no{font-family:var(--en);font-size:12px;letter-spacing:.14em;
+.checks li .no{font-family:var(--en);font-size:13px;letter-spacing:.1em;
   color:var(--rose);padding-top:.4em}
 .after-note{border-left:2px solid var(--green-l);padding:4px 0 4px 22px;margin:0;
   font-size:15px;line-height:2;font-weight:500}
@@ -222,9 +213,9 @@ header{position:sticky;top:0;z-index:50;
 /* 写真が届くまでの仮置き。届いたら .ph を <img> に差し替える */
 .gal .ph{background:var(--green);position:relative;display:grid;place-items:center}
 .gal .ph::after{content:"";position:absolute;width:58%;aspect-ratio:1;
-  border:1px solid rgba(118,166,111,.55);border-radius:50%}
+  border:1px solid rgba(244,244,239,.4);border-radius:50%}
 .gal .ph span{position:relative;z-index:1;font-family:var(--en);
-  font-size:10.5px;letter-spacing:.24em;color:rgba(245,242,234,.72)}
+  font-size:10.5px;letter-spacing:.24em;color:rgba(244,244,239,.72)}
 .gal figcaption{margin-top:14px;text-align:center;
   font-size:clamp(14px,3.7vw,16px);font-weight:500;line-height:1.6;
   letter-spacing:.06em;color:var(--ink)}
@@ -239,30 +230,30 @@ header{position:sticky;top:0;z-index:50;
 .prof{display:grid;gap:clamp(30px,6vw,44px)}
 .prof-name{font-weight:700;font-size:clamp(26px,6.6vw,34px);
   letter-spacing:.14em;line-height:1.2;margin:0 0 10px}
-.prof-en{font-family:var(--en);font-size:11px;letter-spacing:.3em;
+.prof-en{font-family:var(--en);font-size:12px;letter-spacing:.3em;
   color:var(--sub);margin:0 0 22px}
 .prof-role{font-size:clamp(15px,4.2vw,18px);font-weight:700;color:var(--green);
   letter-spacing:.08em;margin:0 0 6px}
-.prof-sub{font-size:13.5px;color:var(--sub);margin:0 0 28px}
+.prof-sub{font-size:14px;color:var(--sub);margin:0 0 28px}
 .career{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .career li{display:grid;grid-template-columns:78px 1fr;gap:16px;
   padding:22px 2px;border-bottom:1px solid var(--line);
   font-size:14px;line-height:1.85}
 .career li:last-child{border-bottom:none}
-.career .y{font-family:var(--en);font-size:12px;letter-spacing:.12em;
+.career .y{font-family:var(--en);font-size:13px;letter-spacing:.08em;
   color:var(--rose);padding-top:.35em}
 
-/* ---------- 実績（数え上がる数字） ---------- */
-.results{display:grid;gap:1px;background:var(--line-d);border-block:1px solid var(--line-d)}
-.result{background:var(--green);padding:clamp(32px,6vw,42px) clamp(20px,3.6vw,28px)}
-.result .rl{font-family:var(--en);font-size:10.5px;letter-spacing:.26em;
-  color:var(--rose-pale);margin:0 0 16px}
-.result .rt{font-size:12.5px;letter-spacing:.06em;color:rgba(245,242,234,.7);margin:0 0 6px}
-.result .rn{font-family:var(--en);font-weight:200;font-size:clamp(44px,12vw,64px);
-  line-height:1;letter-spacing:.01em;color:#F5F2EA;margin:0;display:flex;align-items:baseline;gap:4px}
-.result .rn small{font-family:var(--gothic);font-weight:500;font-size:15px;letter-spacing:.04em}
-.result.is-text .rn{font-size:clamp(19px,5vw,24px);font-family:var(--gothic);font-weight:700;line-height:1.5}
-.results-note{margin:20px 0 0;font-size:11.5px;line-height:1.9;color:rgba(245,242,234,.55)}
+/* ---------- 実績（数え上がる数字。アイボリー基調・カウント演出は視覚のみ） ---------- */
+.results{display:grid;gap:1px;background:var(--line);border-block:1px solid var(--line)}
+.result{background:var(--surface);padding:clamp(32px,6vw,42px) clamp(20px,3.6vw,28px)}
+.result .rl{font-family:var(--en);font-size:11px;letter-spacing:.22em;
+  color:var(--rose);margin:0 0 16px}
+.result .rt{font-size:13px;letter-spacing:.04em;color:var(--sub);margin:0 0 8px}
+.result .rn{font-family:var(--en);font-weight:500;font-size:clamp(42px,11vw,60px);
+  line-height:1;letter-spacing:.01em;color:var(--green);margin:0;display:flex;align-items:baseline;gap:4px}
+.result .rn small{font-family:var(--gothic);font-weight:500;font-size:15px;letter-spacing:.04em;color:var(--ink)}
+.result.is-text .rn{font-size:clamp(19px,5vw,24px);font-family:var(--gothic);font-weight:700;line-height:1.5;color:var(--ink)}
+.results-note{margin:20px 0 0;font-size:11.5px;line-height:1.9;color:var(--sub)}
 
 /* ---------- メッセージ ---------- */
 .msg-quote{font-family:var(--mincho);font-weight:600;
@@ -273,13 +264,13 @@ header{position:sticky;top:0;z-index:50;
   border-left:2px solid var(--green-l);padding-left:20px}
 .sign{font-family:var(--mincho);font-size:19px;letter-spacing:.1em;
   text-align:right;margin:38px 0 0}
-.sign small{display:block;font-family:var(--en);font-size:10.5px;
+.sign small{display:block;font-family:var(--en);font-size:11px;
   letter-spacing:.26em;color:var(--sub);margin-top:8px}
 
 /* ---------- やっていること ---------- */
 .works{display:grid;gap:1px;background:var(--line);border-block:1px solid var(--line)}
 .work{background:var(--gray);padding:clamp(34px,6.4vw,46px) clamp(24px,4.6vw,36px)}
-.work .no{font-family:var(--en);font-size:12px;letter-spacing:.22em;color:var(--rose);margin:0 0 16px}
+.work .no{font-family:var(--en);font-size:13px;letter-spacing:.18em;color:var(--rose);margin:0 0 16px}
 .work h3{font-weight:700;font-size:clamp(17px,4.4vw,20px);
   line-height:1.6;margin:0 0 14px;color:var(--green)}
 .work p{font-size:14px;color:var(--sub);margin:0;line-height:1.95}
@@ -288,7 +279,7 @@ header{position:sticky;top:0;z-index:50;
 .svc{display:grid;gap:1px;background:var(--line);border-block:1px solid var(--line)}
 .svc-item{background:var(--surface);display:flex;flex-direction:column;
   padding:clamp(34px,6.4vw,46px) clamp(24px,4.6vw,36px)}
-.svc-item .no{flex:none;font-family:var(--en);font-size:12px;letter-spacing:.22em;color:var(--rose);margin:0 0 16px}
+.svc-item .no{flex:none;font-family:var(--en);font-size:13px;letter-spacing:.18em;color:var(--rose);margin:0 0 16px}
 .svc-item h3{flex:none;font-weight:700;font-size:clamp(17px,4.4vw,20px);line-height:1.6;
   margin:0 0 14px;color:var(--green)}
 .svc-item p{font-size:14px;color:var(--sub);margin:0;line-height:1.95;flex:1}
@@ -307,54 +298,54 @@ header{position:sticky;top:0;z-index:50;
 .th{display:grid;gap:clamp(26px,5vw,44px);align-items:center}
 .th-card{background:var(--surface);border:1px solid var(--line);
   padding:clamp(28px,5.6vw,40px)}
-.th-en{font-family:var(--en);font-size:11px;letter-spacing:.28em;color:var(--sub);margin:0 0 14px}
-.th-handle{font-family:var(--en);font-weight:300;
-  font-size:clamp(22px,5.6vw,30px);letter-spacing:.04em;color:var(--green);margin:0 0 6px}
+.th-en{font-family:var(--en);font-size:12px;letter-spacing:.26em;color:var(--sub);margin:0 0 14px}
+.th-handle{font-family:var(--en);font-weight:500;
+  font-size:clamp(22px,5.6vw,30px);letter-spacing:.02em;color:var(--green);margin:0 0 6px}
 .th-note{font-size:12.5px;color:var(--sub);margin:0 0 24px}
 
-/* ---------- FAQ ---------- */
+/* ---------- FAQ（ネイティブ details/summary＝キーボード操作・状態通知は標準対応） ---------- */
 .faq{border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;gap:16px;align-items:flex-start;
   padding:26px 2px;font-weight:500;line-height:1.8}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary .q{font-family:var(--en);color:var(--rose);font-size:13px;margin-top:.25em;flex:none}
+.faq summary .q{font-family:var(--en);color:var(--rose);font-size:14px;margin-top:.25em;flex:none}
 .faq summary .sw{margin-left:auto;flex:none;width:13px;height:13px;position:relative;margin-top:.6em}
 .faq summary .sw::before,.faq summary .sw::after{content:"";position:absolute;background:var(--green);
   left:0;top:6px;width:13px;height:1px;transition:transform .3s var(--snap)}
 .faq summary .sw::after{transform:rotate(90deg)}
 .faq details[open] summary .sw::after{transform:rotate(0)}
 .faq .ans{display:flex;gap:16px;padding:0 2px 26px;color:var(--sub);font-size:14px;line-height:2}
-.faq .ans .a{font-family:var(--en);color:var(--green-l);font-size:13px;flex:none}
+.faq .ans .a{font-family:var(--en);color:var(--green-l);font-size:14px;flex:none}
 .faq .ans p{margin:0}
 
 /* ---------- フッター ---------- */
-footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
+footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
 .ft{display:grid;gap:28px}
-.ft .nm{font-weight:700;font-size:19px;letter-spacing:.16em;margin:0 0 8px;color:#F5F2EA}
-.ft .ro{font-size:12px;color:rgba(245,242,234,.62);margin:0}
+.ft .nm{font-weight:700;font-size:19px;letter-spacing:.16em;margin:0 0 8px;color:#F4F4EF}
+.ft .ro{font-size:12px;color:rgba(244,244,239,.62);margin:0}
 .sns{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
-.sns a{display:inline-block;text-decoration:none;font-family:var(--en);font-size:11.5px;
-  letter-spacing:.16em;color:rgba(245,242,234,.9);border:1px solid rgba(245,242,234,.3);
+.sns a{display:inline-block;text-decoration:none;font-family:var(--en);font-size:12px;
+  letter-spacing:.14em;color:rgba(244,244,239,.9);border:1px solid rgba(244,244,239,.3);
   padding:10px 20px;border-radius:100px;transition:background .22s,color .22s,border-color .22s}
 .sns a:hover{background:var(--rose);color:#fff;border-color:var(--rose)}
-.copy{font-family:var(--en);font-size:10.5px;letter-spacing:.16em;
-  color:rgba(245,242,234,.45);margin:26px 0 0}
+.copy{font-family:var(--en);font-size:11px;letter-spacing:.16em;
+  color:rgba(244,244,239,.45);margin:26px 0 0}
 
-/* ---------- 出現アニメ ---------- */
-.rv{opacity:0;transform:translateY(26px);
-  transition:opacity 1.05s var(--snap),transform 1.05s var(--snap);
+/* ---------- 出現アニメ（共通フェード：指示書 8章の数値に統一） ---------- */
+.rv{opacity:0;transform:translateY(16px);
+  transition:opacity .9s var(--snap),transform .9s var(--snap);
   transition-delay:var(--d,0ms)}
 .rv.in{opacity:1;transform:none}
-.rv i.bar,.rv .sec-num i{transform:scaleX(0);transition:transform .9s .15s var(--snap)}
+.rv i.bar,.rv .sec-num i{transform:scaleX(0);transition:transform .8s .15s var(--snap)}
 .rv.in i.bar,.rv.in .sec-num i{transform:scaleX(1)}
-.stg>*{opacity:0;transform:translateY(24px);
-  transition:opacity .9s var(--snap),transform .9s var(--snap);
+.stg>*{opacity:0;transform:translateY(14px);
+  transition:opacity .8s var(--snap),transform .8s var(--snap);
   transition-delay:var(--sd,0ms)}
 .stg>*.in{opacity:1;transform:none}
-/* 写真は 1.06倍から等倍へ、ゆっくり引いていく */
-.rv img,.stg>* img{transform:scale(1.06);
-  transition:transform 1.8s var(--snap);transition-delay:var(--sd,var(--d,0ms))}
+/* 写真は 1.04倍から等倍へ、ゆっくり引いていく */
+.rv img,.stg>* img{transform:scale(1.04);
+  transition:transform 1.4s var(--snap);transition-delay:var(--sd,var(--d,0ms))}
 .rv.in img,.stg>*.in img{transform:none}
 .gal figure{overflow:hidden}
 .no-js .rv,.no-js .stg>*{opacity:1;transform:none}
@@ -363,15 +354,13 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
 @media (prefers-reduced-motion:reduce){
   .rv,.stg>*{opacity:1!important;transform:none!important;transition:none!important}
   .rv img,.stg>* img{transform:none!important;transition:none!important}
-  .tart path{stroke-dashoffset:0!important;transition:none!important}
-  .tart circle{opacity:1!important;transition:none!important}
   .rv i.bar,.rv .sec-num i,.hero h1 em::after{transform:none!important}
   .scroll-cue i::after{animation:none}
 }
 
 /* ---------- パソコン ---------- */
 @media (min-width:820px){
-  body{font-size:15.5px}
+  body{font-size:17px}
   .hero-bg img{object-position:52% 50%}
   .hero h1{font-size:clamp(38px,4.9vw,64px);letter-spacing:.13em}
   .hero .lead{font-size:15.5px}
@@ -407,30 +396,30 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
 <!-- ヒーロー -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="images/hero-flow.jpg?v=202609022023" width="1672" height="941" fetchpriority="high"
+    <img src="images/hero-flow.jpg?v=202609041131" width="1672" height="941" fetchpriority="high"
          alt="木の机の上のノートに、丸いカードが線でつながれて並び、手が1枚を置いているところ。奥にノートパソコンとコーヒー">
   </div>
   <div class="wrap">
-    <p class="hero-pill rv" style="--d:900ms">地方で、ひとりサロンを営む方へ</p>
-    <h1 class="rv" style="--d:0ms">増やすより　<em>つなぐ</em></h1>
-    <p class="hero-sub rv" style="--d:1150ms">
+    <p class="hero-pill rv" style="--d:1100ms">地方で、ひとりサロンを営む方へ</p>
+    <h1 class="rv" style="--d:200ms">増やすより　<em>つなぐ</em></h1>
+    <p class="hero-sub rv" style="--d:1300ms">
       「ないもの」を増やすより、「すでにあるもの」を生かす。<br>
       足りないものを増やすより、いま持っているものが活きる流れを整える。
     </p>
-    <p class="lead rv" style="--d:1350ms">
+    <p class="lead rv" style="--d:1400ms">
       SNSも、LINEも、広告も。<br>
       ぜんぶ持っているのに、つながっていない。
     </p>
     <p class="lead hero-last rv" style="--d:1500ms">
       その「止まっている場所」を、一緒に見つけて整えます。
     </p>
-    <ul class="chips rv" style="--d:1650ms">
+    <ul class="chips rv" style="--d:1550ms">
       <li><span class="jp">美容部員</span> <b>7年</b></li>
       <li><span class="jp">LINE構築</span> <b>5件</b></li>
       <li><span class="jp">集客導線サポート</span> <b>3件</b></li>
     </ul>
     <div class="rv" style="--d:1800ms">
-      <a class="btn is-light" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdvF-RRtbZjMf1HWJmsrTZ1fdRF83T8642DUI2y3TcYsT9F8Q/viewform" target="_blank" rel="noopener">
         <span>無料で相談してみる</span><span class="arw">&#8594;</span>
       </a>
       <p class="btn-note">Googleフォームが開きます。</p>
@@ -438,8 +427,6 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
     <div class="scroll-cue rv" style="--d:1950ms"><i></i>SCROLL</div>
   </div>
 </section>
-
-<div class="slant" style="--from:#2F4038;--to:#F5F2EA" aria-hidden="true"></div>
 
 <!-- 01 共感 -->
 <section class="sec s-base" id="issue">
@@ -449,7 +436,7 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
       <p class="sec-en">Issue</p>
       <h2>こんな状態に、<br>なっていませんか。</h2>
     </div>
-    <ul class="checks stg" data-step="220">
+    <ul class="checks stg" data-step="120">
       <li><span class="no">01</span><span>技術やサービスには自信があるけれど、発信や集客は苦手</span></li>
       <li><span class="no">02</span><span>SNS・LINE・広告、それぞれ頑張っているのに、バラバラになっている</span></li>
       <li><span class="no">03</span><span>広告費はかけているけれど、売上につながっている実感が薄い</span></li>
@@ -464,10 +451,8 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
   </div>
 </section>
 
-<div class="slant" style="--from:#F5F2EA;--to:#3B4F45" aria-hidden="true"></div>
-
 <!-- 02 想い -->
-<section class="sec s-green has-art" id="thought">
+<section class="sec s-sage-tint has-art" id="thought">
   <div class="wrap">
     <div class="sec-head rv">
       <p class="sec-num"><i></i>02</p>
@@ -479,22 +464,20 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
       <p class="lead rv" style="--d:150ms">広告がある。LINEがある。SNSがある。もう来てくださっているお客様がいる。まずは、それがちゃんとつながっているかを見にいく。足りないものを増やすより、いま持っているものが活きる流れを整えます。</p>
     </div>
 
-    <!-- 点が、一本の線になる -->
+    <!-- 点が、一本の線になる（静的表示） -->
     <div class="tart rv" aria-hidden="true">
       <svg viewBox="0 0 600 300" role="presentation">
         <path d="M40 50 C95 50 100 250 150 250 C200 250 205 95 255 95 C305 95 310 195 360 195 C410 195 418 152 465 152 L560 152"/>
-        <circle style="--i:0" cx="40"  cy="50"  r="7"/>
-        <circle style="--i:1" cx="150" cy="250" r="7"/>
-        <circle style="--i:2" cx="255" cy="95"  r="7"/>
-        <circle style="--i:3" cx="360" cy="195" r="7"/>
-        <circle style="--i:4" cx="465" cy="152" r="7"/>
-        <circle style="--i:5" cx="560" cy="152" r="7" class="is-end"/>
+        <circle cx="40"  cy="50"  r="7"/>
+        <circle cx="150" cy="250" r="7"/>
+        <circle cx="255" cy="95"  r="7"/>
+        <circle cx="360" cy="195" r="7"/>
+        <circle cx="465" cy="152" r="7"/>
+        <circle cx="560" cy="152" r="7" class="is-end"/>
       </svg>
     </div>
   </div>
 </section>
-
-<div class="slant" style="--from:#3B4F45;--to:#FAF8F2" aria-hidden="true"></div>
 
 <!-- 03 プロフィール -->
 <section class="sec s-surface" id="profile">
@@ -506,17 +489,17 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
     </div>
     <div class="prof">
       <div class="avatar rv" style="--d:70ms">
-        <img src="images/profile.jpg?v=202609022023" width="900" height="883" loading="lazy" decoding="async"
+        <img src="images/profile.jpg?v=202609041131" width="900" height="883" loading="lazy" decoding="async"
              alt="ミー｜地方サロンの裏方。ノートパソコンに向かい、頬杖をついて考えているミーさん">
       </div>
       <div>
-        <div class="stg" data-step="200">
+        <div class="stg" data-step="140">
           <p class="prof-name">ミー</p>
           <p class="prof-en">MEE</p>
           <p class="prof-role">地方サロンの裏方</p>
           <p class="prof-sub">SNS・広告・LINEをつないで、予約までの流れを整えます。</p>
         </div>
-        <ul class="career stg" data-step="260">
+        <ul class="career stg" data-step="150">
           <li><span class="y">経歴</span><span>オーガニックコスメの美容業界で、7年間、美容部員として対面で接客。<br>売るより先に相手を知ること、最初の言葉だけで判断しないことを、ここで身につけました。</span></li>
           <li><span class="y">いま</span><span>地方でひとり事業をしている方に向けて、SNS・広告・LINEをつなぎ、<br>お客様がサービスを知ってから予約するまでの流れを設計・構築しています。</span></li>
         </ul>
@@ -526,12 +509,12 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
     <!-- こんな方の裏方お任せください -->
     <div class="gal-block">
     <p class="gal-lbl rv"><i class="bar"></i>FIELD<span class="jp">こんな方の裏方お任せください</span></p>
-    <div class="gal stg" data-step="230">
-      <figure><img src="images/field-nail.jpg?v=202609022023" width="900" height="900" loading="lazy" decoding="async" alt="自然光の入る小さなネイルサロン。リネンのクロスの上で、お客様の手元に施術をしているところ"><figcaption>ネイルサロン</figcaption></figure>
-      <figure><img src="images/field-eyebrow.jpg?v=202609022023" width="900" height="900" loading="lazy" decoding="async" alt="アイブロウの施術ルーム。トレイに並べられた道具と、たたまれたタオル、丸い鏡と観葉植物"><figcaption>アイブロウ・まつげ</figcaption></figure>
-      <figure><img src="images/field-esthe.jpg?v=202609022023" width="900" height="900" loading="lazy" decoding="async" alt="エステの施術室。白いリネンを敷いたベッドと、木の台に置かれた器や植物"><figcaption>エステ・フェイシャル</figcaption></figure>
-      <figure><img src="images/field-yoga.jpg?v=202609022023" width="900" height="900" loading="lazy" decoding="async" alt="朝の光が差し込むヨガスタジオ。木の床に置かれた2本のヨガマットとたたまれたブランケット"><figcaption>ヨガ・ピラティス</figcaption></figure>
-      <figure><img src="images/field-school.jpg?v=202609022023" width="900" height="900" loading="lazy" decoding="async" alt="窓辺の教室。木のテーブルに、開いたノートとペン、カップと小さな植物が並んでいる"><figcaption>教室・レッスン</figcaption></figure>
+    <div class="gal stg" data-step="130">
+      <figure><img src="images/field-nail.jpg?v=202609041131" width="900" height="900" loading="lazy" decoding="async" alt="自然光の入る小さなネイルサロン。リネンのクロスの上で、お客様の手元に施術をしているところ"><figcaption>ネイルサロン</figcaption></figure>
+      <figure><img src="images/field-eyebrow.jpg?v=202609041131" width="900" height="900" loading="lazy" decoding="async" alt="アイブロウの施術ルーム。トレイに並べられた道具と、たたまれたタオル、丸い鏡と観葉植物"><figcaption>アイブロウ・まつげ</figcaption></figure>
+      <figure><img src="images/field-esthe.jpg?v=202609041131" width="900" height="900" loading="lazy" decoding="async" alt="エステの施術室。白いリネンを敷いたベッドと、木の台に置かれた器や植物"><figcaption>エステ・フェイシャル</figcaption></figure>
+      <figure><img src="images/field-yoga.jpg?v=202609041131" width="900" height="900" loading="lazy" decoding="async" alt="朝の光が差し込むヨガスタジオ。木の床に置かれた2本のヨガマットとたたまれたブランケット"><figcaption>ヨガ・ピラティス</figcaption></figure>
+      <figure><img src="images/field-school.jpg?v=202609041131" width="900" height="900" loading="lazy" decoding="async" alt="窓辺の教室。木のテーブルに、開いたノートとペン、カップと小さな植物が並んでいる"><figcaption>教室・レッスン</figcaption></figure>
     </div>
     </div>
   </div>
@@ -594,10 +577,8 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
   </div>
 </section>
 
-<div class="slant" style="--from:#E8E5DB;--to:#3B4F45" aria-hidden="true"></div>
-
 <!-- 06 実績 -->
-<section class="sec s-green" id="results">
+<section class="sec s-surface" id="results">
   <div class="wrap">
     <div class="sec-head rv">
       <p class="sec-num"><i></i>06</p>
@@ -605,20 +586,20 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
       <h2>積み上げてきたこと</h2>
     </div>
     <div class="results stg">
-      <div class="result">
+      <div class="result" role="group" aria-label="美容部員として対面で接客 7年">
         <p class="rl">BEAUTY</p>
         <p class="rt">美容部員として対面で接客</p>
-        <p class="rn"><span class="cnt" data-to="7">0</span><small>年</small></p>
+        <p class="rn" aria-hidden="true"><span class="cnt" data-to="7">0</span><small>年</small></p>
       </div>
-      <div class="result">
+      <div class="result" role="group" aria-label="LINE構築 5件">
         <p class="rl">LINE</p>
         <p class="rt">LINE構築</p>
-        <p class="rn"><span class="cnt" data-to="5">0</span><small>件</small></p>
+        <p class="rn" aria-hidden="true"><span class="cnt" data-to="5">0</span><small>件</small></p>
       </div>
-      <div class="result">
+      <div class="result" role="group" aria-label="集客導線サポート 3件">
         <p class="rl">FUNNEL</p>
         <p class="rt">集客導線サポート</p>
-        <p class="rn"><span class="cnt" data-to="3">0</span><small>件</small></p>
+        <p class="rn" aria-hidden="true"><span class="cnt" data-to="3">0</span><small>件</small></p>
       </div>
       <div class="result is-text">
         <p class="rl">FIELD</p>
@@ -631,12 +612,12 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
 </section>
 
 <div class="band-img rv">
-  <img src="images/support-card.jpg?v=202609022023" width="1672" height="941" loading="lazy" decoding="async"
+  <img src="images/support-card.jpg?v=202609041131" width="1672" height="941" loading="lazy" decoding="async"
        alt="やわらかな自然光の入るテーブルで、片方の手からもう片方の手へ、小さなカードをそっと手渡しているところ">
 </div>
 
 <!-- 07 お仕事への想い -->
-<section class="sec s-base" id="message">
+<section class="sec s-base" id="message" style="border-top:none">
   <div class="wrap narrow">
     <div class="sec-head rv">
       <p class="sec-num"><i></i>07</p>
@@ -644,7 +625,7 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
       <h2>お仕事への想い</h2>
     </div>
     <p class="msg-quote rv" style="--d:70ms">私は、頑張っている人に<br>「もっとやりましょう」と<br>言いたいわけではありません。</p>
-    <div class="msg-body stg" data-step="220">
+    <div class="msg-body stg" data-step="120">
       <p>地方だから難しい。ひとりでやっているから時間がない。広告費をかけないと集客できない。SNSが得意じゃないから無理。<br>そんな理由だけで、せっかくのサービスを諦めてほしくないんです。</p>
       <p>ひとり事業主さんは、施術や接客だけでなく、SNS、LINE、広告、予約対応まで、たくさんのことをひとりで持っています。だから私は、すべてを「自分でできるように頑張りましょう」とは伝えません。その人が本来いちばん大切にしたい仕事に時間を使えるように、必要な部分だけを整理して、仕組みにします。</p>
       <p>「これをやれば必ず集客できます」と約束することもしません。目指しているゴールを聞いたうえで、いま何が必要で、何はまだ必要ないのか。私がどこまで力になれるのか。きちんとすり合わせてから、お仕事をしたいと思っています。</p>
@@ -662,7 +643,7 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
   <div class="wrap">
     <div class="sec-head rv">
       <p class="sec-num"><i></i>08</p>
-      <p class="sec-en">What<br>I Do</p>
+      <p class="sec-en">What I Do</p>
       <h2>やっていることは、<br>この3つです。</h2>
     </div>
     <div class="works stg">
@@ -718,9 +699,7 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
   </div>
 </section>
 
-<div class="slant" style="--from:#FAF8F2;--to:#3B4F45" aria-hidden="true"></div>
-
-<!-- 10 CTA -->
+<!-- 10 CTA（ページ内で唯一の、ディープセージの全面セクション） -->
 <section class="sec s-green" id="contact">
   <div class="wrap">
     <div class="sec-head rv">
@@ -763,7 +742,7 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
   function countUp(el){
     var to = parseInt(el.dataset.to, 10) || 0;
     if(reduce){ el.textContent = to; return; }
-    var dur = 1500, t0 = null;
+    var dur = 1050, t0 = null;
     function step(t){
       if(!t0) t0 = t;
       var p = Math.min((t - t0) / dur, 1);
@@ -785,7 +764,7 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
     es.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  },{rootMargin:'0px 0px -12% 0px',threshold:0.06});
+  },{rootMargin:'0px 0px -18% 0px',threshold:0.06});
   items.forEach(function(el){ io.observe(el); });
   requestAnimationFrame(function(){ hero.classList.add('in'); });
 
@@ -806,20 +785,15 @@ footer{background:var(--green-d);color:rgba(245,242,234,.86);padding-block:52px}
         e.target.classList.add('in');
         sio.unobserve(e.target);
       });
-  },{rootMargin:'0px 0px -10% 0px',threshold:0.12});
+  },{rootMargin:'0px 0px -18% 0px',threshold:0.12});
   kids.forEach(function(el){ sio.observe(el); });
 
-  /* 点が線になる装飾：線の長さを測ってから描く */
-  document.querySelectorAll('.tart path').forEach(function(p){
-    try{ p.style.setProperty('--len', p.getTotalLength()); }catch(e){}
-  });
-
-  /* 数字を0から数え上げる（1回だけ） */
+  /* 数字を0から数え上げる（25〜35%表示された時点で1回だけ） */
   var cio = new IntersectionObserver(function(es){
     es.forEach(function(e){
       if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target); }
     });
-  },{threshold:0.4});
+  },{threshold:0.3});
   document.querySelectorAll('.cnt').forEach(function(el){ cio.observe(el); });
 })();
 </script>
