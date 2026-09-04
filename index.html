@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ミー｜地方サロンの裏方">
 <meta property="og:description" content="SNSも、LINEも、広告も。ぜんぶ持っているのに、つながっていない。その「止まっている場所」を、一緒に見つけて整えます。">
-<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609041223">
+<meta property="og:image" content="https://mee-profile.lpidentity.workers.dev/images/ogp.jpg?v=202609041247">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -163,31 +163,43 @@ header{position:sticky;top:0;z-index:50;
 .hd-cta:hover{background:var(--green-d)}
 @media (max-width:430px){ .hd-name span{display:none} }
 
-/* ---------- ヒーロー（アイボリー面が主役。写真はファーストビュー下部から次画面へまたがる横長バンド） ---------- */
-.hero{position:relative;background:var(--base);color:var(--ink);
-  padding-block:clamp(72px,11vw,128px) clamp(28px,4vw,48px)}
-.hero-photo{width:88vw;max-width:1180px;margin:clamp(-64px,-6vw,-24px) auto 0;
-  aspect-ratio:16/9;border-radius:2px}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,58% 46%)}
+/* ---------- ヒーロー（写真が先に見え、その上に文字が順番に浮かぶ。濃緑オーバーレイは使わず薄いアイボリーの光彩のみ） ---------- */
+.hero{position:relative;display:flex;align-items:flex-end;
+  min-height:min(94svh,800px);
+  padding-block:clamp(62px,12vw,120px) clamp(26px,4.6vw,58px);
+  background:var(--base);color:var(--ink);overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-1}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:66% 50%}
+/* 縦：文字が乗る範囲全体をアイボリーでしっかり守る（上のほうの薄さで読みにくかったため強化）。右上はまだ写真が見える */
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(244,244,239,.32) 0%,rgba(244,244,239,.52) 30%,rgba(244,244,239,.8) 62%,rgba(244,244,239,.95) 100%)}
+/* 横：文字が始まる左側を少し強く、右側は写真を見せる */
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(100deg,rgba(244,244,239,.58) 0%,rgba(244,244,239,.14) 48%,rgba(244,244,239,0) 72%)}
+/* 文字自体にもアイボリーの淡い光暈を足し、写真の濃淡に関わらず読みやすくする */
 .hero-pill{display:inline-block;margin:0 0 22px;
-  border:1px solid var(--line-strong);border-radius:100px;
-  padding:10px 22px;font-size:12.5px;letter-spacing:.1em;color:var(--sub)}
+  background:rgba(244,244,239,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border:1px solid rgba(244,244,239,.95);border-radius:100px;
+  padding:10px 22px;font-size:12.5px;letter-spacing:.1em;color:var(--ink)}
 .hero h1{font-family:var(--mincho);font-weight:600;
-  font-size:clamp(31px,8.6vw,62px);line-height:1.5;letter-spacing:.1em;margin:0 0 24px;color:var(--ink)}
+  font-size:clamp(31px,8.6vw,62px);line-height:1.5;letter-spacing:.1em;margin:0 0 24px;color:var(--ink);
+  text-shadow:0 1px 3px rgba(244,244,239,.6),0 2px 22px rgba(244,244,239,.7)}
 .hero-sub{font-size:clamp(14.5px,3.9vw,17px);font-weight:500;line-height:1.95;
-  color:var(--ink);max-width:30em;margin:0 0 13px}
+  color:var(--ink);max-width:30em;margin:0 0 13px;
+  text-shadow:0 1px 3px rgba(244,244,239,.55),0 2px 16px rgba(244,244,239,.6)}
 .hero-last{margin-bottom:20px!important}
 .hero h1 em{font-style:normal;position:relative;white-space:nowrap;color:var(--green)}
 .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-.1em;height:2px;
   background:var(--rose);transform:scaleX(0);transform-origin:left;
   transition:transform .9s .5s var(--snap)}
 .hero.in h1 em::after{transform:scaleX(1)}
-.hero .lead{color:var(--sub);max-width:31em;margin-bottom:14px;font-size:14.5px;line-height:1.9}
+.hero .lead{color:var(--sub);max-width:31em;margin-bottom:14px;font-size:14.5px;line-height:1.9;
+  text-shadow:0 1px 3px rgba(244,244,239,.55),0 2px 16px rgba(244,244,239,.6)}
 
 /* ヒーローの実績チップ */
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:0;list-style:none}
 .chips li{font-family:var(--en);font-size:12px;letter-spacing:.08em;
-  border:1px solid var(--line-strong);border-radius:100px;
+  background:rgba(244,244,239,.72);border:1px solid rgba(244,244,239,.9);border-radius:100px;
   padding:8px 15px;color:var(--sub)}
 .chips li b{font-weight:600;color:var(--green)}
 .chips li .jp{font-family:var(--gothic);font-size:11.5px;letter-spacing:.06em}
@@ -401,6 +413,7 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
 /* ---------- パソコン ---------- */
 @media (min-width:820px){
   body{font-size:17px}
+  .hero-bg img{object-position:52% 50%}
   .hero h1{font-size:clamp(38px,4.9vw,64px);letter-spacing:.13em}
   .hero .lead{font-size:15.5px}
   .prof{grid-template-columns:1.3fr 1fr;gap:clamp(40px,5.4vw,64px);align-items:start}
@@ -430,8 +443,12 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
 
 <main>
 
-<!-- ヒーロー：1.キャッチコピー 2.対象者ラベル 3.リード 4.写真 5.実績 6.CTA（初回表示は2.6秒以内） -->
+<!-- ヒーロー：0.背景写真を先に表示 1.キャッチコピー 2.対象者ラベル 3.リード 4.実績 5.CTA（初回表示は2.6秒以内） -->
 <section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="images/hero-flow.jpg?v=202609041247" width="1672" height="941" fetchpriority="high"
+         alt="木の机の上のノートに、丸いカードが線でつながれて並び、手が1枚を置いているところ。奥にノートパソコンとコーヒー">
+  </div>
   <div class="wrap">
     <p class="hero-pill rv" style="--d:1100ms">地方で、ひとりサロンを営む方へ</p>
     <h1 class="rv" style="--d:200ms">増やすより　<em>つなぐ</em></h1>
@@ -458,10 +475,6 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
       <p class="btn-note">Googleフォームが開きます。</p>
     </div>
     <div class="scroll-cue rv" style="--d:1950ms"><i></i>SCROLL</div>
-  </div>
-  <div class="hero-photo img-reveal" style="--d:1500ms;--pos:58% 46%">
-    <img src="images/hero-flow.jpg?v=202609041223" width="1672" height="941" fetchpriority="high"
-         alt="木の机の上のノートに、丸いカードが線でつながれて並び、手が1枚を置いているところ。奥にノートパソコンとコーヒー">
   </div>
 </section>
 
@@ -520,7 +533,7 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
         </div>
       </div>
       <div class="thought-photo img-reveal" style="--d:380ms;--pos:50% 40%" data-parallax="thought">
-        <img src="images/thought-paper.jpg?v=202609041223" width="1500" height="844" loading="lazy" decoding="async"
+        <img src="images/thought-paper.jpg?v=202609041247" width="1500" height="844" loading="lazy" decoding="async"
              alt="クリーム色の紙の上に、木漏れ日越しの葉の影がやわらかく伸びているところ">
       </div>
     </div>
@@ -540,7 +553,7 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
     </div>
     <div class="prof">
       <div class="avatar img-reveal" style="--d:380ms;--pos:48% 50%" data-parallax="profile" data-parallax-scale="2.05">
-        <img src="images/profile.jpg?v=202609041223" width="900" height="883" loading="lazy" decoding="async"
+        <img src="images/profile.jpg?v=202609041247" width="900" height="883" loading="lazy" decoding="async"
              alt="ミー｜地方サロンの裏方。ノートパソコンに向かい、頬杖をついて考えているミーさん">
       </div>
       <div>
@@ -561,11 +574,11 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
     <div class="gal-block">
     <p class="gal-lbl rv"><i class="bar"></i>FIELD<span class="jp">こんな方の裏方お任せください</span></p>
     <div class="gal stg" data-step="130">
-      <figure><img src="images/field-nail.jpg?v=202609041223" width="900" height="900" loading="lazy" decoding="async" alt="自然光の入る小さなネイルサロン。リネンのクロスの上で、お客様の手元に施術をしているところ"><figcaption>ネイルサロン</figcaption></figure>
-      <figure><img src="images/field-eyebrow.jpg?v=202609041223" width="900" height="900" loading="lazy" decoding="async" alt="アイブロウの施術ルーム。トレイに並べられた道具と、たたまれたタオル、丸い鏡と観葉植物"><figcaption>アイブロウ・まつげ</figcaption></figure>
-      <figure><img src="images/field-esthe.jpg?v=202609041223" width="900" height="900" loading="lazy" decoding="async" alt="エステの施術室。白いリネンを敷いたベッドと、木の台に置かれた器や植物"><figcaption>エステ・フェイシャル</figcaption></figure>
-      <figure><img src="images/field-yoga.jpg?v=202609041223" width="900" height="900" loading="lazy" decoding="async" alt="朝の光が差し込むヨガスタジオ。木の床に置かれた2本のヨガマットとたたまれたブランケット"><figcaption>ヨガ・ピラティス</figcaption></figure>
-      <figure><img src="images/field-school.jpg?v=202609041223" width="900" height="900" loading="lazy" decoding="async" alt="窓辺の教室。木のテーブルに、開いたノートとペン、カップと小さな植物が並んでいる"><figcaption>教室・レッスン</figcaption></figure>
+      <figure><img src="images/field-nail.jpg?v=202609041247" width="900" height="900" loading="lazy" decoding="async" alt="自然光の入る小さなネイルサロン。リネンのクロスの上で、お客様の手元に施術をしているところ"><figcaption>ネイルサロン</figcaption></figure>
+      <figure><img src="images/field-eyebrow.jpg?v=202609041247" width="900" height="900" loading="lazy" decoding="async" alt="アイブロウの施術ルーム。トレイに並べられた道具と、たたまれたタオル、丸い鏡と観葉植物"><figcaption>アイブロウ・まつげ</figcaption></figure>
+      <figure><img src="images/field-esthe.jpg?v=202609041247" width="900" height="900" loading="lazy" decoding="async" alt="エステの施術室。白いリネンを敷いたベッドと、木の台に置かれた器や植物"><figcaption>エステ・フェイシャル</figcaption></figure>
+      <figure><img src="images/field-yoga.jpg?v=202609041247" width="900" height="900" loading="lazy" decoding="async" alt="朝の光が差し込むヨガスタジオ。木の床に置かれた2本のヨガマットとたたまれたブランケット"><figcaption>ヨガ・ピラティス</figcaption></figure>
+      <figure><img src="images/field-school.jpg?v=202609041247" width="900" height="900" loading="lazy" decoding="async" alt="窓辺の教室。木のテーブルに、開いたノートとペン、カップと小さな植物が並んでいる"><figcaption>教室・レッスン</figcaption></figure>
     </div>
     </div>
   </div>
@@ -667,7 +680,7 @@ footer{background:var(--green-d);color:rgba(244,244,239,.86);padding-block:52px}
 
 <!-- ページ内で唯一の全幅没入写真（70〜85vh目安）。低濃度のアイボリー色調補正のみ -->
 <div class="band-immersive img-reveal" style="--d:0ms;--pos:50% 44%">
-  <img src="images/support-card.jpg?v=202609041223" width="1672" height="941" loading="lazy" decoding="async"
+  <img src="images/support-card.jpg?v=202609041247" width="1672" height="941" loading="lazy" decoding="async"
        alt="やわらかな自然光の入るテーブルで、片方の手からもう片方の手へ、小さなカードをそっと手渡しているところ">
 </div>
 
